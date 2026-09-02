@@ -1,0 +1,2600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Split 24 company roles between two founders, then work each claimed role through a tracked 14-day program.">
+<meta name="theme-color" content="#F3F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121613" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Role Charter">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<title>Founders' Role Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --paper:      #F3F5F0;
+    --surface:    #FFFFFF;
+    --raised:     #FFFFFF;
+    --ink:        #171C1A;
+    --ink-soft:   #4E5852;
+    --ink-faint:  #79837C;
+    --rule:       #DCE2D8;
+    --rule-strong:#C0C9BB;
+    --accent:     #1D5D4A;
+
+    /* founder identity — the only place color is spent */
+    --ezra:       #1D5D4A;
+    --ezra-tint:  #E4EEE8;
+    --ezra-ink:   #123B2F;
+    --ashley:     #A2512C;
+    --ashley-ink: #7A3A1D;
+    --ashley-tint:#F7E8DE;
+    --neutral-tint:#E9ECE6;
+
+    --shadow: 0 -1px 0 var(--rule), 0 -12px 32px rgba(23, 28, 26, 0.07);
+
+    --display: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --measure: 66ch;
+    --dock-h: 62px;
+    --top-h: 54px;
+    --gut: 24px;
+  }
+
+  @media (max-width: 720px) {
+    :root { --gut: 16px; --dock-h: 58px; --top-h: 48px; --measure: 100%; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #121613;
+      --surface:    #191E1A;
+      --raised:     #1E2420;
+      --ink:        #E9EEE8;
+      --ink-soft:   #A6B0A8;
+      --ink-faint:  #7C8680;
+      --rule:       #28302A;
+      --rule-strong:#3B453D;
+      --accent:     #63C1A1;
+      --ezra:       #63C1A1;
+      --ezra-tint:  #16332B;
+      --ezra-ink:   #9EDDC5;
+      --ashley:     #DB9163;
+      --ashley-ink: #EEBB96;
+      --ashley-tint:#33241B;
+      --neutral-tint:#242C26;
+      --shadow: 0 -1px 0 var(--rule), 0 -12px 32px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #121613;
+    --surface:    #191E1A;
+    --raised:     #1E2420;
+    --ink:        #E9EEE8;
+    --ink-soft:   #A6B0A8;
+    --ink-faint:  #7C8680;
+    --rule:       #28302A;
+    --rule-strong:#3B453D;
+    --accent:     #63C1A1;
+    --ezra:       #63C1A1;
+    --ezra-tint:  #16332B;
+    --ezra-ink:   #9EDDC5;
+    --ashley:     #DB9163;
+    --ashley-ink: #EEBB96;
+    --ashley-tint:#33241B;
+    --neutral-tint:#242C26;
+    --shadow: 0 -1px 0 var(--rule), 0 -12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 var(--gut) calc(var(--dock-h) + env(safe-area-inset-bottom) + 44px);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+  }
+
+  p { margin: 0 0 1.05em; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+
+  button { font: inherit; color: inherit; cursor: pointer; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  /* ---------- shell ---------- */
+
+  .shell {
+    max-width: 1260px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 40px;
+  }
+
+  main { min-width: 0; }
+
+  @media (min-width: 1140px) {
+    .shell {
+      grid-template-columns: 216px minmax(0, 1fr) 216px;
+      align-items: start;
+    }
+    .masthead { grid-column: 1 / -1; }
+    .rail-ezra   { grid-column: 1; grid-row: 2; }
+    main         { grid-column: 2; grid-row: 2; }
+    .rail-ashley { grid-column: 3; grid-row: 2; }
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    padding: 68px 0 34px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.3rem, 6vw, 3.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+    margin: 0 0 22px;
+    max-width: 16ch;
+  }
+
+  .lede { font-size: 1.14rem; line-height: 1.56; color: var(--ink-soft); max-width: 62ch; }
+
+  /* ---------- rails ---------- */
+
+  .rail {
+    position: sticky;
+    top: calc(var(--top-h) + 18px);
+    align-self: start;
+    padding: 18px 0 22px;
+    max-height: calc(100vh - var(--dock-h) - var(--top-h) - 44px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 1139px) { .rail { display: none; } }
+
+  .rail-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 9px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--rail-color);
+  }
+
+  .rail-ezra   { --rail-color: var(--ezra);   --rail-tint: var(--ezra-tint);   --rail-ink: var(--ezra-ink); }
+  .rail-ashley { --rail-color: var(--ashley); --rail-tint: var(--ashley-tint); --rail-ink: var(--ashley-ink); }
+
+  .rail-head h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.12rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--rail-color);
+  }
+
+  .rail-count {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 4px 0 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .rail-list button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--rail-tint);
+    border: none;
+    border-left: 2px solid var(--rail-color);
+    border-radius: 0 3px 3px 0;
+    padding: 6px 9px 7px;
+    font-family: var(--display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.32;
+    color: var(--rail-ink);
+  }
+
+  .rail-list button:hover { filter: brightness(0.97); }
+
+  .rail-list li.is-shared button {
+    background: transparent;
+    border-left-style: dashed;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  .rail-empty {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 52px; }
+  .prose { max-width: var(--measure); }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.014em;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin: 0 0 16px;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.01rem;
+    margin: 0 0 6px;
+  }
+
+  .domain-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 9px;
+    margin-bottom: 20px;
+  }
+
+  .domain-head .eyebrow { margin: 0; white-space: nowrap; }
+
+  .domain-note {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    text-align: right;
+    margin-left: auto;
+    font-style: italic;
+  }
+
+  /* ---------- role cards ---------- */
+
+  .roles { display: flex; flex-direction: column; gap: 10px; }
+
+  .role {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 15px 18px 13px 21px;
+    overflow: hidden;
+    transition: background-color .18s ease, border-color .18s ease;
+  }
+
+  .role::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--rule-strong);
+    transition: background .18s ease;
+  }
+
+  .role[data-assigned="ezra"]    { background: var(--ezra-tint);   border-color: color-mix(in srgb, var(--ezra) 26%, transparent); }
+  .role[data-assigned="ezra"]::before { background: var(--ezra); }
+
+  .role[data-assigned="ashley"]  { background: var(--ashley-tint); border-color: color-mix(in srgb, var(--ashley) 26%, transparent); }
+  .role[data-assigned="ashley"]::before { background: var(--ashley); }
+
+  .role[data-assigned="both"]    { background: var(--neutral-tint); }
+  .role[data-assigned="both"]::before {
+    background: repeating-linear-gradient(180deg, var(--ezra) 0 9px, var(--ashley) 9px 18px);
+  }
+
+  .role[data-assigned="outside"] { background: transparent; }
+  .role[data-assigned="outside"]::before {
+    background: repeating-linear-gradient(180deg, var(--ink-faint) 0 4px, transparent 4px 9px);
+  }
+
+  /* unclaimed + must-own reads as an open question */
+  .role[data-assigned=""][data-tier="own"]::before {
+    background: repeating-linear-gradient(180deg, var(--rule-strong) 0 3px, transparent 3px 7px);
+  }
+
+  .role.flash { animation: flash .9s ease; }
+  @keyframes flash { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 25% { box-shadow: 0 0 0 3px var(--accent); } }
+
+  .role-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .role-top h3 { margin: 0; }
+
+  .def { margin: 0 0 7px; font-size: 0.97rem; line-height: 1.52; }
+
+  .wtw { margin: 0 0 12px; font-size: 0.855rem; line-height: 1.52; color: var(--ink-soft); }
+
+  .wtw b {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 5px;
+  }
+
+  /* tier chips stay neutral — color belongs to people, not tiers */
+  .chip {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 3px 7px 2px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+  }
+
+  .chip.own   { background: var(--ink); color: var(--paper); }
+  .chip.share { background: var(--neutral-tint); color: var(--ink-soft); border-color: var(--rule-strong); }
+  .chip.later { border-color: var(--rule-strong); color: var(--ink-faint); }
+  .chip.buy   { border: 1px dashed var(--rule-strong); color: var(--ink-faint); }
+
+  /* ---------- assign buttons ---------- */
+
+  .assign {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-top: 1px solid var(--rule);
+    padding-top: 11px;
+  }
+
+  .assign button {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 5px 11px 4px;
+    border-radius: 3px;
+    border: 1px solid var(--rule-strong);
+    background: transparent;
+    color: var(--ink-faint);
+    transition: all .14s ease;
+  }
+
+  .assign button:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .assign button[aria-pressed="true"][data-who="ezra"]    { background: var(--ezra);    border-color: var(--ezra);    color: var(--paper); }
+  .assign button[aria-pressed="true"][data-who="ashley"]  { background: var(--ashley);  border-color: var(--ashley);  color: var(--paper); }
+  .assign button[aria-pressed="true"][data-who="both"]    { background: var(--ink);     border-color: var(--ink);     color: var(--paper); }
+  .assign button[aria-pressed="true"][data-who="outside"] { background: transparent;    border-color: var(--ink-soft); color: var(--ink); border-style: dashed; }
+
+  /* ---------- legend / prose blocks ---------- */
+
+  .legend {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px 30px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px;
+    max-width: var(--measure);
+  }
+
+  @media (min-width: 660px) { .legend { grid-template-columns: 1fr 1fr; } }
+
+  .legend-row {
+    display: flex;
+    align-items: baseline;
+    gap: 11px;
+    font-size: 0.9rem;
+    line-height: 1.48;
+    color: var(--ink-soft);
+  }
+
+  .seam {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--rule-strong);
+    max-width: var(--measure);
+  }
+
+  @media (min-width: 660px) { .seam { grid-template-columns: 1fr 1fr; } }
+
+  .seam-half { background: var(--surface); padding: 20px 22px 22px; }
+  .seam-half .eyebrow { margin-bottom: 9px; }
+  .seam-half h3 { margin-bottom: 7px; font-size: 1.04rem; }
+  .seam-half p { font-size: 0.91rem; color: var(--ink-soft); margin: 0; }
+
+  .rules { max-width: var(--measure); }
+  .rule-item { border-top: 1px solid var(--rule); padding: 15px 0 16px; }
+  .rule-item p { font-size: 0.93rem; margin: 0; color: var(--ink-soft); }
+
+  .template {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 22px 24px;
+    max-width: var(--measure);
+    font-family: var(--mono);
+    font-size: 0.84rem;
+    line-height: 1.8;
+  }
+
+  .template dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 18px; }
+  .template dt {
+    font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+    font-size: 0.74rem; color: var(--accent); padding-top: 3px;
+  }
+  .template dd { margin: 0; color: var(--ink-soft); }
+
+  .ladder { list-style: none; counter-reset: hire; padding: 0; margin: 0; max-width: var(--measure); }
+  .ladder li {
+    counter-increment: hire;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 3px 13px;
+    border-top: 1px solid var(--rule);
+    padding: 13px 0 14px;
+  }
+  .ladder li::before {
+    content: counter(hire, decimal-leading-zero);
+    font-family: var(--mono); font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.06em; color: var(--accent); grid-row: span 2; padding-top: 3px;
+  }
+  .ladder h3 { margin: 0; }
+  .ladder p { margin: 3px 0 0; font-size: 0.91rem; color: var(--ink-soft); }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px 26px;
+    max-width: var(--measure);
+  }
+  .callout h2 { font-size: 1.13rem; margin-bottom: 9px; }
+  .callout p { font-size: 0.95rem; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- bottom dock ---------- */
+
+  .dock {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 40;
+    background: var(--raised);
+    box-shadow: var(--shadow);
+  }
+
+  .dock-bar {
+    max-width: 1260px;
+    margin: 0 auto;
+    height: var(--dock-h);
+    padding: 0 var(--gut);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .dock { padding-bottom: env(safe-area-inset-bottom); }
+
+  @media (max-width: 720px) {
+    .dock-bar { gap: 10px; }
+    .dock-toggle { gap: 9px; }
+    .tally-name { display: none; }
+    .tally { gap: 4px; }
+    .tally-num { font-size: 0.76rem; }
+    .meter { min-width: 34px; }
+    .dock-status { font-size: 0.66rem; letter-spacing: 0.03em; }
+    .dock-actions button { padding: 6px 9px 5px; font-size: 9.5px; letter-spacing: 0.05em; }
+  }
+
+  @media (max-width: 400px) {
+    .dock-status { display: none; }
+  }
+
+  .dock-toggle {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: none;
+    padding: 8px 0;
+    text-align: left;
+  }
+
+  .tally { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+
+  .tally-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .tally-dot.ezra   { background: var(--ezra); }
+  .tally-dot.ashley { background: var(--ashley); }
+  .tally-dot.both   { background: var(--ink); }
+  .tally-dot.outside{ background: transparent; border: 1px dashed var(--ink-faint); }
+
+  .tally-name {
+    font-family: var(--display); font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.01em;
+  }
+  .tally-num {
+    font-family: var(--mono); font-size: 0.82rem; font-variant-numeric: tabular-nums;
+    color: var(--ink-soft);
+  }
+
+  .meter {
+    flex: 1;
+    min-width: 60px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--rule);
+    overflow: hidden;
+    display: flex;
+  }
+  .meter span { height: 100%; transition: width .2s ease; }
+  .meter .m-ezra   { background: var(--ezra); }
+  .meter .m-ashley { background: var(--ashley); }
+  .meter .m-both   { background: var(--ink); }
+  .meter .m-outside{ background: var(--ink-faint); opacity: .45; }
+
+  .dock-status {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .dock-status.warn { color: var(--ashley); }
+
+  .dock-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+  .dock-actions button {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 12px 5px; border-radius: 3px;
+    border: 1px solid var(--rule-strong); background: transparent; color: var(--ink-soft);
+  }
+  .dock-actions button:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  .dock-panel {
+    display: none;
+    border-top: 1px solid var(--rule);
+    max-height: min(56vh, 460px);
+    overflow-y: auto;
+  }
+  .dock[data-open="true"] .dock-panel { display: block; }
+
+  body[data-view="charter"] .dock-program,
+  body[data-view="charter"] #dock-panel-p,
+  body[data-view="program"] .dock-charter,
+  body[data-view="program"] #dock-panel { display: none !important; }
+
+  .dock-panel-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 22px var(--gut) 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 26px 32px;
+  }
+  @media (min-width: 700px)  { .dock-panel-inner { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1040px) { .dock-panel-inner { grid-template-columns: repeat(4, 1fr); } }
+
+  .col-head {
+    display: flex; align-items: baseline; gap: 8px;
+    border-bottom: 2px solid var(--col-color, var(--rule-strong));
+    padding-bottom: 7px; margin-bottom: 10px;
+  }
+  .col-head h3 { margin: 0; font-size: 0.95rem; color: var(--col-ink, var(--ink)); }
+  .col-head .rail-count { margin-left: auto; }
+
+  .col-ezra    { --col-color: var(--ezra);    --col-ink: var(--ezra); }
+  .col-ashley  { --col-color: var(--ashley);  --col-ink: var(--ashley); }
+  .col-both    { --col-color: var(--ink); }
+  .col-outside { --col-color: var(--ink-faint); }
+
+  .col-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .col-list button {
+    background: none; border: none; padding: 3px 0; text-align: left; width: 100%;
+    font-family: var(--display); font-size: 0.83rem; font-weight: 600; line-height: 1.35;
+    color: var(--ink-soft);
+  }
+  .col-list button:hover { color: var(--ink); text-decoration: underline; }
+  .col-list li small {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-faint); margin-left: 6px;
+  }
+
+  .col-empty { font-size: 0.82rem; color: var(--ink-faint); font-style: italic; margin: 0; }
+
+  .dock-tools {
+    max-width: 1260px; margin: 0 auto;
+    padding: 0 var(--gut) 22px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    border-top: 1px solid var(--rule); padding-top: 16px; margin-top: 4px;
+  }
+  .dock-tools button {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 7px 13px 6px; border-radius: 3px; min-height: 32px;
+    border: 1px solid var(--rule-strong); background: transparent; color: var(--ink-soft);
+  }
+  .dock-tools button:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .dock-note {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em;
+    color: var(--ink-faint); margin-left: 4px;
+  }
+  .dock-note.ok { color: var(--ezra); }
+  .dock-note.bad { color: var(--ashley); }
+
+  /* ---------- top bar & views ---------- */
+
+  .topbar {
+    position: sticky; top: 0; z-index: 30;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    margin: 0 calc(var(--gut) * -1) 0;
+    padding: 0 var(--gut);
+  }
+  .topbar-inner {
+    max-width: 1260px; margin: 0 auto; height: var(--top-h);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .wordmark {
+    font-family: var(--display); font-weight: 800; font-size: 0.86rem;
+    letter-spacing: -0.005em; white-space: nowrap;
+  }
+  .switch { display: flex; gap: 4px; margin-left: auto; }
+  .switch button {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    padding: 6px 14px 5px; border-radius: 3px;
+    border: 1px solid transparent; background: transparent; color: var(--ink-faint);
+  }
+  .switch button:hover { color: var(--ink); }
+  .switch button[aria-selected="true"] {
+    background: var(--ink); color: var(--paper);
+  }
+
+  .view { display: none; }
+  .view.is-active { display: block; }
+  .view-charter.is-active { display: grid; }
+
+  /* ---------- program view ---------- */
+
+  .prog-wrap { max-width: 1260px; margin: 0 auto; }
+
+  .prog-head { padding: 60px 0 30px; border-bottom: 2px solid var(--ink); }
+  .prog-head h1 { margin-bottom: 18px; }
+
+  .roadmap {
+    display: grid; grid-template-columns: 1fr; gap: 10px;
+    margin: 26px 0 0;
+  }
+  @media (min-width: 780px) { .roadmap { grid-template-columns: repeat(4, 1fr); } }
+
+  .rm-cell {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-top: 3px solid var(--rule-strong);
+    border-radius: 0 0 4px 4px; padding: 13px 15px 15px;
+  }
+  .rm-cell[data-state="active"] { border-top-color: var(--accent); }
+  .rm-cell[data-state="done"]   { border-top-color: var(--accent); background: var(--ezra-tint); }
+  .rm-days {
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint);
+    margin: 0 0 5px;
+  }
+  .rm-cell h3 { margin: 0 0 4px; font-size: 0.95rem; }
+  .rm-cell p { margin: 0 0 9px; font-size: 0.82rem; line-height: 1.42; color: var(--ink-soft); }
+  .rm-bar { height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
+  .rm-bar span { display: block; height: 100%; background: var(--accent); transition: width .2s ease; }
+
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 0; margin: 44px 0 4px;
+  }
+  .tabs button {
+    font-family: var(--display); font-weight: 700; font-size: 0.9rem;
+    padding: 9px 15px 8px; border: 1px solid transparent; border-bottom: none;
+    border-radius: 4px 4px 0 0; background: transparent; color: var(--ink-faint);
+    position: relative; bottom: -1px;
+  }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-selected="true"] {
+    color: var(--tab-ink, var(--ink));
+    background: var(--surface);
+    border-color: var(--rule-strong);
+    border-bottom: 1px solid var(--surface);
+  }
+  .tabs button[data-tab="ezra"]   { --tab-ink: var(--ezra); }
+  .tabs button[data-tab="ashley"] { --tab-ink: var(--ashley); }
+  .tabs .tab-n {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 400;
+    color: var(--ink-faint); margin-left: 6px; font-variant-numeric: tabular-nums;
+  }
+
+  .band { padding-top: 44px; }
+  .band-head {
+    display: flex; align-items: baseline; gap: 16px;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 9px; margin-bottom: 18px;
+  }
+  .band-head .eyebrow { margin: 0; white-space: nowrap; }
+  .band-head h2 { margin: 0; font-size: 1.24rem; }
+  .band-head .band-blurb {
+    margin-left: auto; text-align: right; font-style: italic;
+    font-size: 0.85rem; color: var(--ink-faint);
+  }
+
+  .mods { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 1000px) { .mods { grid-template-columns: 1fr 1fr; } }
+
+  .mod {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 15px 18px 16px 21px; overflow: hidden;
+  }
+  .mod::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--mod-color, var(--rule-strong));
+  }
+  .mod[data-who="ezra"]    { --mod-color: var(--ezra); }
+  .mod[data-who="ashley"]  { --mod-color: var(--ashley); }
+  .mod[data-who="both"]    { --mod-color: var(--ink); }
+  .mod[data-who="outside"] { --mod-color: var(--ink-faint); }
+  .mod.is-done { background: var(--ezra-tint); border-color: color-mix(in srgb, var(--accent) 26%, transparent); }
+
+  .mod-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; margin-bottom: 7px;
+  }
+  .mod-head h3 { margin: 0; font-size: 1.0rem; }
+  .mod-prog {
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em;
+    color: var(--ink-faint); font-variant-numeric: tabular-nums; flex-shrink: 0;
+  }
+  .mod-hard {
+    margin: 0 0 10px; font-size: 0.86rem; line-height: 1.5;
+    color: var(--ink-soft); font-style: italic;
+    border-left: 2px solid var(--rule-strong); padding-left: 11px;
+  }
+
+  .steps { list-style: none; margin: 0 0 12px; padding: 0; }
+  .step { display: flex; gap: 10px; align-items: flex-start; padding: 4px 0; cursor: pointer; }
+  .step input {
+    margin: 5px 0 0; width: 15px; height: 15px; flex-shrink: 0;
+    accent-color: var(--accent); cursor: pointer;
+  }
+  .step span { font-size: 0.92rem; line-height: 1.5; }
+  .step input:checked + span { color: var(--ink-faint); text-decoration: line-through; }
+
+  .need {
+    font-size: 0.83rem; line-height: 1.5; color: var(--ink-soft);
+    padding: 7px 0 0; border-top: 1px solid var(--rule); margin-top: 4px;
+  }
+  .need + .need { border-top: none; padding-top: 2px; }
+  .need b {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint);
+    margin-right: 6px;
+  }
+
+  .ms {
+    display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+    margin-top: 12px; padding: 10px 12px 11px;
+    background: var(--neutral-tint); border-radius: 3px;
+  }
+  .ms input { margin: 4px 0 0; width: 15px; height: 15px; flex-shrink: 0; accent-color: var(--accent); cursor: pointer; }
+  .ms span { font-size: 0.87rem; line-height: 1.48; }
+  .ms b {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent);
+    margin-right: 6px;
+  }
+  .ms input:checked ~ span { color: var(--ink-soft); }
+
+  .shelf { padding-top: 52px; }
+  .shelf-grid { display: grid; grid-template-columns: 1fr; gap: 22px 32px; }
+  @media (min-width: 760px)  { .shelf-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .shelf-grid { grid-template-columns: repeat(3, 1fr); } }
+  .shelf-role { border-top: 1px solid var(--rule); padding-top: 11px; }
+  .shelf-role h3 { font-size: 0.9rem; margin-bottom: 7px; }
+  .shelf-role ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .shelf-role li { font-size: 0.85rem; line-height: 1.45; color: var(--ink-soft); }
+  .shelf-role .r-t { font-weight: 600; color: var(--ink); }
+  .shelf-role .r-a { color: var(--ink-faint); }
+
+  .empty-state {
+    background: var(--surface); border: 1px dashed var(--rule-strong);
+    border-radius: 4px; padding: 40px 32px; text-align: center; margin-top: 44px;
+  }
+  .empty-state h2 { font-size: 1.15rem; }
+  .empty-state p { color: var(--ink-soft); max-width: 46ch; margin: 0 auto 16px; font-size: 0.95rem; }
+  .empty-state button {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    padding: 8px 16px 7px; border-radius: 3px;
+    border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  }
+
+  .prog-row {
+    display: grid; grid-template-columns: 1fr 54px 88px;
+    gap: 10px; align-items: center; padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prog-row .n { font-family: var(--display); font-weight: 600; font-size: 0.83rem; }
+  .prog-row .f {
+    font-family: var(--mono); font-size: 0.74rem; color: var(--ink-faint);
+    font-variant-numeric: tabular-nums; text-align: right;
+  }
+  .prog-row .b { height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
+  .prog-row .b span { display: block; height: 100%; background: var(--col-color, var(--accent)); }
+
+  /* ---------- small screens ---------- */
+
+  @media (max-width: 720px) {
+    .masthead { padding: 34px 0 26px; }
+    .prog-head { padding: 30px 0 24px; }
+    section { padding-top: 36px; }
+    .band { padding-top: 32px; }
+    .shelf { padding-top: 36px; }
+    .tabs { margin-top: 28px; }
+    .roadmap { margin-top: 20px; }
+
+    h1 { max-width: none; }
+    .lede { font-size: 1.02rem; }
+
+    .topbar-inner { gap: 10px; }
+    .wordmark { font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; }
+    .switch button { padding: 6px 11px 5px; font-size: 10px; letter-spacing: 0.06em; }
+
+    /* header rows stop fighting for one line */
+    .domain-head, .band-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .domain-note, .band-blurb {
+      margin-left: 0;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .band-head h2 { font-size: 1.14rem; }
+
+    .role { padding: 14px 14px 12px 17px; }
+    .mod { padding: 14px 14px 15px 17px; }
+    .mod-head { gap: 8px; }
+    .mod-head h3 { font-size: 0.95rem; }
+
+    .assign { gap: 6px; }
+    .assign button { padding: 7px 12px 6px; font-size: 10.5px; }
+
+    .callout, .legend, .seam-half, .template { padding: 18px 16px; }
+    .template { font-size: 0.79rem; overflow-x: auto; }
+    .template dl { grid-template-columns: 1fr; gap: 0 0; }
+    .template dt { padding-top: 9px; }
+    .template dd { padding-bottom: 4px; }
+
+    .ladder li { grid-template-columns: 30px 1fr; gap: 3px 10px; }
+    .prog-row { grid-template-columns: 1fr 44px 58px; gap: 8px; }
+
+    .tabs button { font-size: 0.84rem; padding: 8px 11px 7px; }
+
+    .rm-cell { padding: 12px 13px 13px; }
+    .empty-state { padding: 30px 18px; }
+  }
+
+  /* tap targets stay comfortable on touch */
+  @media (hover: none) {
+    .step, .ms { padding-top: 7px; padding-bottom: 7px; }
+    .step input, .ms input { width: 18px; height: 18px; }
+    .assign button { min-height: 34px; }
+    .rail-list button, .col-list button { min-height: 30px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before { transition: none !important; animation: none !important; }
+  }
+
+  @media print {
+    .dock, .assign, .rail { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11pt; padding: 0; }
+    .role, .rule-item, .ladder li { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="wordmark">Founders' Role Charter</span>
+    <div class="switch" role="tablist" aria-label="View">
+      <button type="button" role="tab" data-view="charter" aria-selected="true">Charter</button>
+      <button type="button" role="tab" data-view="program" aria-selected="false">Program</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell view view-charter is-active" id="view-charter">
+
+  <header class="masthead">
+    <p class="eyebrow">Two founders &middot; a technology company</p>
+    <h1>Founders' Role&nbsp;Charter</h1>
+    <p class="lede">A technology company needs about two dozen jobs done. It does not need two dozen people. What it needs is for every one of those jobs to have a name attached to it &mdash; so that nothing important is quietly nobody's. Work down the catalog and claim each one out loud.</p>
+  </header>
+
+  <aside class="rail rail-ezra" aria-label="Roles claimed by Ezra">
+    <div class="rail-head">
+      <h2>Ezra</h2>
+      <span class="rail-count" id="count-ezra">0</span>
+    </div>
+    <ul class="rail-list" id="list-ezra"></ul>
+    <p class="rail-empty" id="empty-ezra">Nothing claimed yet.</p>
+  </aside>
+
+  <aside class="rail rail-ashley" aria-label="Roles claimed by Ashley">
+    <div class="rail-head">
+      <h2>Ashley</h2>
+      <span class="rail-count" id="count-ashley">0</span>
+    </div>
+    <ul class="rail-list" id="list-ashley"></ul>
+    <p class="rail-empty" id="empty-ashley">Nothing claimed yet.</p>
+  </aside>
+
+  <main>
+
+    <section>
+      <div class="prose">
+        <h2>Before the list: split by domain, not by task</h2>
+        <p>The failure mode for a two-person company isn't taking on too much work. It's dividing the work <em>task by task</em>. Tasks get traded back and forth until neither of you can say who is holding a thing, and the answer to "why didn't that happen?" is always "I thought you had it."</p>
+        <p>Domains don't do that. A domain has one owner, permanently, and the owner is accountable for the outcome whether or not they personally did the work. That's the whole trick.</p>
+        <p>The natural seam in a technology company runs down the middle: the work of <strong>making the thing</strong>, and the work of <strong>running the business that sells it</strong>. The seam can sit somewhere else if your strengths say so &mdash; but it has to sit somewhere, and you both have to be able to say out loud where it is.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="seam">
+        <div class="seam-half">
+          <p class="eyebrow">Inside</p>
+          <h3>Build &amp; Run the Product</h3>
+          <p>What gets made, how it's made, whether it stays up, and whether it's actually done. Deep work, long blocks, few interruptions. This side of the seam is protected time or it doesn't happen.</p>
+        </div>
+        <div class="seam-half">
+          <p class="eyebrow">Outside</p>
+          <h3>Build &amp; Run the Business</h3>
+          <p>Who buys, what they pay, whether they stay, and where the money goes. Interrupt-driven, relationship-heavy, calendar-shaped. This side of the seam absorbs the chaos so the other side doesn't have to.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to read the tags</h2>
+      <div class="legend">
+        <div class="legend-row"><span class="chip own">Own now</span><span>Needs a named owner today. If it's nobody's, it's already hurting you.</span></div>
+        <div class="legend-row"><span class="chip share">Share</span><span>One of you leads it, both of you touch it. Still name the lead.</span></div>
+        <div class="legend-row"><span class="chip later">Later</span><span>A real job, but not yet. Fold it into an <em>Own now</em> role and revisit.</span></div>
+        <div class="legend-row"><span class="chip buy">Buy</span><span>Hire a firm or a service. Doing this yourself costs the wrong hours.</span></div>
+      </div>
+    </section>
+
+    <div id="catalog"></div>
+
+    <section>
+      <h2>Six rules for splitting a company between two people</h2>
+      <div class="rules">
+        <div class="rule-item">
+          <h3>Split by domain, not by task</h3>
+          <p>Tasks get traded until neither of you knows who's holding one. Domains have an owner and stay owned &mdash; even on the weeks the owner didn't personally do the work.</p>
+        </div>
+        <div class="rule-item">
+          <h3>Don't split the customer</h3>
+          <p>One voice owns each relationship. A customer should never have to guess which of you to email. The other founder can be <em>in</em> the conversation; only one is <em>responsible</em> for it.</p>
+        </div>
+        <div class="rule-item">
+          <h3>Money is visible to both, owned by one</h3>
+          <p>Both of you see every account, always. One of you is accountable for the forecast being right. Shared visibility and shared ownership are different things, and only the first one is healthy.</p>
+        </div>
+        <div class="rule-item">
+          <h3>Name the tiebreaker before you need one</h3>
+          <p>Not "we'll talk it through" &mdash; a named person, per domain, whose call ends the discussion. Two equal owners with no tiebreaker is the single most common way a small company stalls out.</p>
+        </div>
+        <div class="rule-item">
+          <h3>Every role gets a backup, on paper</h3>
+          <p>For each role, write down who covers it for two weeks if the owner is out sick. Where the honest answer is "nobody," you've just found your first hire.</p>
+        </div>
+        <div class="rule-item">
+          <h3>Business hours are a container, not a mood</h3>
+          <p>Write down when business conversations happen &mdash; and when they don't. When two people run a company and share a house, the real risk isn't the workload. It's the meeting that never ends.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Write each role down in six lines</h2>
+      <p class="prose">A role that only lives in a conversation isn't a role. Use the same six fields for every one of them &mdash; including the ones you'll hire for later, which is how you end up with a job posting already written.</p>
+      <div class="template">
+        <dl>
+          <dt>Role</dt><dd>The title, as an outsider would recognize it</dd>
+          <dt>Owns</dt><dd>The outcome, in one sentence &mdash; not a list of tasks</dd>
+          <dt>Alone</dt><dd>Decisions this person makes without checking</dd>
+          <dt>Together</dt><dd>Decisions that require both founders</dd>
+          <dt>Measured</dt><dd>The one number that says whether it's going well</dd>
+          <dt>Backup</dt><dd>Who covers it for two weeks</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section>
+      <h2>The first five hires, in order</h2>
+      <p class="prose">This sequence is genuinely ordered &mdash; each hire depends on the one before it existing.</p>
+      <ol class="ladder">
+        <li>
+          <h3>Bookkeeper &mdash; fractional</h3>
+          <p>Buys back the most hours per dollar of anything on this list, and makes every financial decision after it possible.</p>
+        </li>
+        <li>
+          <h3>Support &amp; Implementation</h3>
+          <p>Your first W-2. It's the highest-volume, most interruptible work in the company, and it is the specific thing stopping you from building.</p>
+        </li>
+        <li>
+          <h3>Second engineer</h3>
+          <p>Hire when the roadmap is blocked on <em>hands</em>, not on knowing what to build. Hiring before that just makes the confusion faster.</p>
+        </li>
+        <li>
+          <h3>Salesperson</h3>
+          <p>Only after you've closed enough deals yourselves to write down how it's done. Never hire someone to figure out sales for you &mdash; that's a founder's job to solve first.</p>
+        </li>
+        <li>
+          <h3>Operations Manager</h3>
+          <p>Hire when the written procedures already exist and someone simply needs to run them. Not to invent them.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="callout">
+        <h2>How to actually use this</h2>
+        <p>Go down the catalog together and claim domains out loud, one at a time. Say the words "I own that" &mdash; not "I guess I've been doing that."</p>
+        <p>When you're through, look at what neither of you claimed. Everything left is one of two things: your next hire, or something you've decided to do badly on purpose. Both are acceptable answers. Not knowing which is not.</p>
+      </div>
+    </section>
+
+    <footer>
+      Founders' Role Charter &middot; Draft for review &middot; Revisit at each hire
+    </footer>
+
+  </main>
+</div>
+
+<div class="view view-program" id="view-program">
+  <div class="prog-wrap">
+    <header class="prog-head">
+      <p class="eyebrow">A fourteen-day program &middot; four modules</p>
+      <h1>Stepping Into&nbsp;the&nbsp;Roles</h1>
+      <p class="lede">Every role you claimed becomes a two-week module program. Four modules, each with the input you have to gather, the milestone that says you're through it, and the one thing you need from the other founder. Check things off as you go &mdash; it saves.</p>
+      <div class="roadmap" id="roadmap"></div>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Whose program" id="tabs"></div>
+    <div id="program"></div>
+
+    <section class="shelf" id="shelf-wrap">
+      <div class="domain-head">
+        <p class="eyebrow">Reference shelf</p>
+        <p class="domain-note">Read alongside the modules, not before them.</p>
+      </div>
+      <div class="shelf-grid" id="shelf"></div>
+    </section>
+
+    <footer>
+      Founders' Role Charter &middot; 14-day program &middot; Progress saves to this browser
+    </footer>
+  </div>
+</div>
+
+<div class="dock" data-open="false">
+  <div class="dock-bar dock-charter">
+    <button class="dock-toggle" id="dock-toggle" aria-expanded="false" aria-controls="dock-panel">
+      <span class="tally"><span class="tally-dot ezra"></span><span class="tally-name">Ezra</span><span class="tally-num" id="t-ezra">0</span></span>
+      <span class="tally"><span class="tally-dot ashley"></span><span class="tally-name">Ashley</span><span class="tally-num" id="t-ashley">0</span></span>
+      <span class="tally"><span class="tally-dot both"></span><span class="tally-name">Both</span><span class="tally-num" id="t-both">0</span></span>
+      <span class="tally"><span class="tally-dot outside"></span><span class="tally-name">Outside</span><span class="tally-num" id="t-outside">0</span></span>
+      <span class="meter" aria-hidden="true">
+        <span class="m-ezra" id="m-ezra"></span><span class="m-ashley" id="m-ashley"></span><span class="m-both" id="m-both"></span><span class="m-outside" id="m-outside"></span>
+      </span>
+      <span class="dock-status" id="dock-status">24 unassigned</span>
+    </button>
+    <div class="dock-actions">
+      <button id="btn-reset" type="button">Reset split</button>
+    </div>
+  </div>
+
+  <div class="dock-bar dock-program">
+    <button class="dock-toggle" id="dock-toggle-p" aria-expanded="false" aria-controls="dock-panel-p">
+      <span class="tally"><span class="tally-dot ezra"></span><span class="tally-name">Ezra</span><span class="tally-num" id="g-ezra">0/0</span></span>
+      <span class="tally"><span class="tally-dot ashley"></span><span class="tally-name">Ashley</span><span class="tally-num" id="g-ashley">0/0</span></span>
+      <span class="tally"><span class="tally-dot both"></span><span class="tally-name">Together</span><span class="tally-num" id="g-both">0/0</span></span>
+      <span class="meter" aria-hidden="true"><span class="m-both" id="g-meter"></span></span>
+      <span class="dock-status" id="prog-status">Nothing started</span>
+    </button>
+    <div class="dock-actions">
+      <button id="btn-reset-p" type="button">Reset progress</button>
+    </div>
+  </div>
+
+  <div class="dock-panel" id="dock-panel-p">
+    <div class="dock-panel-inner" id="prog-panel"></div>
+    <div class="dock-tools">
+      <button type="button" data-act="share">Copy share link</button>
+      <button type="button" data-act="export">Export file</button>
+      <button type="button" data-act="import">Import file</button>
+      <span class="dock-note" data-note></span>
+    </div>
+  </div>
+
+  <div class="dock-panel" id="dock-panel">
+    <div class="dock-panel-inner">
+      <div class="col col-ezra">
+        <div class="col-head"><h3>Ezra</h3><span class="rail-count" id="c-ezra">0</span></div>
+        <ul class="col-list" id="p-ezra"></ul>
+        <p class="col-empty" id="pe-ezra">Nothing claimed.</p>
+      </div>
+      <div class="col col-ashley">
+        <div class="col-head"><h3>Ashley</h3><span class="rail-count" id="c-ashley">0</span></div>
+        <ul class="col-list" id="p-ashley"></ul>
+        <p class="col-empty" id="pe-ashley">Nothing claimed.</p>
+      </div>
+      <div class="col col-both">
+        <div class="col-head"><h3>Both</h3><span class="rail-count" id="c-both">0</span></div>
+        <ul class="col-list" id="p-both"></ul>
+        <p class="col-empty" id="pe-both">Nothing shared.</p>
+      </div>
+      <div class="col col-outside">
+        <div class="col-head"><h3>Outside</h3><span class="rail-count" id="c-outside">0</span></div>
+        <ul class="col-list" id="p-outside"></ul>
+        <p class="col-empty" id="pe-outside">Nothing outsourced.</p>
+      </div>
+    </div>
+    <div class="dock-tools">
+      <button type="button" data-act="share">Copy share link</button>
+      <button type="button" data-act="export">Export file</button>
+      <button type="button" data-act="import">Import file</button>
+      <span class="dock-note" data-note></span>
+    </div>
+  </div>
+</div>
+<input type="file" id="import-file" accept="application/json,.json" hidden>
+
+<script>
+(function () {
+  "use strict";
+
+  var TIERS = { own: "Own now", share: "Share", later: "Later", buy: "Buy" };
+
+  var DOMAINS = [
+    { label: "Direction", note: "Three hats, two heads. Decide who wears which.", roles: [
+      { id: "ceo", title: "Chief Executive · CEO", short: "Chief Executive", tier: "own",
+        def: "Owns what the company is for, who it serves, and what it says no to. The final call when the two of you disagree.",
+        wtw: "Holds the one or two priorities for the year, approves spend above an agreed line, owns the outside relationships that matter — bank, accountant, biggest customer." },
+      { id: "coo", title: "Chief Operating Officer · COO", short: "Chief Operating Officer", tier: "own",
+        def: "Owns whether the work actually gets done. Turns direction into a schedule with names and dates on it.",
+        wtw: "Runs the weekly review, keeps the task list honest, chases what's late, and decides what gets dropped when the week is over-committed." },
+      { id: "cto", title: "Chief Technology Officer · CTO", short: "Chief Technology Officer", tier: "own",
+        def: "Owns the technology bet: what gets built, what it's built on, and what you deliberately refuse to build.",
+        wtw: "Architecture calls, platform and vendor choices, security posture, and the “can we still support this in two years” veto." }
+    ]},
+    { label: "Product & Engineering", note: "The inside of the seam.", roles: [
+      { id: "pm", title: "Product Manager", short: "Product Manager", tier: "own",
+        def: "Decides what gets built next and writes down why. Owns the roadmap — and more importantly, the “not now” list.",
+        wtw: "Turns customer complaints into a ranked list, writes the spec before code starts, and decides when something is done enough to ship." },
+      { id: "eng", title: "Software Engineer", short: "Software Engineer", tier: "own",
+        def: "Builds and maintains the product. The only role on this page that produces the thing customers pay for.",
+        wtw: "Features, bug fixes, keeping the build green, and paying down the shortcuts taken last month." },
+      { id: "design", title: "Designer · UX/UI", short: "Designer", tier: "share",
+        def: "Decides how the product feels to use and what a first-time user sees before they've been trained on anything.",
+        wtw: "Screen layouts, naming things the way customers say them out loud, and catching the flows that dead-end." },
+      { id: "qa", title: "Quality &amp; Release", short: "Quality &amp; Release", tier: "share",
+        def: "Proves it works before a customer finds out it doesn't. Of every role here, this is the one that most often becomes nobody's.",
+        wtw: "Tests the change, runs the release checklist, and verifies in production <em>after</em> the deploy — not before." },
+      { id: "infra", title: "Infrastructure · DevOps", short: "Infrastructure", tier: "own",
+        def: "Keeps it running. Deploys, monitoring, backups, uptime, and who holds which keys.",
+        wtw: "Watches error rates, applies patches, and restores from a backup at least once a quarter so you know for certain that you can." },
+      { id: "data", title: "Data &amp; Analytics", short: "Data &amp; Analytics", tier: "later",
+        def: "Tells you the truth about the numbers instead of your impression of them.",
+        wtw: "Until you hire it, the CEO owns three numbers by hand: cash, customers, and churn." }
+    ]},
+    { label: "Revenue", note: "Five roles, one voice. Don't split the customer.", roles: [
+      { id: "sales", title: "Sales", short: "Sales", tier: "own",
+        def: "Finds people who have the problem and closes them. At two people this is a founder job — nobody else can yet say what the company is.",
+        wtw: "Outbound, demos, quotes, follow-up, and one honest pipeline list showing where every open deal actually stands." },
+      { id: "marketing", title: "Marketing", short: "Marketing", tier: "share",
+        def: "Makes buyers arrive already knowing who you are, so that Sales is a shorter conversation.",
+        wtw: "The site, the case study, the email list, and the one channel you're actually good at — not the five you feel guilty about." },
+      { id: "impl", title: "Implementation &amp; Onboarding", short: "Implementation", tier: "own",
+        def: "Gets a signed customer genuinely live and using it. In software, this is where retention is won or lost — not at renewal.",
+        wtw: "Data migration, setup calls, training, and the first-thirty-days handholding nobody budgets for." },
+      { id: "cs", title: "Customer Success", short: "Customer Success", tier: "own",
+        def: "Keeps customers after they've bought. Owns the relationship, not the ticket.",
+        wtw: "Check-ins well before renewal, spotting the account that's gone quiet, and raising expansion conversations early." },
+      { id: "support", title: "Support", short: "Support", tier: "own",
+        def: "Answers “it's broken” and “how do I.” Owns response time as a promise, not an aspiration.",
+        wtw: "The inbox, and turning every repeat question into written documentation so it stops repeating." }
+    ]},
+    { label: "Operations", note: "The machine that runs the day.", roles: [
+      { id: "ops", title: "Operations Manager", short: "Operations Manager", tier: "own",
+        def: "Owns the tools, vendors, scheduling, and the written procedures. Usually the same person as the COO early on.",
+        wtw: "Keeps subscriptions and access current, and documents how recurring work is done so it survives a sick week." },
+      { id: "vendor", title: "Vendor &amp; Procurement", short: "Vendor &amp; Procurement", tier: "share",
+        def: "Owns who you buy from and what you're locked into.",
+        wtw: "A dated list of every contract renewal, every price change, and your exit path from each vendor." },
+      { id: "delivery", title: "Project &amp; Delivery Manager", short: "Project &amp; Delivery", tier: "later",
+        def: "Owns dates and dependencies when several jobs are running at once and they compete for the same hands.",
+        wtw: "Until you hire it, the COO holds it — and the tell that you need it is a schedule nobody trusts." },
+      { id: "admin", title: "Executive Admin", short: "Executive Admin", tier: "share",
+        def: "Calendar, inbox triage, filing, follow-up. Unglamorous, and the role that quietly returns the most hours once it's finally someone's.",
+        wtw: "Protects the deep-work blocks on the inside of the seam from the interruptions on the outside." }
+    ]},
+    { label: "Finance, Legal & People", note: "Mostly bought, not staffed — with one exception.", roles: [
+      { id: "cfo", title: "Controller · CFO", short: "Controller / CFO", tier: "own",
+        def: "Decides what the dollars <em>mean</em> and where the next one goes. This is the exception: always a founder, never outsourced.",
+        wtw: "Cash on hand, months of runway, pricing, and what you can honestly afford to commit to next quarter." },
+      { id: "books", title: "Bookkeeper", short: "Bookkeeper", tier: "buy",
+        def: "Records every dollar in and out, reconciles the accounts, closes the month. Not the same job as the one above it.",
+        wtw: "Buy this early. It's inexpensive, it's exacting, and every financial decision you make depends on it being right." },
+      { id: "cpa", title: "Tax &amp; Entity · CPA", short: "Tax &amp; Entity", tier: "buy",
+        def: "Entity structure, elections, payroll tax, and the annual return.",
+        wtw: "Nothing — and that's the point. Quarterly contact, one annual decision, large consequences." },
+      { id: "legal", title: "Legal &amp; Compliance", short: "Legal &amp; Compliance", tier: "buy",
+        def: "Formation documents, customer contracts, terms of service, privacy, and insurance.",
+        wtw: "One founder owns the <em>relationship</em> with counsel so questions get asked before signatures, not after." },
+      { id: "payroll", title: "Payroll &amp; Benefits", short: "Payroll &amp; Benefits", tier: "buy",
+        def: "The moment there is a W-2, this is a service you subscribe to, not a job either of you does.",
+        wtw: "Nothing, if set up correctly. That is the entire argument for buying it." },
+      { id: "hr", title: "People · HR", short: "People / HR", tier: "later",
+        def: "Hiring, offers, the handbook, reviews, and firing. Becomes <em>Own now</em> the day you make your first offer.",
+        wtw: "Right now it's exactly one thing: writing the role definitions you are working on today." }
+    ]}
+  ];
+
+  var PHASES = [
+    { d: "Days 1–3",   t: "See it",       b: "Face the current reality before you change anything." },
+    { d: "Days 4–7",   t: "Set it up",    b: "Build the one artifact the role can't work without." },
+    { d: "Days 8–11",  t: "Run it live",  b: "Do the job for real, once, while it's still small." },
+    { d: "Days 12–14", t: "Make it stick", b: "Turn it into a rhythm that survives a bad week." }
+  ];
+
+  var DOSSIERS = {};
+  Object.assign(DOSSIERS, {
+    ceo: {
+      hard: "Everything feels like a priority when nothing is written down as the priority.",
+      res: [["Traction", "Gino Wickman", "The standard operating model for owner-run companies your size."],
+            ["Rework", "Fried &amp; Hansson", "Short, blunt, and good at killing work you shouldn't be doing."],
+            ["The Great Game of Business", "Jack Stack", "How to run a company where everyone can read the numbers."]],
+      m: [
+        { s: ["Write one sentence: who we serve, and who we are not for.",
+              "List every commitment currently outstanding to a customer or partner.",
+              "Write down the three decisions you have been avoiding."],
+          i: "Last twelve months of revenue, broken out by customer.",
+          ms: "A one-page “what this company is” that both of you have read out loud.",
+          p: "Reads it cold and marks every sentence they would have written differently." },
+        { s: ["Pick the ONE priority for the next 90 days, and write what it excludes.",
+              "Set the dollar amount above which both founders must agree before spending.",
+              "Name the tiebreaker for each of the five domains in the Charter."],
+          i: "Current cash balance and average monthly spend.",
+          ms: "A 90-day priority, a spend line, and a tiebreaker map — written and dated.",
+          p: "Signs off on the tiebreaker map. It is not real if only one of you agrees to it." },
+        { s: ["Say no to one real request this week, citing the written priority.",
+              "Hold the first 30-minute Monday direction check.",
+              "Tell one customer the honest date instead of the comfortable one."],
+          i: "This week's actual commitments, listed.",
+          ms: "One documented “no” that traces directly back to the written priority.",
+          p: "Brings one thing they believe should be cut, and argues for it." },
+        { s: ["Put the 90-day priority somewhere you both see it daily.",
+              "Book the quarterly review now, 90 days out, with the agenda already written.",
+              "Write the one-paragraph update you would send an investor — send it to each other."],
+          i: "Nothing new. This module runs on what you already built.",
+          ms: "A quarterly review on both calendars with a written agenda attached.",
+          p: "Writes their own version of the same update, then you compare the two." }
+      ]
+    },
+    coo: {
+      hard: "This role has no artifact of its own — it only shows up in whether everything else happened.",
+      res: [["Traction", "Gino Wickman", "The weekly meeting structure in this book is exactly this job."],
+            ["The GitLab Handbook", "handbook.gitlab.com", "The largest public example of a company writing its own cadence down."],
+            ["Measure What Matters", "John Doerr", "For turning a priority into something with a number attached."]],
+      m: [
+        { s: ["List every recurring thing the company does, and how often it happens.",
+              "Beside each one, write the name of the person who does it.",
+              "Circle every line that has no name beside it."],
+          i: "Two weeks of both founders' actual calendars, side by side.",
+          ms: "A written list of recurring work with an owner named on every single line.",
+          p: "Lists what they actually did last week — not what they intended to do." },
+        { s: ["Pick one 30-minute weekly review slot and defend it from everything.",
+              "Build ONE shared task list you can both see. One, not two.",
+              "Write the three questions the weekly review will always ask."],
+          i: "One tool you both agree to actually open.",
+          ms: "A single shared task list, live, with this week's real work already in it.",
+          p: "Puts their own week into that same list instead of a private one." },
+        { s: ["Run the first weekly review. Stop at 30 minutes even if you are not finished.",
+              "Cut one commitment out loud, because the week is genuinely full.",
+              "Write down what got dropped and the reason."],
+          i: "This week's real capacity in hours, counted honestly.",
+          ms: "One week planned, run, and reviewed — including a documented cut.",
+          p: "Attends the full 30 minutes and brings their own list to it." },
+        { s: ["Hold the review a second time, same slot, same three questions.",
+              "Add a one-line Friday note: what shipped, what slipped.",
+              "Write the rule for what escalates to a joint decision."],
+          i: "Nothing new.",
+          ms: "Two consecutive weekly reviews held, each with a Friday note.",
+          p: "Writes their half of the Friday note without being reminded." }
+      ]
+    },
+    cto: {
+      hard: "Nobody invoices you for technical debt, so the whole bill arrives on one bad day.",
+      res: [["The Phoenix Project", "Gene Kim et al.", "A novel about operations failure. Reads fast, sticks hard."],
+            ["Google SRE Book", "sre.google/books", "Free online. Read the chapters on monitoring and postmortems."],
+            ["Shape Up", "basecamp.com/shapeup", "Free online. How a small team decides what to build in six weeks."]],
+      m: [
+        { s: ["List every outside service the product needs in order to work at all.",
+              "For each one, write what a customer experiences if it is down for a day.",
+              "Write down the one thing in the system you would least like to explain."],
+          i: "A list of every API key and outside service the product calls.",
+          ms: "A one-page dependency map with the blast radius written beside each entry.",
+          p: "Asks “what happens to customers if this breaks?” for each line and writes your answer down verbatim." },
+        { s: ["Write the three technology rules this company will not break.",
+              "Decide, in writing, what you will never build yourselves.",
+              "Write out the backup restore procedure, step by step."],
+          i: "Current monthly infrastructure cost, totalled.",
+          ms: "Three written rules and a written restore procedure.",
+          p: "Reads the restore procedure and says plainly whether they could follow it alone." },
+        { s: ["Actually restore a backup into a scratch environment.",
+              "Time it. Write the number down.",
+              "Fix the step that failed — there is always one."],
+          i: "A safe place to restore into that is not production.",
+          ms: "A restore completed and timed, with the failed step corrected.",
+          p: "Watches the restore, so that two people have seen it work with their own eyes." },
+        { s: ["Put the dependency map and the three rules where you can both find them.",
+              "Set a quarterly reminder to run the restore drill again.",
+              "Write the one-paragraph “how our system works” for a non-technical reader."],
+          i: "Nothing new.",
+          ms: "A plain-language system explanation your partner can repeat back correctly.",
+          p: "Reads it, then explains the system back to you in their own words." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    pm: {
+      hard: "Everything sounds urgent when it comes from a customer you like.",
+      res: [["The Mom Test", "Rob Fitzpatrick", "Short, cheap, and the best book on talking to customers without fooling yourself."],
+            ["Inspired", "Marty Cagan", "What the product job actually is, from someone who has done it at scale."],
+            ["Shape Up", "basecamp.com/shapeup", "Free online. Fixed time, variable scope — the small-team method."]],
+      m: [
+        { s: ["Put every request from the last 60 days into one list.",
+              "Tag each with who asked, and what it would earn or save.",
+              "Count how many you said yes to without ever actually deciding."],
+          i: "Your inbox, texts, and support messages from the last 60 days.",
+          ms: "One list of every outstanding request, with its source named.",
+          p: "Adds every request that came to them and never reached you." },
+        { s: ["Rank the list by money or pain. Nothing else gets a vote.",
+              "Draw a line after the top five. Everything below it is the “not now” list.",
+              "Write one spec for the top item: what it does, what it does not do, how you know it is done."],
+          i: "What each request is worth, even if the number is a rough guess.",
+          ms: "A ranked list with a visible cut line, and one written spec.",
+          p: "Challenges the top five out loud, and you defend each one." },
+        { s: ["Build only what is in the spec. Note every temptation to add more.",
+              "Show it to one real customer before it is finished.",
+              "Write down what they did, not what they said."],
+          i: "One customer willing to look at something unfinished.",
+          ms: "One spec shipped without scope creep, plus a written record of the customer's reaction.",
+          p: "Sits in on the customer session and takes their own notes." },
+        { s: ["Tell three people on the “not now” list exactly where they stand.",
+              "Set a standing 30-minute weekly slot to re-rank the list.",
+              "Archive finished items with a note on what actually happened."],
+          i: "Nothing new.",
+          ms: "The “not now” list exists in writing, and three people have been told.",
+          p: "Reviews the not-now list for anything that would quietly cost you a customer." }
+      ]
+    },
+    eng: {
+      hard: "The work that keeps the company alive is invisible next to the work that looks new.",
+      res: [["The Pragmatic Programmer", "Hunt &amp; Thomas", "The craft baseline. Still the best single book on the habit of it."],
+            ["Google SRE Book", "sre.google/books", "Free online. Read the chapter on simplicity."],
+            ["Shape Up", "basecamp.com/shapeup", "Free online. How to stop projects from running forever."]],
+      m: [
+        { s: ["List everything currently half-finished.",
+              "Write down the three things most likely to break.",
+              "Time how long a change takes to get from your machine to a customer."],
+          i: "Your deploy history for the last month.",
+          ms: "A written list of half-done work and the top three fragile spots.",
+          p: "Lists the three things customers complain about most — then compare the two lists." },
+        { s: ["Get the deploy down to a documented, repeatable sequence.",
+              "Add error alerting that actually reaches a phone.",
+              "Delete or finish exactly one half-done thing."],
+          i: "Somewhere alerts can genuinely reach you outside work hours.",
+          ms: "A written deploy procedure, and one alert you have seen fire in a test.",
+          p: "Receives the test alert too. One person should never be the only alarm." },
+        { s: ["Ship one small change end to end, following your own written procedure.",
+              "Note every step the document got wrong.",
+              "Fix the document, not your memory."],
+          i: "One small, low-risk change to practise on.",
+          ms: "A change shipped by following the doc, with the doc corrected afterwards.",
+          p: "Reads the corrected doc and flags anything they could not have followed." },
+        { s: ["Set a fixed weekly slot for maintenance, not features.",
+              "Write the “what to do if the site is down” page.",
+              "Put both documents somewhere the other founder can reach without you."],
+          i: "Nothing new.",
+          ms: "A downtime runbook your partner can open and act on without asking you.",
+          p: "Practises opening the runbook and finding step one, while nothing is wrong." }
+      ]
+    },
+    design: {
+      hard: "You stop being able to see your own product at about week six.",
+      res: [["Don't Make Me Think", "Steve Krug", "Old, short, and still the fastest way to get usable instincts."],
+            ["Refactoring UI", "Wathan &amp; Schoger", "Practical visual fixes for people who are not designers."],
+            ["The Mom Test", "Rob Fitzpatrick", "Applies just as well to watching someone use software."]],
+      m: [
+        { s: ["Watch one person use it without helping them. Say nothing at all.",
+              "Write down every place they paused.",
+              "List the words your product uses that customers never say out loud."],
+          i: "One person who has never used it before.",
+          ms: "A written list of pause points from a real, unassisted session.",
+          p: "Watches the same session and writes their own list. Then compare." },
+        { s: ["Rename three things to match what customers actually say.",
+              "Fix the single worst pause point on your list.",
+              "Write down what a brand-new user should see in their first 60 seconds."],
+          i: "The vocabulary your customers use, in their words, from real calls.",
+          ms: "Three renames shipped, and a defined first-run experience.",
+          p: "Confirms the new names match what they hear from customers on the phone." },
+        { s: ["Run the same unassisted session with a second person.",
+              "Count the pauses and compare against the first list.",
+              "Change one more thing based on what you saw, not what you assumed."],
+          i: "A second person who has never used it.",
+          ms: "Two observed sessions, with a measurable drop in pause points.",
+          p: "Recruits the second person, so you cannot pick someone friendly." },
+        { s: ["Write your three design rules: spacing, naming, and what a button promises.",
+              "Put them next to the code, not in a folder somewhere.",
+              "Book the next watch-someone session for 30 days out."],
+          i: "Nothing new.",
+          ms: "Three written design rules and a booked next session.",
+          p: "Agrees to hold you to those rules when they review a screen." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    qa: {
+      hard: "This is the only role whose success looks exactly like nothing happening.",
+      res: [["Release It!", "Michael Nygard", "How systems actually fail in production, with patterns to stop it."],
+            ["Google SRE Book", "sre.google/books", "Free online. The postmortem chapter is the one to read first."],
+            ["The Phoenix Project", "Gene Kim et al.", "Why skipping the checklist always costs more than running it."]],
+      m: [
+        { s: ["List the five things that would hurt most if they broke silently.",
+              "For each, write down how you would find out.",
+              "Check honestly whether you would currently find out at all."],
+          i: "Your last three customer-reported bugs, with how you learned about them.",
+          ms: "Five critical paths named, each with a written detection method.",
+          p: "Adds the failures that would most embarrass them in front of a customer." },
+        { s: ["Write the release checklist. Ten lines maximum.",
+              "Add one “verify in production after deploy” step to it.",
+              "Decide, by name, who is allowed to say “ship it.”"],
+          i: "Your actual deploy steps as they exist today, not as you wish they were.",
+          ms: "A release checklist short enough that you will genuinely use it.",
+          p: "Reviews the checklist for any customer-facing step you left out." },
+        { s: ["Use the checklist on a real release. Do not skip a line.",
+              "Note every line you were tempted to skip.",
+              "Cut or fix exactly those lines."],
+          i: "One real release to practise on.",
+          ms: "One release run fully by checklist, with the checklist revised afterwards.",
+          p: "Runs the post-deploy verification, so a second pair of eyes sees production." },
+        { s: ["Write down what happens when something breaks after hours.",
+              "Write the rule for what stops a release entirely.",
+              "Put the checklist where it is impossible to miss."],
+          i: "Nothing new.",
+          ms: "A written stop-the-release rule that both founders have agreed to.",
+          p: "Agrees in advance that they will back the stop rule even under deadline pressure." }
+      ]
+    },
+    infra: {
+      hard: "Everything looks fine until the day it doesn't, and that day is never convenient.",
+      res: [["Google SRE Book", "sre.google/books", "Free online. The reference for keeping things up."],
+            ["The Phoenix Project", "Gene Kim et al.", "Why the heroics you are proud of are the actual problem."],
+            ["Your password manager's admin guide", "—", "Boring, and the highest-value hour you will spend this module."]],
+      m: [
+        { s: ["List every service that must be up for a customer to work.",
+              "Find where each one's credentials currently live.",
+              "Check when your last backup actually completed — not when it was scheduled."],
+          i: "Access to every hosting, database, domain, and DNS account.",
+          ms: "A written inventory of services, credentials, and true backup status.",
+          p: "Confirms they could personally reach each account in an emergency." },
+        { s: ["Turn on uptime and error alerting to both founders' phones.",
+              "Write the restore procedure, step by step, as if for a stranger.",
+              "Move every credential into one password manager you can both open."],
+          i: "A password manager account for the business, not a personal one.",
+          ms: "Alerts reaching two phones, and all credentials in one shared vault.",
+          p: "Has vault access and has opened it once, successfully, on their own device." },
+        { s: ["Restore a backup into a scratch environment and time it.",
+              "Break something small on purpose in that environment, then fix it.",
+              "Write down what you learned that the document did not say."],
+          i: "A non-production environment that is safe to break.",
+          ms: "A timed, successful restore performed by hand.",
+          p: "Watches, and confirms they could follow the written steps unaided." },
+        { s: ["Write the “site is down” runbook: the first five things to do, in order.",
+              "Put a quarterly restore drill on the calendar.",
+              "Write the offboarding checklist for removing someone's access."],
+          i: "Nothing new.",
+          ms: "A downtime runbook, and a quarterly drill booked on both calendars.",
+          p: "Keeps a copy of the runbook somewhere reachable from a phone." }
+      ]
+    },
+    data: {
+      hard: "You will believe a number long before you have checked how it is counted.",
+      res: [["The Great Game of Business", "Jack Stack", "Teaching everyone to read the numbers, not just report them."],
+            ["Lean Analytics", "Croll &amp; Yoskovitz", "How to pick the one number that matters at your stage."],
+            ["Measure What Matters", "John Doerr", "Connecting numbers to decisions instead of to dashboards."]],
+      m: [
+        { s: ["Write down the three numbers that decide whether this month was good.",
+              "For each, write exactly how it is counted — the arithmetic, not the concept.",
+              "Pull each one by hand, once, yourself."],
+          i: "Access to your billing records and product data.",
+          ms: "Three numbers defined in writing, each with a hand-pulled value beside it.",
+          p: "Guesses all three numbers first, in writing, before seeing the real ones." },
+        { s: ["Put the three numbers in one place you can both see.",
+              "Write the date and the source next to each one.",
+              "Decide how often they get refreshed, and who does it."],
+          i: "One spreadsheet or dashboard you will both genuinely open.",
+          ms: "A shared, dated scoreboard with three numbers on it.",
+          p: "Confirms they understand what each number means without you explaining." },
+        { s: ["Refresh the numbers once, on schedule.",
+              "Explain any movement in one sentence each.",
+              "Find and fix the one that was counted wrong. There usually is one."],
+          i: "A second period of data to compare against.",
+          ms: "One full refresh cycle completed, with written explanations for each move.",
+          p: "Asks “why did that move?” for each number, and you answer without hedging." },
+        { s: ["Add the scoreboard to the weekly review agenda.",
+              "Write down which number triggers which action, and at what level.",
+              "Stop tracking anything you have never once acted on."],
+          i: "Nothing new.",
+          ms: "Numbers tied to written trigger points, with an action named for each.",
+          p: "Agrees to the trigger thresholds before you are anywhere near them." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    sales: {
+      hard: "Being new at this feels like being pushy. It isn't — it's being clear, and clarity is a kindness.",
+      res: [["The Mom Test", "Rob Fitzpatrick", "Start here. How to ask questions that get true answers."],
+            ["SPIN Selling", "Neil Rackham", "The research-backed structure for a serious sales conversation."],
+            ["Never Split the Difference", "Chris Voss", "Negotiation without becoming someone you don't like."]],
+      m: [
+        { s: ["List every person who has ever paid you, or nearly did.",
+              "Write why each one said yes or no — in their words, not your summary.",
+              "Count how many came from a single source."],
+          i: "Every past deal, won and lost, as far back as your records go.",
+          ms: "A written win/loss list with reasons in the customer's own language.",
+          p: "Reads the reasons and names the pattern you are too close to see." },
+        { s: ["Write the one-sentence answer to “what do you do?”",
+              "Write your price and what is included. Plainly. No “it depends.”",
+              "Build one pipeline list with a stage and a next date on every open deal."],
+          i: "Your actual price, decided and committed to.",
+          ms: "A written price sheet, and a pipeline list with a date on every line.",
+          p: "Hears the one-sentence answer cold and repeats it back to you." },
+        { s: ["Have five real conversations. Ask more than you pitch.",
+              "Within ten minutes of each, write what they said in their words.",
+              "Move every deal to a next step with a date, or kill it outright."],
+          i: "Five names you are actually willing to call this week.",
+          ms: "Five conversations held and written up, with the pipeline updated.",
+          p: "Takes two of the five, so that selling is not one person's secret." },
+        { s: ["Put a fixed daily outbound slot on the calendar and defend it.",
+              "Write the three questions you will always ask.",
+              "Review the pipeline in the weekly meeting, out loud."],
+          i: "Nothing new.",
+          ms: "Outbound on the calendar, and one pipeline review held together.",
+          p: "Joins the pipeline review and challenges every optimistic line." }
+      ]
+    },
+    marketing: {
+      hard: "You can be busy at marketing for a year without a single buyer noticing.",
+      res: [["Obviously Awesome", "April Dunford", "Positioning. Read this before you write a word of copy."],
+            ["Traction", "Weinberg &amp; Mares", "The channel book — nineteen ways to reach people, and how to test them."],
+            ["The Mom Test", "Rob Fitzpatrick", "Same book, different use: finding the words customers already use."]],
+      m: [
+        { s: ["Ask five customers how they found you. Write the answers down verbatim.",
+              "List every channel you currently spend time on.",
+              "Circle the one that has produced an actual paying customer."],
+          i: "Five customers willing to answer a single question.",
+          ms: "A written source list based on real attribution, not guesses.",
+          p: "Asks the same question of anyone you cannot reach yourself." },
+        { s: ["Write the one paragraph a stranger reads first. Say who it is for.",
+              "Pick ONE channel, and write down why that one.",
+              "Pause everything else for 60 days."],
+          i: "A decision, in writing, about who you are not for.",
+          ms: "One channel chosen in writing, with everything else formally paused.",
+          p: "Agrees to the pause. This only works if nobody quietly restarts the others." },
+        { s: ["Publish one real thing on that channel — a case study with a customer's actual numbers in it.",
+              "Send it to everyone already on your list.",
+              "Record what happened: opens, replies, calls booked."],
+          i: "One customer who will let you publish their results.",
+          ms: "One case study published and sent, with the response written down.",
+          p: "Gets the customer's permission and the real numbers in writing." },
+        { s: ["Set a publishing rhythm you could sustain during a bad week.",
+              "Write the three-sentence description and use it everywhere — site, email, signature.",
+              "Put the channel's one metric on the scoreboard."],
+          i: "Nothing new.",
+          ms: "A cadence on the calendar, and one consistent description in every place.",
+          p: "Hunts down every place the old description still lives and replaces it." }
+      ]
+    },
+    impl: {
+      hard: "The sale feels like the finish line. For the customer it is the starting line.",
+      res: [["Farm Don't Hunt", "Guy Nirpaz", "Short, practical introduction to keeping customers rather than chasing new ones."],
+            ["The Mom Test", "Rob Fitzpatrick", "For the day-14 conversation, where the truth actually lives."],
+            ["The GitLab Handbook", "handbook.gitlab.com", "See how a real company writes an onboarding process down."]],
+      m: [
+        { s: ["Write down every step between “they said yes” and “they are using it.”",
+              "Time how long that takes today, start to finish.",
+              "List the three places customers most often get stuck."],
+          i: "Your last two customer onboardings, reconstructed from records or memory.",
+          ms: "A written step list with today's real elapsed time attached.",
+          p: "Adds the steps they handled that you never saw happen." },
+        { s: ["Turn the steps into a checklist with an owner and a day number on each line.",
+              "Write down what you need from the customer, and when you need it.",
+              "Write the welcome message that sets expectations on day one."],
+          i: "Everything you need from a customer, listed in one place.",
+          ms: "A dated onboarding checklist and a written welcome message.",
+          p: "Reads it as though they were the customer and flags anything confusing." },
+        { s: ["Onboard the next customer using the checklist exactly.",
+              "Log every deviation from it as it happens.",
+              "At day 14, ask that customer what was confusing."],
+          i: "One new customer to run it on.",
+          ms: "One onboarding run to checklist, with a written day-14 feedback note.",
+          p: "Runs at least one step personally, so it is not one-person knowledge." },
+        { s: ["Make the day-30 check-in an automatic step, not a good intention.",
+              "Write the “customer has gone quiet” procedure.",
+              "Add time-to-live to the scoreboard."],
+          i: "Nothing new.",
+          ms: "Day-30 check-ins scheduled automatically for every live customer.",
+          p: "Owns the day-30 check-in for half the accounts, by name." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    cs: {
+      hard: "Churn is decided months before the customer gets around to telling you.",
+      res: [["Farm Don't Hunt", "Guy Nirpaz", "The clearest short read on why retention is a discipline, not a mood."],
+            ["The Mom Test", "Rob Fitzpatrick", "Check-in questions that surface problems before they become cancellations."],
+            ["Never Split the Difference", "Chris Voss", "For the renewal conversation that has gone sideways."]],
+      m: [
+        { s: ["List every customer, and the date you last spoke to an actual human there.",
+              "Mark anyone you have not heard from in 60 days.",
+              "Write what each customer originally hired you to do."],
+          i: "Your full customer list, with whatever contact history exists.",
+          ms: "A written account list with last-contact dates and each customer's original goal.",
+          p: "Adds every conversation that happened on their side of the company." },
+        { s: ["Set a contact rhythm per customer and put it on the calendar.",
+              "Write the three questions every check-in will ask.",
+              "Define, in writing, what “at risk” means."],
+          i: "A shared calendar you both actually use.",
+          ms: "Every customer has a next contact date on a shared calendar.",
+          p: "Takes ownership of a named half of the accounts — not a vague half." },
+        { s: ["Do the overdue check-ins first. Start with the quietest accounts.",
+              "Write down what each one says, in their words.",
+              "Escalate anything meeting your at-risk definition the same day."],
+          i: "The list of accounts that have gone quiet.",
+          ms: "Every 60-day-quiet account contacted and written up.",
+          p: "Handles their half and writes them up in the same format." },
+        { s: ["Put renewal dates on the calendar 60 days ahead of each one.",
+              "Write a one-line health note per account and update it monthly.",
+              "Review at-risk accounts in the weekly meeting."],
+          i: "Nothing new.",
+          ms: "Renewal reminders set 60 days out for every single account.",
+          p: "Reviews the at-risk list with you weekly, and pushes back on wishful ratings." }
+      ]
+    },
+    support: {
+      hard: "Every answer you give twice is a document you have not written yet.",
+      res: [["The Effortless Experience", "Dixon, Toman &amp; DeLisi", "The research on what customers actually want from support: less effort, not delight."],
+            ["The GitLab Handbook", "handbook.gitlab.com", "A working model for turning answers into public documentation."],
+            ["Your own ticket log", "—", "Read a full month end to end. It is the best support book you own."]],
+      m: [
+        { s: ["Put every incoming channel in one place — email, text, calls, DMs.",
+              "Log every question for one week, word for word.",
+              "Count the repeats."],
+          i: "One week of every inbound question, unfiltered and unsummarised.",
+          ms: "A week's log with the repeat questions counted.",
+          p: "Logs the questions that come to them, in the same place." },
+        { s: ["Write the answer once for each of the top five repeats.",
+              "Publish them where a customer could actually find them.",
+              "Decide and publish your response-time promise."],
+          i: "The top five repeat questions from your log.",
+          ms: "Five written answers published, and a stated response time.",
+          p: "Reads each answer cold and confirms it makes sense without you." },
+        { s: ["Answer every ticket this week by linking the written answer, then adding one sentence.",
+              "Log anything that had no written answer.",
+              "Write those up the same day, not later."],
+          i: "A week of real tickets.",
+          ms: "A full week handled from written answers, with every gap filled.",
+          p: "Covers one full day, so the queue is never single-person dependent." },
+        { s: ["Set the rule: any question asked twice becomes a document.",
+              "Put response time on the scoreboard.",
+              "Write down who covers support when the owner is away."],
+          i: "Nothing new.",
+          ms: "A written coverage plan for support during an absence.",
+          p: "Is the named backup, and has already done one day of it for real." }
+      ]
+    },
+    ops: {
+      hard: "Nobody notices operations until the week it stops.",
+      res: [["The E-Myth Revisited", "Michael Gerber", "The case for systems over heroics. Written for exactly your stage."],
+            ["The GitLab Handbook", "handbook.gitlab.com", "The largest public example of a company documenting itself. Steal the structure."],
+            ["Traction", "Gino Wickman", "For turning the procedures into a rhythm somebody owns."]],
+      m: [
+        { s: ["Pull twelve months of card and bank statements. List every recurring charge.",
+              "Beside each: the owner, the renewal date, and what breaks without it.",
+              "Total it. Say the number out loud to each other."],
+          i: "Twelve months of business card and bank statements.",
+          ms: "A complete tool register, with a monthly total you have both heard.",
+          p: "Reviews it for anything being paid from a personal card." },
+        { s: ["Put every credential into one shared password manager.",
+              "Write the offboarding checklist for removing someone's access.",
+              "Pick the five recurring processes with the highest frequency times pain."],
+          i: "Every login, key, and account currently living in someone's head.",
+          ms: "One vault both founders can open, and five processes chosen for documenting.",
+          p: "Opens the vault, finds one specific credential, and confirms it works." },
+        { s: ["Write the five runbooks. Worst one first.",
+              "Have your partner follow one, start to finish, with no help from you.",
+              "Fix every step they got stuck on."],
+          i: "One uninterrupted hour of your partner's time.",
+          ms: "One runbook executed successfully by the person who did not write it.",
+          p: "Runs a runbook cold and marks every step that was unclear." },
+        { s: ["Set the weekly ops slot: renewals, access, exceptions.",
+              "Start the exception log — every time the normal path failed.",
+              "Count your bus-factor-of-one processes and write the number down."],
+          i: "Nothing new.",
+          ms: "A written bus-factor number, and a plan for reducing it.",
+          p: "Agrees which process gets documented next, and by when." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    vendor: {
+      hard: "Vendors do not raise prices loudly. They raise them quietly, on renewal day.",
+      res: [["Profit First", "Mike Michalowicz", "For the spending discipline this role has to enforce."],
+            ["Your own bank statements", "—", "Twelve months of them. More honest than any tool you could buy."],
+            ["The tool register", "from the Operations module", "This role is built directly on top of that document."]],
+      m: [
+        { s: ["From the tool register, list every renewal date and its terms.",
+              "Mark everything on auto-renew.",
+              "Mark everything that has no realistic alternative."],
+          i: "The tool register, or twelve months of statements if you skipped it.",
+          ms: "A dated renewal calendar with single points of failure flagged.",
+          p: "Confirms nothing is renewing on a personal account or card." },
+        { s: ["Put every renewal on a shared calendar, 30 days early.",
+              "For your three largest vendors, write down the exit path.",
+              "Write the spend level above which both of you must agree."],
+          i: "Contract terms for your three largest vendors.",
+          ms: "Renewal reminders set, and three written exit paths.",
+          p: "Agrees to the joint-approval threshold in writing, before it is tested." },
+        { s: ["Renegotiate or cancel one thing this cycle.",
+              "Ask one vendor for annual pricing and compare it honestly.",
+              "Cancel anything nobody used this month."],
+          i: "Actual usage data for each tool, not your impression of usage.",
+          ms: "One vendor cost reduced or eliminated, with the saved amount recorded.",
+          p: "Names the tool they believe you do not need, and you have to answer it." },
+        { s: ["Book a quarterly vendor review.",
+              "Write the rule for adding a new tool.",
+              "Put total software spend on the scoreboard."],
+          i: "Nothing new.",
+          ms: "A quarterly review booked, and a written rule for adopting new tools.",
+          p: "Holds you to the new-tool rule — including on tools you want." }
+      ]
+    },
+    delivery: {
+      hard: "Dates slip silently until somebody is asked out loud to commit to one.",
+      res: [["Shape Up", "basecamp.com/shapeup", "Free online. Fixed time, variable scope — the antidote to endless projects."],
+            ["Traction", "Gino Wickman", "For the weekly rhythm that surfaces slippage early."],
+            ["The Phoenix Project", "Gene Kim et al.", "On what happens when too much work is in flight at once."]],
+      m: [
+        { s: ["List every job in flight and the date it was promised.",
+              "For each, write what it is actually waiting on.",
+              "Mark every date that nobody ever really agreed to."],
+          i: "Every open commitment made to a customer, from both founders.",
+          ms: "A written job list with the true blocker named on every line.",
+          p: "Adds the commitments they made that you did not know about." },
+        { s: ["Put all jobs on one visible board, with a stage on each.",
+              "Write the rule for what makes a date real.",
+              "Find where two jobs need the same hands in the same week."],
+          i: "One board you can both see without asking each other.",
+          ms: "One shared board with every job on it at its true stage.",
+          p: "Keeps their jobs on that same board, not in a private list." },
+        { s: ["Renegotiate one date you already know you will miss — before you miss it.",
+              "Write down how the customer actually reacted.",
+              "Move the work rather than the deadline wherever you can."],
+          i: "The one date you are least confident about.",
+          ms: "One date renegotiated in advance, with the reaction recorded.",
+          p: "Backs the early conversation instead of hoping it works out." },
+        { s: ["Add a weekly “what is at risk” line to the review.",
+              "Write the escalation rule for a slipping date.",
+              "Stop committing to dates outside the board."],
+          i: "Nothing new.",
+          ms: "A written escalation rule that both founders follow.",
+          p: "Routes every date commitment through the board, without exception." }
+      ]
+    },
+    admin: {
+      hard: "The work that protects everyone's time never gets around to protecting its own.",
+      res: [["Deep Work", "Cal Newport", "Why the protected block is the whole point, and how to hold one."],
+            ["Getting Things Done", "David Allen", "The capture habit. Skip the system worship, keep the inbox discipline."],
+            ["The E-Myth Revisited", "Michael Gerber", "On working on the business rather than in it."]],
+      m: [
+        { s: ["Track two weeks of where your hours actually go, in 30-minute blocks.",
+              "Circle everything that is not the role you claimed.",
+              "Total the circled hours."],
+          i: "Two weeks of honest time tracking, from both founders.",
+          ms: "A written weekly total of non-role hours, per person.",
+          p: "Tracks their own two weeks the same way, with the same honesty." },
+        { s: ["Block the deep-work hours on both calendars first, before anything else.",
+              "Decide the inbox rule: who reads what, and when.",
+              "Pick one filing structure and move everything into it."],
+          i: "Both calendars, visible in one place.",
+          ms: "Protected blocks on both calendars, and one written inbox rule.",
+          p: "Accepts the blocks and stops booking over them." },
+        { s: ["Run one week under the new rules.",
+              "Log every interruption to a protected block and where it came from.",
+              "Kill the single largest source."],
+          i: "One week of actually holding the blocks.",
+          ms: "One protected week held, with the top interruption source removed.",
+          p: "Routes non-urgent items to a written list instead of interrupting." },
+        { s: ["Set the weekly 30-minute sweep: filing, follow-ups, calendar.",
+              "Write down what “urgent” means, so the word stops being free.",
+              "Put family hours on the calendar as immovable, the same as any client meeting."],
+          i: "Nothing new.",
+          ms: "Family hours and deep-work blocks both on the calendar as fixed commitments.",
+          p: "Holds equal veto over anything scheduled into either block." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    cfo: {
+      hard: "The books tell you what happened. This role decides what happens next — and the two get confused constantly.",
+      res: [["Simple Numbers, Straight Talk, Big Profits", "Greg Crabtree", "Written for owner-operated companies. Start here, not with a textbook."],
+            ["Profit First", "Mike Michalowicz", "A blunt cash system that works when you have no finance background."],
+            ["Financial Intelligence for Entrepreneurs", "Berman &amp; Knight", "For reading a statement without pretending you already can."]],
+      m: [
+        { s: ["Write down today's cash balance across every account.",
+              "List every fixed monthly obligation.",
+              "Divide cash by monthly spend. That number is your runway, in months."],
+          i: "Balances for every business account, as of today.",
+          ms: "A written runway number that both of you have said out loud.",
+          p: "Sees the same number on the same day, from the same source." },
+        { s: ["Build a simple 13-week cash forecast: money in, money out, week by week.",
+              "Write the balance below which you take action — and what that action is.",
+              "Separate the business account from anything personal."],
+          i: "Known incoming payments and outgoing obligations for the next 13 weeks.",
+          ms: "A 13-week forecast, and a written floor with a written action attached.",
+          p: "Reviews the forecast and challenges every optimistic week." },
+        { s: ["Update the forecast against what actually happened last week.",
+              "Find the largest variance and explain it in one sentence.",
+              "Move tax money into a separate account, this week."],
+          i: "Last week's actual transactions.",
+          ms: "One forecast-versus-actual cycle completed, with variances explained.",
+          p: "Asks about every variance over an agreed dollar amount." },
+        { s: ["Set the weekly 20-minute money meeting. Both attend, every time.",
+              "Write the pricing rule: when you raise prices, and by how much.",
+              "Put cash and runway at the top of the scoreboard."],
+          i: "Nothing new.",
+          ms: "A money meeting held twice, with both founders present for all of it.",
+          p: "Attends both, and can state the runway number from memory." }
+      ]
+    },
+    books: {
+      hard: "This one is a purchase, not a skill — but you still own hiring it and checking its work.",
+      res: [["Profit First", "Mike Michalowicz", "So you know what to ask your bookkeeper for."],
+            ["Simple Numbers", "Greg Crabtree", "The reports that actually matter for a company your size."],
+            ["Your CPA", "—", "Ask them who they like working with. Best referral you will get."]],
+      m: [
+        { s: ["Gather twelve months of statements for every business account.",
+              "List what is currently uncategorised or unreconciled.",
+              "Write down what you need: cash or accrual, how often, which reports."],
+          i: "Access to all business accounts and any existing bookkeeping file.",
+          ms: "A written scope of what you need done, and how often.",
+          p: "Confirms that nothing business-related is running through a personal account." },
+        { s: ["Get three quotes from bookkeepers who work with companies your size.",
+              "Ask all three the same questions and write down the answers.",
+              "Check that each will work in the software you intend to keep."],
+          i: "Three candidate bookkeepers or firms.",
+          ms: "Three written quotes you can actually compare side by side.",
+          p: "Sits in on at least one of the calls." },
+        { s: ["Hire one. Give scoped access, not your full admin login.",
+              "Have them close one month and deliver the reports.",
+              "Read every line of that first close and ask about anything you do not recognise."],
+          i: "A signed engagement and scoped credentials.",
+          ms: "One month closed by the bookkeeper, and reviewed by you line by line.",
+          p: "Reads the same report and brings their own questions to it." },
+        { s: ["Set the monthly close deadline and the reports you expect each time.",
+              "Write down what you do if a month comes in late.",
+              "Put the close date on the shared calendar."],
+          i: "Nothing new.",
+          ms: "A monthly close cadence agreed in writing, with a hard deadline.",
+          p: "Receives the monthly reports directly, rather than forwarded by you." }
+      ]
+    },
+    cpa: {
+      hard: "The decisions here are annual and quiet, and getting one wrong shows up much later at full price.",
+      res: [["IRS Small Business hub", "irs.gov/businesses/small-businesses-self-employed", "The primary source. Free, and more accurate than most advice you'll be given."],
+            ["SBA business guide", "sba.gov", "Plain-language walkthrough of entity types and obligations."],
+            ["Your state's Department of Revenue", "—", "State rules differ, and the state is who will notice first."]],
+      m: [
+        { s: ["Write down your current entity status and the state it is registered in.",
+              "List what has been filed and what has not.",
+              "Write your three open questions: entity type, how you pay yourselves, what is deductible."],
+          i: "Formation documents and any prior filings you can find.",
+          ms: "A written current-state summary and three specific questions.",
+          p: "Confirms you both describe the current structure identically, without prompting." },
+        { s: ["Find two CPAs who work with small companies in your state.",
+              "Ask both the exact same three questions.",
+              "Compare the answers — where they differ is where you need to dig."],
+          i: "Two candidate CPAs willing to have a first conversation.",
+          ms: "Two written answer sets to the same three questions.",
+          p: "Attends both conversations. This decision affects them personally." },
+        { s: ["Engage one. Get the entity and election decision made in writing.",
+              "Get the quarterly estimate schedule and the amounts.",
+              "Open a separate account and start funding tax reserves this month."],
+          i: "The CPA's recommendation, in writing.",
+          ms: "An entity decision made and dated, and a tax reserve account funded.",
+          p: "Signs off. This one lands on both of your personal returns." },
+        { s: ["Put every filing deadline on the shared calendar.",
+              "Set the quarterly CPA touchpoint.",
+              "Write the one-page “how we are structured” summary in plain language."],
+          i: "Nothing new.",
+          ms: "All filing deadlines calendared, and a plain-language structure summary written.",
+          p: "Can explain the structure to a banker without notes." }
+      ]
+    }
+  });
+  Object.assign(DOSSIERS, {
+    legal: {
+      hard: "You only discover your contract was thin at the exact moment you need it to be thick.",
+      res: [["SBA legal &amp; contracts guidance", "sba.gov", "Free, plain-language starting point for what you actually need."],
+            ["Nolo small business library", "nolo.com", "Readable explanations of contracts, liability, and formation."],
+            ["Your state bar referral service", "—", "Most state bars run a low-cost referral line. Use it."]],
+      m: [
+        { s: ["Collect every agreement currently in force — customer, vendor, partner.",
+              "Note which ones are really just an email or a handshake.",
+              "Write down what you would lose if a customer disputed a bill tomorrow."],
+          i: "Every signed and unsigned agreement you can locate.",
+          ms: "A written contract inventory with the gaps clearly marked.",
+          p: "Adds anything they agreed to verbally that never got papered." },
+        { s: ["Find a business attorney in your state. Ask for a flat-fee package.",
+              "Get your customer agreement drafted or reviewed.",
+              "Get an insurance quote — general liability and professional/E&amp;O."],
+          i: "A plain description of the work you actually do, for the attorney.",
+          ms: "One reviewed customer agreement, and an insurance quote in hand.",
+          p: "Reads the customer agreement in full before either of you signs off." },
+        { s: ["Put the new agreement in front of the next customer.",
+              "Note anything they push back on.",
+              "Bind the insurance policy."],
+          i: "One new customer to paper properly.",
+          ms: "One customer signed on the reviewed agreement, with insurance active.",
+          p: "Knows where the policy and the executed agreements are stored." },
+        { s: ["Store every executed agreement in one place you can both reach.",
+              "Put renewal and insurance dates on the calendar.",
+              "Write the rule: nothing gets promised in writing outside the standard agreement without a second set of eyes."],
+          i: "Nothing new.",
+          ms: "One contract archive both founders can open, with dates calendared.",
+          p: "Agrees to the second-eyes rule, including on their own deals." }
+      ]
+    },
+    payroll: {
+      hard: "This is the one back-office thing where a mistake is immediate, visible, and personal.",
+      res: [["IRS Publication 15, Employer's Tax Guide", "irs.gov", "The actual rules. Dry, free, and authoritative."],
+            ["Your state's labor or workforce department", "—", "State registration and unemployment insurance live here."],
+            ["Your CPA", "—", "Owner compensation is a tax question before it is a payroll question."]],
+      m: [
+        { s: ["Decide whether either of you is on payroll today, and whether you should be.",
+              "List anyone being paid who is not a W-2, and check whether they should be.",
+              "Confirm your state and federal employer registration status."],
+          i: "Your CPA's recommendation on owner compensation.",
+          ms: "A written decision on who gets paid how, backed by the CPA's input.",
+          p: "Understands and agrees with the compensation decision, in writing." },
+        { s: ["Pick a payroll provider. Compare three on price and state coverage.",
+              "Set it up with your entity, bank details, and tax IDs.",
+              "Confirm in writing that the provider files your state and federal taxes."],
+          i: "EIN, state registrations, and business bank details.",
+          ms: "A payroll account configured, with tax filing confirmed as included.",
+          p: "Has their own access to the payroll account." },
+        { s: ["Run one payroll cycle. Check every number before submitting.",
+              "Verify the tax withdrawals actually left the account.",
+              "Confirm the filings were genuinely made."],
+          i: "One real pay period to run.",
+          ms: "One payroll run verified end to end, including tax remittance.",
+          p: "Reviews the run before it is submitted, not after." },
+        { s: ["Publish the pay calendar for the year.",
+              "Write down what to do if a payroll is going to come up short.",
+              "Note the W-2 and 1099 deadlines on the calendar."],
+          i: "Nothing new.",
+          ms: "A published pay calendar and a written shortfall plan.",
+          p: "Knows the shortfall plan before it is ever needed." }
+      ]
+    },
+    hr: {
+      hard: "The first hire exposes every decision about how you work that you never actually made.",
+      res: [["Who", "Geoff Smart &amp; Randy Street", "The scorecard hiring method. Practical, and hard to argue with."],
+            ["The GitLab Handbook", "handbook.gitlab.com", "A whole company's people policies, in public. Borrow shamelessly."],
+            ["SBA hiring guide", "sba.gov", "The compliance checklist for a first employee."]],
+      m: [
+        { s: ["Take your two most overloaded roles from the Charter and write what you would hand off.",
+              "Total the hours honestly.",
+              "Write what you can afford, using the runway number."],
+          i: "Your runway number, and the role split from the Charter.",
+          ms: "A written case for the first hire: what, how many hours, what it costs.",
+          p: "Independently names the role they would hire first — then compare." },
+        { s: ["Write the job description using the Charter's six lines.",
+              "Write the scorecard: what “good” looks like at 90 days.",
+              "Decide contractor versus employee with your CPA, not on instinct."],
+          i: "The six-line role definition for the role you intend to hire.",
+          ms: "A job description and a 90-day scorecard, both written.",
+          p: "Reviews the scorecard and adds what they would need from this person." },
+        { s: ["Write the offer parameters before you meet anyone — range, start date, terms.",
+              "Write your five interview questions and ask all five of everyone.",
+              "Write the first-week onboarding plan from the runbooks that already exist."],
+          i: "The runbooks that already exist for this role. If there are none, that is your answer.",
+          ms: "Offer range, standard questions, and a first-week plan — all in writing.",
+          p: "Agrees to the offer range before any conversation with a candidate happens." },
+        { s: ["Write the one-page handbook: hours, pay dates, time off, how decisions get made.",
+              "Write how you would end it fairly, if it did not work out.",
+              "Put 30, 60, and 90-day check-ins on the calendar as real events."],
+          i: "Nothing new.",
+          ms: "A one-page handbook and a written 90-day review plan.",
+          p: "Agrees on who this person actually reports to. One name, not two." }
+      ]
+    }
+  });
+
+  var WHO = ["ezra", "ashley", "both", "outside"];
+  var LABELS = { ezra: "Ezra", ashley: "Ashley", both: "Both", outside: "Outside" };
+  var STORE_KEY = "founders-role-charter.v1";
+
+  var ROLES = [];
+  DOMAINS.forEach(function (d) { d.roles.forEach(function (r) { ROLES.push(r); }); });
+  var BY_ID = {};
+  ROLES.forEach(function (r) { BY_ID[r.id] = r; });
+
+  var state = load();
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(STORE_KEY);
+      if (!raw) return {};
+      var parsed = JSON.parse(raw);
+      var clean = {};
+      Object.keys(parsed).forEach(function (k) {
+        if (BY_ID[k] && WHO.indexOf(parsed[k]) !== -1) clean[k] = parsed[k];
+      });
+      return clean;
+    } catch (e) { return {}; }
+  }
+
+  function save() {
+    try { window.localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* private mode */ }
+  }
+
+  /* ---------- build the catalog ---------- */
+
+  function buildCatalog() {
+    var host = document.getElementById("catalog");
+    var html = "";
+    DOMAINS.forEach(function (d) {
+      html += '<section><div class="domain-head">';
+      html += '<p class="eyebrow">Domain — ' + d.label + '</p>';
+      html += '<p class="domain-note">' + d.note + '</p>';
+      html += '</div><div class="roles">';
+      d.roles.forEach(function (r) {
+        html += '<article class="role" id="role-' + r.id + '" data-id="' + r.id + '" data-tier="' + r.tier + '" data-assigned="">';
+        html += '<div class="role-top"><h3>' + r.title + '</h3><span class="chip ' + r.tier + '">' + TIERS[r.tier] + '</span></div>';
+        html += '<p class="def">' + r.def + '</p>';
+        html += '<p class="wtw"><b>Week to week</b> ' + r.wtw + '</p>';
+        html += '<div class="assign" role="group" aria-label="Assign ' + stripTags(r.title) + '">';
+        WHO.forEach(function (w) {
+          html += '<button type="button" data-who="' + w + '" aria-pressed="false">' + LABELS[w] + '</button>';
+        });
+        html += '</div></article>';
+      });
+      html += "</div></section>";
+    });
+    host.innerHTML = html;
+  }
+
+  function stripTags(s) { return s.replace(/<[^>]*>/g, "").replace(/&amp;/g, "&"); }
+
+  /* ---------- rendering ---------- */
+
+  function assignedIds(who) {
+    return ROLES.filter(function (r) { return state[r.id] === who; }).map(function (r) { return r.id; });
+  }
+
+  function renderCards() {
+    ROLES.forEach(function (r) {
+      var card = document.getElementById("role-" + r.id);
+      if (!card) return;
+      var val = state[r.id] || "";
+      card.setAttribute("data-assigned", val);
+      var btns = card.querySelectorAll(".assign button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-who") === val ? "true" : "false");
+      }
+    });
+  }
+
+  function renderList(ulId, emptyId, countId, who, withTier) {
+    var ul = document.getElementById(ulId);
+    var ids = assignedIds(who);
+    var html = "";
+    ids.forEach(function (id) {
+      var r = BY_ID[id];
+      html += '<li><button type="button" data-goto="' + id + '">' + r.short +
+        (withTier ? ' <small>' + TIERS[r.tier] + '</small>' : '') + '</button></li>';
+    });
+    ul.innerHTML = html;
+    document.getElementById(emptyId).style.display = ids.length ? "none" : "block";
+    document.getElementById(countId).textContent = ids.length;
+    return ids.length;
+  }
+
+  function render() {
+    renderCards();
+
+    var n = { ezra: 0, ashley: 0, both: 0, outside: 0 };
+    n.ezra   = renderList("list-ezra", "empty-ezra", "count-ezra", "ezra", false);
+    n.ashley = renderList("list-ashley", "empty-ashley", "count-ashley", "ashley", false);
+
+    renderList("p-ezra", "pe-ezra", "c-ezra", "ezra", true);
+    renderList("p-ashley", "pe-ashley", "c-ashley", "ashley", true);
+    n.both    = renderList("p-both", "pe-both", "c-both", "both", true);
+    n.outside = renderList("p-outside", "pe-outside", "c-outside", "outside", true);
+
+    WHO.forEach(function (w) {
+      document.getElementById("t-" + w).textContent = n[w];
+      document.getElementById("m-" + w).style.width = (n[w] / ROLES.length * 100) + "%";
+    });
+
+    var unassigned = ROLES.length - (n.ezra + n.ashley + n.both + n.outside);
+    var ownGap = ROLES.filter(function (r) { return r.tier === "own" && !state[r.id]; }).length;
+    var status = document.getElementById("dock-status");
+
+    if (ownGap > 0) {
+      status.textContent = ownGap + " must-own unclaimed";
+      status.className = "dock-status warn";
+    } else if (unassigned > 0) {
+      status.textContent = unassigned + " left to place";
+      status.className = "dock-status";
+    } else {
+      status.textContent = "All " + ROLES.length + " placed";
+      status.className = "dock-status";
+    }
+  }
+
+  /* ---------- interaction ---------- */
+
+  function setAssignment(id, who) {
+    if (state[id] === who) { delete state[id]; } else { state[id] = who; }
+    save();
+    render();
+    renderProgram();
+  }
+
+  function scrollToRole(id) {
+    var card = document.getElementById("role-" + id);
+    if (!card) return;
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+    card.classList.remove("flash");
+    void card.offsetWidth;
+    card.classList.add("flash");
+  }
+
+  document.addEventListener("click", function (ev) {
+    var assignBtn = ev.target.closest(".assign button");
+    if (assignBtn) {
+      var card = assignBtn.closest(".role");
+      setAssignment(card.getAttribute("data-id"), assignBtn.getAttribute("data-who"));
+      return;
+    }
+    var gotoBtn = ev.target.closest("[data-goto]");
+    if (gotoBtn) { scrollToRole(gotoBtn.getAttribute("data-goto")); }
+  });
+
+  var dock = document.querySelector(".dock");
+  var toggle = document.getElementById("dock-toggle");
+  toggle.addEventListener("click", function () {
+    var open = dock.getAttribute("data-open") === "true";
+    dock.setAttribute("data-open", open ? "false" : "true");
+    toggle.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+
+  document.getElementById("btn-reset").addEventListener("click", function () {
+    state = {};
+    save();
+    render();
+    renderProgram();
+  });
+
+  /* ================= PROGRAM ================= */
+
+  var DONE_KEY = "founders-role-charter.progress.v1";
+  var done = loadDone();
+  var tab = "ezra";
+  var view = "charter";
+
+  function loadDone() {
+    try {
+      var raw = window.localStorage.getItem(DONE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function saveDone() {
+    try { window.localStorage.setItem(DONE_KEY, JSON.stringify(done)); } catch (e) {}
+  }
+
+  function dossier(id) { return DOSSIERS[id]; }
+  function rolesFor(who) {
+    return ROLES.filter(function (r) { return state[r.id] === who && DOSSIERS[r.id]; });
+  }
+  function modTotal(id, mi) { return DOSSIERS[id].m[mi].s.length + 1; }
+  function modDone(id, mi) {
+    var d = DOSSIERS[id].m[mi], n = 0, i;
+    for (i = 0; i < d.s.length; i++) if (done[id + "|" + mi + "|" + i]) n++;
+    if (done[id + "|" + mi + "|ms"]) n++;
+    return n;
+  }
+  function roleTotal(id) { var t = 0, i; for (i = 0; i < 4; i++) t += modTotal(id, i); return t; }
+  function roleDone(id)  { var t = 0, i; for (i = 0; i < 4; i++) t += modDone(id, i); return t; }
+
+  function whoTotals(who) {
+    var rs = rolesFor(who), d = 0, t = 0;
+    rs.forEach(function (r) { d += roleDone(r.id); t += roleTotal(r.id); });
+    return { d: d, t: t, n: rs.length };
+  }
+
+  function partnerName(who) {
+    if (who === "ezra") return "Ashley";
+    if (who === "ashley") return "Ezra";
+    if (who === "outside") return "The other founder";
+    return "The other founder";
+  }
+
+  function renderTabs() {
+    var host = document.getElementById("tabs");
+    var defs = [["ezra", "Ezra"], ["ashley", "Ashley"], ["both", "Together"], ["outside", "Outsourced"]];
+    host.innerHTML = defs.map(function (d) {
+      var t = whoTotals(d[0]);
+      return '<button type="button" role="tab" data-tab="' + d[0] + '" aria-selected="' +
+        (tab === d[0]) + '">' + d[1] + '<span class="tab-n">' + t.n + '</span></button>';
+    }).join("");
+  }
+
+  function renderRoadmap() {
+    var host = document.getElementById("roadmap");
+    var rs = rolesFor(tab);
+    host.innerHTML = PHASES.map(function (p, mi) {
+      var d = 0, t = 0;
+      rs.forEach(function (r) { d += modDone(r.id, mi); t += modTotal(r.id, mi); });
+      var pct = t ? Math.round(d / t * 100) : 0;
+      var st = t === 0 ? "empty" : (d === t ? "done" : (d > 0 ? "active" : "empty"));
+      return '<div class="rm-cell" data-state="' + st + '">' +
+        '<p class="rm-days">Module ' + (mi + 1) + ' &middot; ' + p.d + '</p>' +
+        '<h3>' + p.t + '</h3><p>' + p.b + '</p>' +
+        '<div class="rm-bar"><span style="width:' + pct + '%"></span></div></div>';
+    }).join("");
+  }
+
+  function modCard(r, mi) {
+    var D = DOSSIERS[r.id], d = D.m[mi];
+    var dn = modDone(r.id, mi), tt = modTotal(r.id, mi);
+    var h = '<article class="mod' + (dn === tt ? " is-done" : "") + '" data-who="' + tab + '">';
+    h += '<div class="mod-head"><h3>' + r.title + '</h3><span class="mod-prog">' + dn + '/' + tt + '</span></div>';
+    if (mi === 0) h += '<p class="mod-hard">' + D.hard + '</p>';
+    h += '<ul class="steps">';
+    d.s.forEach(function (step, si) {
+      var k = r.id + "|" + mi + "|" + si;
+      h += '<li><label class="step"><input type="checkbox" data-k="' + k + '"' +
+        (done[k] ? " checked" : "") + '><span>' + step + '</span></label></li>';
+    });
+    h += '</ul>';
+    h += '<p class="need"><b>You need</b>' + d.i + '</p>';
+    h += '<p class="need"><b>From ' + partnerName(tab) + '</b>' + d.p + '</p>';
+    var mk = r.id + "|" + mi + "|ms";
+    h += '<label class="ms"><input type="checkbox" data-k="' + mk + '"' +
+      (done[mk] ? " checked" : "") + '><span><b>Milestone</b>' + d.ms + '</span></label>';
+    return h + '</article>';
+  }
+
+  function renderBands() {
+    var host = document.getElementById("program");
+    var rs = rolesFor(tab);
+    if (!rs.length) {
+      var any = WHO.some(function (w) { return rolesFor(w).length; });
+      host.innerHTML = '<div class="empty-state"><h2>Nothing assigned here yet</h2><p>' +
+        (any ? "No roles are assigned to this column. Switch tabs, or go back to the Charter and claim a few."
+             : "Go to the Charter and claim some roles. Each one you claim builds its own two-week module program here.") +
+        '</p><button type="button" data-goview="charter">Open the Charter</button></div>';
+      document.getElementById("shelf-wrap").style.display = "none";
+      return;
+    }
+    document.getElementById("shelf-wrap").style.display = "";
+    host.innerHTML = PHASES.map(function (p, mi) {
+      return '<section class="band"><div class="band-head">' +
+        '<p class="eyebrow">Module ' + (mi + 1) + ' &middot; ' + p.d + '</p>' +
+        '<h2>' + p.t + '</h2><p class="band-blurb">' + p.b + '</p></div>' +
+        '<div class="mods">' + rs.map(function (r) { return modCard(r, mi); }).join("") + '</div></section>';
+    }).join("");
+  }
+
+  function renderShelf() {
+    var host = document.getElementById("shelf");
+    host.innerHTML = rolesFor(tab).map(function (r) {
+      return '<div class="shelf-role"><h3>' + r.title + '</h3><ul>' +
+        DOSSIERS[r.id].res.map(function (x) {
+          return '<li><span class="r-t">' + x[0] + '</span> <span class="r-a">&mdash; ' + x[1] +
+            '</span><br>' + x[2] + '</li>';
+        }).join("") + '</ul></div>';
+    }).join("");
+  }
+
+  function renderProgDock() {
+    var tot = { d: 0, t: 0 };
+    ["ezra", "ashley", "both"].forEach(function (w) {
+      var x = whoTotals(w);
+      document.getElementById("g-" + w).textContent = x.d + "/" + x.t;
+    });
+    WHO.forEach(function (w) { var x = whoTotals(w); tot.d += x.d; tot.t += x.t; });
+    document.getElementById("g-meter").style.width = (tot.t ? tot.d / tot.t * 100 : 0) + "%";
+    var st = document.getElementById("prog-status");
+    st.textContent = tot.t === 0 ? "No roles claimed" :
+      (tot.d === tot.t ? "Program complete" : tot.d + " of " + tot.t + " done");
+
+    var panel = document.getElementById("prog-panel");
+    var cols = [["ezra", "Ezra"], ["ashley", "Ashley"], ["both", "Together"], ["outside", "Outsourced"]];
+    panel.innerHTML = cols.map(function (c) {
+      var rs = rolesFor(c[0]);
+      var body = rs.length ? rs.map(function (r) {
+        var d = roleDone(r.id), t = roleTotal(r.id);
+        return '<div class="prog-row"><span class="n">' + r.short + '</span>' +
+          '<span class="b"><span style="width:' + (d / t * 100) + '%"></span></span>' +
+          '<span class="f">' + d + '/' + t + '</span></div>';
+      }).join("") : '<p class="col-empty">Nothing assigned.</p>';
+      return '<div class="col col-' + c[0] + '"><div class="col-head"><h3>' + c[1] +
+        '</h3><span class="rail-count">' + rs.length + '</span></div>' + body + '</div>';
+    }).join("");
+  }
+
+  function renderProgram() {
+    renderTabs();
+    renderRoadmap();
+    renderBands();
+    renderShelf();
+    renderProgDock();
+  }
+
+  function setView(v) {
+    view = v;
+    document.body.setAttribute("data-view", v);
+    document.getElementById("view-charter").classList.toggle("is-active", v === "charter");
+    document.getElementById("view-program").classList.toggle("is-active", v === "program");
+    var bs = document.querySelectorAll(".switch button");
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].setAttribute("aria-selected", bs[i].getAttribute("data-view") === v ? "true" : "false");
+    }
+    if (v === "program") renderProgram();
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("change", function (ev) {
+    var cb = ev.target.closest("input[type=checkbox][data-k]");
+    if (!cb) return;
+    var k = cb.getAttribute("data-k");
+    if (cb.checked) { done[k] = 1; } else { delete done[k]; }
+    saveDone();
+    renderProgram();
+  });
+
+  document.addEventListener("click", function (ev) {
+    var sw = ev.target.closest(".switch button");
+    if (sw) { setView(sw.getAttribute("data-view")); return; }
+    var tb = ev.target.closest(".tabs button");
+    if (tb) { tab = tb.getAttribute("data-tab"); renderProgram(); return; }
+    var gv = ev.target.closest("[data-goview]");
+    if (gv) { setView(gv.getAttribute("data-goview")); return; }
+  });
+
+  document.getElementById("dock-toggle-p").addEventListener("click", function () {
+    var open = dock.getAttribute("data-open") === "true";
+    dock.setAttribute("data-open", open ? "false" : "true");
+    this.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+
+  document.getElementById("btn-reset-p").addEventListener("click", function () {
+    done = {};
+    saveDone();
+    renderProgram();
+  });
+
+  /* ---------- portability & storage health ---------- */
+
+  var storageOK = (function () {
+    try {
+      window.localStorage.setItem("__probe", "1");
+      window.localStorage.removeItem("__probe");
+      return true;
+    } catch (e) { return false; }
+  })();
+
+  function pack() {
+    return btoa(unescape(encodeURIComponent(JSON.stringify({ v: 1, a: state, d: done }))));
+  }
+  function unpack(s) {
+    return JSON.parse(decodeURIComponent(escape(atob(s))));
+  }
+
+  function adopt(obj) {
+    if (!obj || typeof obj !== "object") throw new Error("bad file");
+    var a = obj.a || {}, d = obj.d || {}, clean = {};
+    Object.keys(a).forEach(function (k) {
+      if (BY_ID[k] && WHO.indexOf(a[k]) !== -1) clean[k] = a[k];
+    });
+    state = clean;
+    done = {};
+    Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-3]\|(\d+|ms)$/.test(k)) done[k] = 1; });
+    save(); saveDone();
+    render(); renderProgram();
+  }
+
+  function note(msg, cls) {
+    var ns = document.querySelectorAll("[data-note]");
+    for (var i = 0; i < ns.length; i++) {
+      ns[i].textContent = msg;
+      ns[i].className = "dock-note" + (cls ? " " + cls : "");
+    }
+  }
+
+  function copyText(t) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t);
+    }
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } finally { document.body.removeChild(ta); }
+    return Promise.resolve();
+  }
+
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest("[data-act]");
+    if (!b) return;
+    var act = b.getAttribute("data-act");
+
+    if (act === "share") {
+      var url = location.origin + location.pathname + "#s=" + pack();
+      copyText(url).then(function () { note("Link copied", "ok"); })
+                   .catch(function () { note("Copy failed — use Export", "bad"); });
+    }
+
+    if (act === "export") {
+      var blob = new Blob([JSON.stringify({ v: 1, a: state, d: done }, null, 2)], { type: "application/json" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "role-charter-progress.json";
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 0);
+      note("Exported", "ok");
+    }
+
+    if (act === "import") { document.getElementById("import-file").click(); }
+  });
+
+  document.getElementById("import-file").addEventListener("change", function (ev) {
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    var fr = new FileReader();
+    fr.onload = function () {
+      try { adopt(JSON.parse(fr.result)); note("Imported", "ok"); }
+      catch (e) { note("Could not read that file", "bad"); }
+    };
+    fr.readAsText(f);
+    ev.target.value = "";
+  });
+
+  /* adopt an incoming shared link before first paint of state */
+  (function () {
+    var m = location.hash.match(/[#&]s=([A-Za-z0-9+/=]+)/);
+    if (!m) return;
+    try {
+      var obj = unpack(m[1]);
+      var a = obj.a || {}, d = obj.d || {}, clean = {};
+      Object.keys(a).forEach(function (k) {
+        if (BY_ID[k] && WHO.indexOf(a[k]) !== -1) clean[k] = a[k];
+      });
+      state = clean;
+      done = {};
+      Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-3]\|(\d+|ms)$/.test(k)) done[k] = 1; });
+      save(); saveDone();
+      history.replaceState(null, "", location.pathname);
+    } catch (e) { /* malformed link — keep local state */ }
+  })();
+
+  buildCatalog();
+  render();
+  setView("charter");
+  if (!storageOK) note("This browser is blocking saving — use Export to keep progress", "bad");
+})();
+</script>
+</body>
+</html>
