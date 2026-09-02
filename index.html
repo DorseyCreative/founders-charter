@@ -635,9 +635,14 @@
   .dock[data-open="true"] .dock-panel { display: block; }
 
   body[data-view="charter"] .dock-program,
+  body[data-view="charter"] .dock-buildout,
   body[data-view="charter"] #dock-panel-p,
   body[data-view="program"] .dock-charter,
-  body[data-view="program"] #dock-panel { display: none !important; }
+  body[data-view="program"] .dock-buildout,
+  body[data-view="program"] #dock-panel,
+  body[data-view="buildout"] .dock-charter,
+  body[data-view="buildout"] .dock-program,
+  body[data-view="buildout"] #dock-panel { display: none !important; }
 
   .dock-panel-inner {
     max-width: 1260px;
@@ -1030,6 +1035,7 @@
     <div class="switch" role="tablist" aria-label="View">
       <button type="button" role="tab" data-view="charter" aria-selected="true">Charter</button>
       <button type="button" role="tab" data-view="program" aria-selected="false">Program</button>
+      <button type="button" role="tab" data-view="buildout" aria-selected="false">Buildout</button>
     </div>
   </div>
 </div>
@@ -1221,6 +1227,20 @@
   </div>
 </div>
 
+<div class="view view-buildout" id="view-buildout">
+  <div class="prog-wrap">
+    <header class="prog-head">
+      <p class="eyebrow">Four weeks &middot; business infrastructure</p>
+      <h1>The Buildout</h1>
+      <p class="lede">Not the product &mdash; the company around it. Four weeks to get the legal container, the money, the controls, the operating rhythm, and the customer-facing basics standing up. Each week has a goal, a joint milestone, and an individual lane for each of you. I set a default owner on every item; tap to move anything.</p>
+      <div class="roadmap" id="bo-roadmap"></div>
+    </header>
+    <div class="tabs" role="tablist" aria-label="Whose lane" id="bo-tabs"></div>
+    <div id="buildout"></div>
+    <footer>The Buildout &middot; 4 weeks &middot; Owners are defaults &mdash; move anything that's wrong</footer>
+  </div>
+</div>
+
 <div class="dock" data-open="false">
   <div class="dock-bar dock-charter">
     <button class="dock-toggle" id="dock-toggle" aria-expanded="false" aria-controls="dock-panel">
@@ -1249,6 +1269,17 @@
     <div class="dock-actions">
       <button id="btn-reset-p" type="button">Reset progress</button>
     </div>
+  </div>
+
+  <div class="dock-bar dock-buildout">
+    <button class="dock-toggle" id="dock-toggle-b" aria-expanded="false" aria-controls="dock-panel-p">
+      <span class="tally"><span class="tally-dot ezra"></span><span class="tally-name">Ezra</span><span class="tally-num" id="b-ezra">0/0</span></span>
+      <span class="tally"><span class="tally-dot ashley"></span><span class="tally-name">Ashley</span><span class="tally-num" id="b-ashley">0/0</span></span>
+      <span class="tally"><span class="tally-dot both"></span><span class="tally-name">Together</span><span class="tally-num" id="b-both">0/0</span></span>
+      <span class="meter" aria-hidden="true"><span class="m-both" id="b-meter"></span></span>
+      <span class="dock-status" id="bo-status">Week 1 not started</span>
+    </button>
+    <div class="dock-actions"><button id="btn-reset-b" type="button">Reset buildout</button></div>
   </div>
 
   <div class="dock-panel" id="dock-panel-p">
@@ -2188,6 +2219,80 @@
     }
   });
 
+  var BUILDOUT = [
+    {
+      w: 1, t: "Money & the Legal Container",
+      g: "The company legally exists, its money is separate from yours, and someone competent is recording it.",
+      i: "Twelve months of card and bank statements, and today's balance in every account.",
+      ms: "A business bank account holding company money, an EIN in hand, and a bookkeeper engaged.",
+      items: [
+        { id: "w1-entity",   who: "both",   t: "File the LLC — or confirm it is actually filed",           o: "Stamped formation documents you can hand to a bank" },
+        { id: "w1-ein",      who: "ashley", t: "Get the EIN from the IRS",                                  o: "EIN letter saved where you can both find it. Free, online, about ten minutes" },
+        { id: "w1-operating",who: "both",   t: "Write the operating agreement",                             o: "Ownership split, who decides what, and what happens if one of you exits" },
+        { id: "w1-bank",     who: "ashley", t: "Open the business checking account and order two cards",    o: "An account in the company's name with both of you on it" },
+        { id: "w1-separate", who: "ezra",   t: "Move every business subscription off personal cards",       o: "Nothing the company depends on is billing to a personal card" },
+        { id: "w1-books",    who: "ashley", t: "Get three bookkeeper quotes and hire one",                  o: "A signed engagement with a named monthly close date" },
+        { id: "w1-cpa",      who: "both",   t: "Book the CPA conversation",                                 o: "Written answers on entity type, S-corp election, and how you pay yourselves" },
+        { id: "w1-reserve",  who: "ashley", t: "Open a separate tax reserve account and fund it",           o: "Tax money physically somewhere you won't spend it from" },
+        { id: "w1-runway",   who: "ezra",   t: "Write down cash, monthly burn, and runway in months",       o: "One number you have both said out loud" }
+      ]
+    },
+    {
+      w: 2, t: "Control & Protection",
+      g: "Both of you can reach every system the company depends on, and one bad day can't become a lawsuit.",
+      i: "Every login, key, and admin account currently living in one person's head or phone.",
+      ms: "Both founders can open every critical account, and an insurance policy is in force.",
+      items: [
+        { id: "w2-vault",     who: "ashley", t: "Stand up a shared password manager on the business account", o: "One vault, both of you with full access" },
+        { id: "w2-creds",     who: "ezra",   t: "Move every credential, API key, and admin login into it",    o: "Nothing critical exists only in your head, phone, or a .env file" },
+        { id: "w2-registrar", who: "ezra",   t: "Move domain, DNS, and hosting into company accounts",        o: "No company infrastructure sitting under a personal login" },
+        { id: "w2-email",     who: "ezra",   t: "Company email on the company domain, for both of you",       o: "No business conducted from a personal address" },
+        { id: "w2-inventory", who: "ashley", t: "Build the tool register",                                    o: "Every recurring charge with cost, renewal date, and owner — and a monthly total" },
+        { id: "w2-insurance", who: "ashley", t: "Get general liability and professional/E&O quotes, then bind one", o: "An active policy and a certificate you can send a customer" },
+        { id: "w2-attorney",  who: "both",   t: "Engage a business attorney for a flat-fee package",          o: "Customer agreement and terms of service reviewed by someone qualified" },
+        { id: "w2-offboard",  who: "ezra",   t: "Write the access-removal checklist",                         o: "A list you could follow to revoke someone completely in an hour" },
+        { id: "w2-restore",   who: "ezra",   t: "Prove you can restore from a backup",                        o: "One real restore, timed, with the step that failed fixed" }
+      ]
+    },
+    {
+      w: 3, t: "Roles, Rhythm & Truth",
+      g: "You both know who owns what, you meet on a rhythm you actually keep, and you look at the same numbers.",
+      i: "The Role Charter, finished — every role claimed by somebody.",
+      ms: "Two consecutive weekly reviews held, and a scoreboard you can both read without explanation.",
+      items: [
+        { id: "w3-charter",   who: "both",   t: "Finish the Role Charter — nothing left unclaimed",          o: "Every one of the 24 roles has a name, a firm, or a written decision to do it badly" },
+        { id: "w3-tiebreak",  who: "both",   t: "Name the tiebreaker for each domain, in writing",           o: "For every domain, one person whose call ends the discussion" },
+        { id: "w3-titles",    who: "both",   t: "Decide external titles and put them in your signatures",    o: "What a customer or banker sees when they ask who does what" },
+        { id: "w3-weekly",    who: "ashley", t: "Set the 30-minute weekly review and run it twice",          o: "Same slot, same three questions, held two weeks running" },
+        { id: "w3-money",     who: "ashley", t: "Set the 20-minute weekly money meeting",                    o: "Both of you attending, both able to state the runway from memory" },
+        { id: "w3-scoreboard",who: "ezra",   t: "Pick the three numbers that say whether the month was good", o: "Each one defined by how it is counted, not just named" },
+        { id: "w3-decisions", who: "ashley", t: "Start the decision log",                                    o: "Date, decision, who called it, and why — so you stop re-deciding things" },
+        { id: "w3-hours",     who: "both",   t: "Write the business-hours container and block family hours", o: "Both blocks on both calendars, with equal veto over each" },
+        { id: "w3-backup",    who: "both",   t: "Name a backup for every claimed role",                      o: "Who covers it for two weeks. Where the answer is nobody, that's your first hire" }
+      ]
+    },
+    {
+      w: 4, t: "Customer & Hire Readiness",
+      g: "You can take on a customer without improvising, and you could make a hire without inventing the job first.",
+      i: "The runbooks and numbers you produced in weeks 2 and 3.",
+      ms: "A customer could be signed, onboarded, and supported entirely from written documents — and the first job posting exists.",
+      items: [
+        { id: "w4-pricing",   who: "both",   t: "Write the price sheet",                                     o: "What it costs, what's included, and when the price changes. No 'it depends'" },
+        { id: "w4-agreement", who: "ashley", t: "Get the standard customer agreement ready to send",         o: "A reviewed document you can attach without editing it each time" },
+        { id: "w4-onboard",   who: "ashley", t: "Write the customer onboarding runbook",                     o: "Signed to live, with a day number and an owner on every step" },
+        { id: "w4-support",   who: "ashley", t: "Publish the response-time promise and who answers",         o: "A stated promise, and a named person per day" },
+        { id: "w4-runbooks",  who: "ezra",   t: "Write the five highest frequency-times-pain runbooks",      o: "Five procedures your partner could execute cold, worst one first" },
+        { id: "w4-busfactor", who: "ezra",   t: "Count the processes only one of you can do",               o: "A written bus-factor number, and which one you fix next" },
+        { id: "w4-jd",        who: "both",   t: "Write the first hire's job description and 90-day scorecard", o: "A posting you could publish tomorrow, and what 'good' looks like at day 90" },
+        { id: "w4-handbook",  who: "ashley", t: "Write the one-page handbook",                               o: "Hours, pay dates, time off, and how decisions get made" },
+        { id: "w4-review",    who: "both",   t: "Book the 90-day review of this entire plan",                o: "A calendar event with the agenda already written" }
+      ]
+    }
+  ];
+
+  var BO_BY_ID = {};
+  BUILDOUT.forEach(function (wk) { wk.items.forEach(function (it) { BO_BY_ID[it.id] = it; }); });
+
   var WHO = ["ezra", "ashley", "both", "outside"];
   var LABELS = { ezra: "Ezra", ashley: "Ashley", both: "Both", outside: "Outside" };
   var STORE_KEY = "founders-role-charter.v1";
@@ -2381,6 +2486,19 @@
     try { window.localStorage.setItem(DONE_KEY, JSON.stringify(done)); } catch (e) {}
   }
 
+  var BO_KEY = "founders-role-charter.buildout.v1";
+  function loadBo() {
+    try {
+      var raw = window.localStorage.getItem(BO_KEY);
+      if (!raw) return;
+      var o = JSON.parse(raw);
+      boAssign = o.a || {}; boDone = o.d || {};
+    } catch (e) {}
+  }
+  function saveBo() {
+    try { window.localStorage.setItem(BO_KEY, JSON.stringify({ a: boAssign, d: boDone })); } catch (e) {}
+  }
+
   function dossier(id) { return DOSSIERS[id]; }
   function rolesFor(who) {
     return ROLES.filter(function (r) { return state[r.id] === who && DOSSIERS[r.id]; });
@@ -2513,6 +2631,110 @@
     }).join("");
   }
 
+  /* ================= BUILDOUT ================= */
+
+  var boAssign = {}, boDone = {}, boTab = "ezra";
+
+  function boOwner(id) { return boAssign[id] || BO_BY_ID[id].who; }
+  function boItemsFor(who) {
+    var out = [];
+    BUILDOUT.forEach(function (wk) {
+      wk.items.forEach(function (it) { if (boOwner(it.id) === who) out.push(it); });
+    });
+    return out;
+  }
+  function boTotals(who) {
+    var its = boItemsFor(who), d = 0;
+    its.forEach(function (it) { if (boDone[it.id]) d++; });
+    return { d: d, t: its.length };
+  }
+
+  function renderBoTabs() {
+    var defs = [["ezra", "Ezra"], ["ashley", "Ashley"], ["both", "Together"], ["all", "Everything"]];
+    document.getElementById("bo-tabs").innerHTML = defs.map(function (d) {
+      var n = d[0] === "all"
+        ? BUILDOUT.reduce(function (a, w) { return a + w.items.length; }, 0)
+        : boItemsFor(d[0]).length;
+      return '<button type="button" role="tab" data-botab="' + d[0] + '" aria-selected="' +
+        (boTab === d[0]) + '">' + d[1] + '<span class="tab-n">' + n + '</span></button>';
+    }).join("");
+  }
+
+  function renderBoRoadmap() {
+    document.getElementById("bo-roadmap").innerHTML = BUILDOUT.map(function (wk) {
+      var its = wk.items.filter(function (it) { return boTab === "all" || boOwner(it.id) === boTab; });
+      var d = its.filter(function (it) { return boDone[it.id]; }).length;
+      var pct = its.length ? Math.round(d / its.length * 100) : 0;
+      var st = its.length === 0 ? "empty" : (d === its.length ? "done" : (d > 0 ? "active" : "empty"));
+      return '<div class="rm-cell" data-state="' + st + '">' +
+        '<p class="rm-days">Week ' + wk.w + ' &middot; Days ' + (wk.w * 7 - 6) + '&ndash;' + (wk.w * 7) + '</p>' +
+        '<h3>' + wk.t + '</h3><p>' + wk.g + '</p>' +
+        '<div class="rm-bar"><span style="width:' + pct + '%"></span></div></div>';
+    }).join("");
+  }
+
+  function renderBoWeeks() {
+    var host = document.getElementById("buildout");
+    host.innerHTML = BUILDOUT.map(function (wk) {
+      var its = wk.items.filter(function (it) { return boTab === "all" || boOwner(it.id) === boTab; });
+      var body;
+      if (!its.length) {
+        body = '<div class="empty-state"><p>Nothing in this lane for week ' + wk.w +
+          '. Switch to Everything to see the rest, or move an item into this lane.</p></div>';
+      } else {
+        body = '<div class="mods">' + its.map(function (it) {
+          var own = boOwner(it.id), dn = !!boDone[it.id];
+          var h = '<article class="mod' + (dn ? " is-done" : "") + '" data-who="' + own + '">';
+          h += '<label class="step" style="align-items:flex-start;padding:0 0 6px">' +
+               '<input type="checkbox" data-bok="' + it.id + '"' + (dn ? " checked" : "") + '>' +
+               '<span style="font-family:var(--display);font-weight:700;font-size:0.98rem;line-height:1.35">' +
+               it.t + '</span></label>';
+          h += '<p class="need" style="border-top:none;padding-top:2px"><b>Done looks like</b>' + it.o + '</p>';
+          h += '<div class="assign">';
+          [["ezra", "Ezra"], ["ashley", "Ashley"], ["both", "Both"]].forEach(function (w) {
+            h += '<button type="button" data-bowho="' + it.id + '|' + w[0] + '" aria-pressed="' +
+                 (own === w[0]) + '" data-who="' + w[0] + '">' + w[1] + '</button>';
+          });
+          return h + '</div></article>';
+        }).join("") + '</div>';
+      }
+      var wd = wk.items.filter(function (it) { return boDone[it.id]; }).length;
+      return '<section class="band"><div class="band-head">' +
+        '<p class="eyebrow">Week ' + wk.w + ' &middot; Days ' + (wk.w * 7 - 6) + '&ndash;' + (wk.w * 7) + '</p>' +
+        '<h2>' + wk.t + '</h2><p class="band-blurb">' + wd + ' of ' + wk.items.length + ' done</p></div>' +
+        '<p class="prose" style="margin-bottom:14px;color:var(--ink-soft);font-size:0.95rem">' + wk.g + '</p>' +
+        body +
+        '<p class="need" style="margin-top:14px"><b>You need</b>' + wk.i + '</p>' +
+        '<label class="ms"><input type="checkbox" data-bok="wk' + wk.w + '-milestone"' +
+        (boDone["wk" + wk.w + "-milestone"] ? " checked" : "") +
+        '><span><b>Week ' + wk.w + ' milestone</b>' + wk.ms + '</span></label>' +
+        '</section>';
+    }).join("");
+  }
+
+  function renderBoDock() {
+    var tot = { d: 0, t: 0 };
+    ["ezra", "ashley", "both"].forEach(function (w) {
+      var x = boTotals(w);
+      document.getElementById("b-" + w).textContent = x.d + "/" + x.t;
+      tot.d += x.d; tot.t += x.t;
+    });
+    document.getElementById("b-meter").style.width = (tot.t ? tot.d / tot.t * 100 : 0) + "%";
+    var cur = 0;
+    for (var i = 0; i < BUILDOUT.length; i++) {
+      var wk = BUILDOUT[i];
+      var d = wk.items.filter(function (it) { return boDone[it.id]; }).length;
+      if (d < wk.items.length) { cur = wk.w; break; }
+    }
+    document.getElementById("bo-status").textContent =
+      tot.d === 0 ? "Week 1 not started" :
+      (cur === 0 ? "All four weeks complete" : "On week " + cur + " · " + tot.d + "/" + tot.t);
+  }
+
+  function renderBuildout() {
+    renderBoTabs(); renderBoRoadmap(); renderBoWeeks(); renderBoDock();
+  }
+
   function renderProgram() {
     renderTabs();
     renderRoadmap();
@@ -2526,15 +2748,25 @@
     document.body.setAttribute("data-view", v);
     document.getElementById("view-charter").classList.toggle("is-active", v === "charter");
     document.getElementById("view-program").classList.toggle("is-active", v === "program");
+    document.getElementById("view-buildout").classList.toggle("is-active", v === "buildout");
     var bs = document.querySelectorAll(".switch button");
     for (var i = 0; i < bs.length; i++) {
       bs[i].setAttribute("aria-selected", bs[i].getAttribute("data-view") === v ? "true" : "false");
     }
     if (v === "program") renderProgram();
+    if (v === "buildout") renderBuildout();
     window.scrollTo(0, 0);
   }
 
   document.addEventListener("change", function (ev) {
+    var bok = ev.target.closest("input[type=checkbox][data-bok]");
+    if (bok) {
+      var bid = bok.getAttribute("data-bok");
+      if (bok.checked) { boDone[bid] = 1; enqueue({ type: "set", k: "bod:" + bid, v: "1" }); }
+      else { delete boDone[bid]; enqueue({ type: "del", k: "bod:" + bid }); }
+      renderBuildout();
+      return;
+    }
     var cb = ev.target.closest("input[type=checkbox][data-k]");
     if (!cb) return;
     var k = cb.getAttribute("data-k");
@@ -2551,12 +2783,39 @@
     if (tb) { tab = tb.getAttribute("data-tab"); renderProgram(); return; }
     var gv = ev.target.closest("[data-goview]");
     if (gv) { setView(gv.getAttribute("data-goview")); return; }
+    var bt = ev.target.closest("[data-botab]");
+    if (bt) { boTab = bt.getAttribute("data-botab"); renderBuildout(); return; }
+    var bw = ev.target.closest("[data-bowho]");
+    if (bw) {
+      var parts = bw.getAttribute("data-bowho").split("|");
+      var id = parts[0], w = parts[1];
+      if (boOwner(id) === w) return;
+      boAssign[id] = w;
+      enqueue({ type: "set", k: "bo:" + id, v: w });
+      renderBuildout();
+      return;
+    }
   });
 
   document.getElementById("dock-toggle-p").addEventListener("click", function () {
     var open = dock.getAttribute("data-open") === "true";
     dock.setAttribute("data-open", open ? "false" : "true");
     this.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+
+  document.getElementById("dock-toggle-b").addEventListener("click", function () {
+    var open = dock.getAttribute("data-open") === "true";
+    dock.setAttribute("data-open", open ? "false" : "true");
+    this.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+
+  document.getElementById("btn-reset-b").addEventListener("click", function () {
+    if (!window.confirm("Clear the whole 4-week buildout for both of you?")) return;
+    boAssign = {}; boDone = {};
+    pending = pending.filter(function (o) { return o.k.indexOf("bo:") !== 0 && o.k.indexOf("bod:") !== 0; });
+    saveBo(); renderBuildout();
+    Promise.all([wipe("bo:"), wipe("bod:")]).then(function () { setSync("ok", "Synced"); },
+                                                 function () { setSync("off", "Offline"); });
   });
 
   document.getElementById("btn-reset-p").addEventListener("click", function () {
@@ -2664,13 +2923,18 @@
   }
 
   function applyRows(rows) {
-    var ns = {}, nd = {};
+    var ns = {}, nd = {}, nba = {}, nbd = {};
     rows.forEach(function (r) {
       if (r.k.indexOf("assign:") === 0) {
         var id = r.k.slice(7);
         if (BY_ID[id] && WHO.indexOf(r.v) !== -1) ns[id] = r.v;
       } else if (r.k.indexOf("done:") === 0) {
         nd[r.k.slice(5)] = 1;
+      } else if (r.k.indexOf("bo:") === 0) {
+        var bid = r.k.slice(3);
+        if (BO_BY_ID[bid] && ["ezra", "ashley", "both"].indexOf(r.v) !== -1) nba[bid] = r.v;
+      } else if (r.k.indexOf("bod:") === 0) {
+        nbd[r.k.slice(4)] = 1;
       }
     });
     pending.forEach(function (o) {
@@ -2680,12 +2944,19 @@
       } else if (o.k.indexOf("done:") === 0) {
         var kk = o.k.slice(5);
         if (o.type === "set") nd[kk] = 1; else delete nd[kk];
+      } else if (o.k.indexOf("bod:") === 0) {
+        var bk = o.k.slice(4);
+        if (o.type === "set") nbd[bk] = 1; else delete nbd[bk];
+      } else if (o.k.indexOf("bo:") === 0) {
+        var ba = o.k.slice(3);
+        if (o.type === "set") nba[ba] = o.v; else delete nba[ba];
       }
     });
-    var changed = canon(ns) !== canon(state) || canon(nd) !== canon(done);
-    state = ns; done = nd;
-    save(); saveDone();
-    if (changed) { render(); renderProgram(); }
+    var changed = canon(ns) !== canon(state) || canon(nd) !== canon(done) ||
+                  canon(nba) !== canon(boAssign) || canon(nbd) !== canon(boDone);
+    state = ns; done = nd; boAssign = nba; boDone = nbd;
+    save(); saveDone(); saveBo();
+    if (changed) { render(); renderProgram(); renderBuildout(); }
   }
 
   function poll() {
@@ -2700,6 +2971,8 @@
   function pushAllLocal() {
     Object.keys(state).forEach(function (id) { pending.push({ type: "set", k: "assign:" + id, v: state[id] }); });
     Object.keys(done).forEach(function (k) { pending.push({ type: "set", k: "done:" + k, v: "1" }); });
+    Object.keys(boAssign).forEach(function (k) { pending.push({ type: "set", k: "bo:" + k, v: boAssign[k] }); });
+    Object.keys(boDone).forEach(function (k) { pending.push({ type: "set", k: "bod:" + k, v: "1" }); });
     return flush();
   }
 
@@ -2806,7 +3079,9 @@
   /* ---------- boot ---------- */
 
   buildCatalog();
+  loadBo();
   render();
+  renderBuildout();
   setView("charter");
 
   var freshSpace = !ls("charter.space") && !/[#&]space=/.test(location.hash);
