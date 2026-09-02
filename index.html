@@ -697,6 +697,50 @@
   .dock-note.ok { color: var(--ezra); }
   .dock-note.bad { color: var(--ashley); }
 
+  /* ---------- sync ---------- */
+
+  .sync {
+    display: flex; align-items: center; gap: 7px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ink-faint); flex-shrink: 0;
+  }
+  .sync[data-state="ok"]   .sync-dot { background: var(--ezra); }
+  .sync[data-state="off"]  .sync-dot { background: var(--ashley); }
+  .sync[data-state="busy"] .sync-dot { background: var(--ink-faint); }
+
+  .whobar {
+    display: none;
+    margin: 0 calc(var(--gut) * -1);
+    padding: 12px var(--gut);
+    background: var(--neutral-tint);
+    border-bottom: 1px solid var(--rule);
+  }
+  body[data-who-unset="1"] .whobar { display: block; }
+  .whobar-inner {
+    max-width: 1260px; margin: 0 auto;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+    font-size: 0.88rem; color: var(--ink-soft);
+  }
+  .idpick { display: flex; gap: 6px; }
+  .idpick button {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 7px 14px 6px; border-radius: 3px; min-height: 32px;
+    border: 1px solid var(--rule-strong); background: transparent; color: var(--ink-soft);
+  }
+  .idpick button[data-me="ezra"]:hover,
+  .idpick button[data-me="ezra"][aria-pressed="true"] { background: var(--ezra); border-color: var(--ezra); color: var(--paper); }
+  .idpick button[data-me="ashley"]:hover,
+  .idpick button[data-me="ashley"][aria-pressed="true"] { background: var(--ashley); border-color: var(--ashley); color: var(--paper); }
+
+  @media (max-width: 720px) {
+    .sync-label { display: none; }
+  }
+
   /* ---------- top bar & views ---------- */
 
   .topbar {
@@ -714,7 +758,8 @@
     font-family: var(--display); font-weight: 800; font-size: 0.86rem;
     letter-spacing: -0.005em; white-space: nowrap;
   }
-  .switch { display: flex; gap: 4px; margin-left: auto; }
+  .switch { display: flex; gap: 4px; margin-left: 12px; }
+  .sync { margin-left: auto; }
   .switch button {
     font-family: var(--mono); font-size: 10.5px; font-weight: 500;
     letter-spacing: 0.09em; text-transform: uppercase;
@@ -979,10 +1024,23 @@
 <div class="topbar">
   <div class="topbar-inner">
     <span class="wordmark">Founders' Role Charter</span>
+    <span class="sync" id="sync" data-state="busy" title="Sync status">
+      <span class="sync-dot"></span><span class="sync-label" id="sync-label">Connecting</span>
+    </span>
     <div class="switch" role="tablist" aria-label="View">
       <button type="button" role="tab" data-view="charter" aria-selected="true">Charter</button>
       <button type="button" role="tab" data-view="program" aria-selected="false">Program</button>
     </div>
+  </div>
+</div>
+
+<div class="whobar">
+  <div class="whobar-inner">
+    <span>Who's on this device? This board is shared &mdash; your changes appear on the other phone.</span>
+    <span class="idpick">
+      <button type="button" data-me="ezra" aria-pressed="false">Ezra</button>
+      <button type="button" data-me="ashley" aria-pressed="false">Ashley</button>
+    </span>
   </div>
 </div>
 
@@ -1196,9 +1254,14 @@
   <div class="dock-panel" id="dock-panel-p">
     <div class="dock-panel-inner" id="prog-panel"></div>
     <div class="dock-tools">
-      <button type="button" data-act="share">Copy share link</button>
-      <button type="button" data-act="export">Export file</button>
-      <button type="button" data-act="import">Import file</button>
+      <button type="button" data-act="share">Copy board link</button>
+      <button type="button" data-act="export">Export backup</button>
+      <button type="button" data-act="import">Import backup</button>
+      <button type="button" data-act="rotate">New board</button>
+      <span class="idpick">
+        <button type="button" data-me="ezra" aria-pressed="false">Ezra</button>
+        <button type="button" data-me="ashley" aria-pressed="false">Ashley</button>
+      </span>
       <span class="dock-note" data-note></span>
     </div>
   </div>
@@ -1227,9 +1290,14 @@
       </div>
     </div>
     <div class="dock-tools">
-      <button type="button" data-act="share">Copy share link</button>
-      <button type="button" data-act="export">Export file</button>
-      <button type="button" data-act="import">Import file</button>
+      <button type="button" data-act="share">Copy board link</button>
+      <button type="button" data-act="export">Export backup</button>
+      <button type="button" data-act="import">Import backup</button>
+      <button type="button" data-act="rotate">New board</button>
+      <span class="idpick">
+        <button type="button" data-me="ezra" aria-pressed="false">Ezra</button>
+        <button type="button" data-me="ashley" aria-pressed="false">Ashley</button>
+      </span>
       <span class="dock-note" data-note></span>
     </div>
   </div>
@@ -2246,7 +2314,13 @@
   /* ---------- interaction ---------- */
 
   function setAssignment(id, who) {
-    if (state[id] === who) { delete state[id]; } else { state[id] = who; }
+    if (state[id] === who) {
+      delete state[id];
+      enqueue({ type: "del", k: "assign:" + id });
+    } else {
+      state[id] = who;
+      enqueue({ type: "set", k: "assign:" + id, v: who });
+    }
     save();
     render();
     renderProgram();
@@ -2281,10 +2355,13 @@
   });
 
   document.getElementById("btn-reset").addEventListener("click", function () {
+    if (!window.confirm("Clear every role assignment on this shared board, for both of you?")) return;
     state = {};
+    pending = pending.filter(function (o) { return o.k.indexOf("assign:") !== 0; });
     save();
     render();
     renderProgram();
+    wipe("assign:").then(function () { setSync("ok", "Synced"); }, function () { setSync("off", "Offline"); });
   });
 
   /* ================= PROGRAM ================= */
@@ -2461,7 +2538,8 @@
     var cb = ev.target.closest("input[type=checkbox][data-k]");
     if (!cb) return;
     var k = cb.getAttribute("data-k");
-    if (cb.checked) { done[k] = 1; } else { delete done[k]; }
+    if (cb.checked) { done[k] = 1; enqueue({ type: "set", k: "done:" + k, v: "1" }); }
+    else { delete done[k]; enqueue({ type: "del", k: "done:" + k }); }
     saveDone();
     renderProgram();
   });
@@ -2482,9 +2560,12 @@
   });
 
   document.getElementById("btn-reset-p").addEventListener("click", function () {
+    if (!window.confirm("Clear every checked step on this shared board, for both of you?")) return;
     done = {};
+    pending = pending.filter(function (o) { return o.k.indexOf("done:") !== 0; });
     saveDone();
     renderProgram();
+    wipe("done:").then(function () { setSync("ok", "Synced"); }, function () { setSync("off", "Offline"); });
   });
 
   /* ---------- portability & storage health ---------- */
@@ -2497,11 +2578,144 @@
     } catch (e) { return false; }
   })();
 
-  function pack() {
-    return btoa(unescape(encodeURIComponent(JSON.stringify({ v: 1, a: state, d: done }))));
+  /* ---------- shared board sync ---------- */
+
+  var API = "https://xilxyztmzkhqvbenqbpj.supabase.co/rest/v1/charter_state";
+  var ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpbHh5enRtemtocXZiZW5xYnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NDcwOTAsImV4cCI6MjA5ODQyMzA5MH0.byZYSABsksdjeD90zzRNj9Opo0C2gIOft1M1K5Z6-h0";
+
+  var space = null, me = null, pending = [], syncing = false;
+
+  function H(extra) {
+    var h = { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" };
+    if (extra) Object.keys(extra).forEach(function (k) { h[k] = extra[k]; });
+    return h;
   }
-  function unpack(s) {
-    return JSON.parse(decodeURIComponent(escape(atob(s))));
+
+  function newSpace() {
+    var cs = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789", s = "";
+    var a = new Uint8Array(22);
+    (window.crypto || window.msCrypto).getRandomValues(a);
+    for (var i = 0; i < 22; i++) s += cs[a[i] % cs.length];
+    return s;
+  }
+
+  function ls(k, v) {
+    try {
+      if (v === undefined) return window.localStorage.getItem(k);
+      window.localStorage.setItem(k, v);
+    } catch (e) { return null; }
+  }
+
+  function resolveSpace() {
+    var m = location.hash.match(/[#&]space=([A-Za-z0-9]{16,64})/);
+    if (m) { space = m[1]; ls("charter.space", space); return; }
+    space = ls("charter.space");
+    if (!space) { space = newSpace(); ls("charter.space", space); }
+    history.replaceState(null, "", location.pathname + "#space=" + space);
+  }
+
+  function setSync(st, label) {
+    var el = document.getElementById("sync");
+    el.setAttribute("data-state", st);
+    document.getElementById("sync-label").textContent = label;
+  }
+
+  function canon(o) {
+    return Object.keys(o).sort().map(function (k) { return k + "=" + o[k]; }).join(";");
+  }
+
+  function enqueue(op) { pending.push(op); scheduleFlush(); }
+
+  var flushTimer = null;
+  function scheduleFlush() {
+    if (flushTimer) return;
+    flushTimer = setTimeout(function () { flushTimer = null; flush(); }, 250);
+  }
+
+  function flush() {
+    if (!pending.length || syncing) return Promise.resolve();
+    syncing = true;
+    var batch = pending.slice();
+    var sets = batch.filter(function (o) { return o.type === "set"; });
+    var dels = batch.filter(function (o) { return o.type === "del"; });
+    var jobs = [];
+
+    if (sets.length) {
+      var seen = {}, rows = [];
+      for (var i = sets.length - 1; i >= 0; i--) {
+        if (seen[sets[i].k]) continue;
+        seen[sets[i].k] = 1;
+        rows.unshift({ space: space, k: sets[i].k, v: sets[i].v, who: me });
+      }
+      jobs.push(fetch(API, { method: "POST", headers: H({ "Prefer": "resolution=merge-duplicates" }), body: JSON.stringify(rows) }));
+    }
+    dels.forEach(function (o) {
+      jobs.push(fetch(API + "?space=eq." + encodeURIComponent(space) + "&k=eq." + encodeURIComponent(o.k),
+        { method: "DELETE", headers: H() }));
+    });
+
+    return Promise.all(jobs).then(function (rs) {
+      for (var i = 0; i < rs.length; i++) if (!rs[i].ok) throw new Error("write " + rs[i].status);
+      pending = pending.slice(batch.length);
+      setSync("ok", "Synced");
+    }).catch(function () {
+      setSync("off", "Offline");
+    }).then(function () { syncing = false; });
+  }
+
+  function applyRows(rows) {
+    var ns = {}, nd = {};
+    rows.forEach(function (r) {
+      if (r.k.indexOf("assign:") === 0) {
+        var id = r.k.slice(7);
+        if (BY_ID[id] && WHO.indexOf(r.v) !== -1) ns[id] = r.v;
+      } else if (r.k.indexOf("done:") === 0) {
+        nd[r.k.slice(5)] = 1;
+      }
+    });
+    pending.forEach(function (o) {
+      if (o.k.indexOf("assign:") === 0) {
+        var id = o.k.slice(7);
+        if (o.type === "set") ns[id] = o.v; else delete ns[id];
+      } else if (o.k.indexOf("done:") === 0) {
+        var kk = o.k.slice(5);
+        if (o.type === "set") nd[kk] = 1; else delete nd[kk];
+      }
+    });
+    var changed = canon(ns) !== canon(state) || canon(nd) !== canon(done);
+    state = ns; done = nd;
+    save(); saveDone();
+    if (changed) { render(); renderProgram(); }
+  }
+
+  function poll() {
+    return fetch(API + "?space=eq." + encodeURIComponent(space) + "&select=k,v,who", { headers: H() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (rows) { applyRows(rows); setSync("ok", "Synced"); })
+      .catch(function () { setSync("off", "Offline"); });
+  }
+
+  function tick() { flush().then(poll); }
+
+  function pushAllLocal() {
+    Object.keys(state).forEach(function (id) { pending.push({ type: "set", k: "assign:" + id, v: state[id] }); });
+    Object.keys(done).forEach(function (k) { pending.push({ type: "set", k: "done:" + k, v: "1" }); });
+    return flush();
+  }
+
+  function wipe(prefix) {
+    return fetch(API + "?space=eq." + encodeURIComponent(space) + "&k=like." + encodeURIComponent(prefix + "*"),
+      { method: "DELETE", headers: H() });
+  }
+
+  function setMe(v) {
+    me = v;
+    ls("charter.me", v);
+    document.body.setAttribute("data-who-unset", v ? "0" : "1");
+    var bs = document.querySelectorAll("[data-me]");
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].setAttribute("aria-pressed", bs[i].getAttribute("data-me") === v ? "true" : "false");
+    }
   }
 
   function adopt(obj) {
@@ -2515,6 +2729,7 @@
     Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-3]\|(\d+|ms)$/.test(k)) done[k] = 1; });
     save(); saveDone();
     render(); renderProgram();
+    pushAllLocal();
   }
 
   function note(msg, cls) {
@@ -2542,9 +2757,20 @@
     var act = b.getAttribute("data-act");
 
     if (act === "share") {
-      var url = location.origin + location.pathname + "#s=" + pack();
-      copyText(url).then(function () { note("Link copied", "ok"); })
-                   .catch(function () { note("Copy failed — use Export", "bad"); });
+      var url = location.origin + location.pathname + "#space=" + space;
+      copyText(url).then(function () { note("Board link copied — send it to your partner", "ok"); })
+                   .catch(function () { note("Copy failed", "bad"); });
+    }
+
+    if (act === "rotate") {
+      if (!window.confirm("Start a brand new empty board?\n\nThe old link keeps working and keeps its own data — but this device will no longer be on it. Copy the old link first if you might want it back.")) return;
+      space = newSpace();
+      ls("charter.space", space);
+      history.replaceState(null, "", location.pathname + "#space=" + space);
+      state = {}; done = {}; pending = [];
+      save(); saveDone(); render(); renderProgram();
+      note("New board created — send the new link", "ok");
+      tick();
     }
 
     if (act === "export") {
@@ -2572,28 +2798,36 @@
     ev.target.value = "";
   });
 
-  /* adopt an incoming shared link before first paint of state */
-  (function () {
-    var m = location.hash.match(/[#&]s=([A-Za-z0-9+/=]+)/);
-    if (!m) return;
-    try {
-      var obj = unpack(m[1]);
-      var a = obj.a || {}, d = obj.d || {}, clean = {};
-      Object.keys(a).forEach(function (k) {
-        if (BY_ID[k] && WHO.indexOf(a[k]) !== -1) clean[k] = a[k];
-      });
-      state = clean;
-      done = {};
-      Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-3]\|(\d+|ms)$/.test(k)) done[k] = 1; });
-      save(); saveDone();
-      history.replaceState(null, "", location.pathname);
-    } catch (e) { /* malformed link — keep local state */ }
-  })();
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest("[data-me]");
+    if (b) { setMe(b.getAttribute("data-me")); flush(); }
+  });
+
+  /* ---------- boot ---------- */
 
   buildCatalog();
   render();
   setView("charter");
-  if (!storageOK) note("This browser is blocking saving — use Export to keep progress", "bad");
+
+  var freshSpace = !ls("charter.space") && !/[#&]space=/.test(location.hash);
+  resolveSpace();
+  setMe(ls("charter.me") || null);
+
+  if (freshSpace && (Object.keys(state).length || Object.keys(done).length)) {
+    /* first run after the local-only version — seed the shared board with what's here */
+    pushAllLocal().then(poll);
+  } else {
+    setSync("busy", "Connecting");
+    poll();
+  }
+
+  setInterval(tick, 5000);
+  window.addEventListener("focus", tick);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
+  window.addEventListener("online", tick);
+  window.addEventListener("hashchange", function () { resolveSpace(); poll(); });
+
+  if (!storageOK) note("This browser is blocking local saving — the shared board still works", "bad");
 })();
 </script>
 </body>
