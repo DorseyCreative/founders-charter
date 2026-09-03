@@ -1427,10 +1427,12 @@
   ];
 
   var PHASES = [
-    { d: "Days 1–3",   t: "See it",       b: "Face the current reality before you change anything." },
-    { d: "Days 4–7",   t: "Set it up",    b: "Build the one artifact the role can't work without." },
-    { d: "Days 8–11",  t: "Run it live",  b: "Do the job for real, once, while it's still small." },
-    { d: "Days 12–14", t: "Make it stick", b: "Turn it into a rhythm that survives a bad week." }
+    { d: "Days 1–5",   t: "See it",        b: "Face the current reality before you change anything." },
+    { d: "Days 6–10",  t: "Set it up",     b: "Build the one artifact the role can't work without." },
+    { d: "Days 11–15", t: "Run it live",   b: "Do the job for real, once, while it's still small." },
+    { d: "Days 16–20", t: "Prove it",      b: "Show it works with evidence, not with your impression of it." },
+    { d: "Days 21–25", t: "Hand it off",   b: "Make it survivable by someone who is not you." },
+    { d: "Days 26–28", t: "Make it stick", b: "Turn it into a rhythm that outlasts a bad week." }
   ];
 
   var DOSSIERS = {};
@@ -2293,6 +2295,377 @@
   var BO_BY_ID = {};
   BUILDOUT.forEach(function (wk) { wk.items.forEach(function (it) { BO_BY_ID[it.id] = it; }); });
 
+  /* Modules 4 and 5 slot in before "Make it stick", which becomes module 6. */
+  var EXTRA = {};
+  Object.assign(EXTRA, {
+    ceo: [
+      { s: ["Take the 90-day priority to a customer and ask if it is what they'd pay for.",
+            "Check every dollar committed this month against the written priority.",
+            "Write down one thing you were wrong about in week one."],
+        i: "The 90-day priority, and this month's actual spending.",
+        ms: "Written evidence — a customer's words or a number — that the priority is the right one.",
+        p: "Pushes back on the priority once more, now that there is evidence to argue with." },
+      { s: ["Write the one-page company brief a new hire would read on day one.",
+            "Hand your partner one decision that has always been yours.",
+            "Stay out of it while they make it."],
+        i: "One live decision you are willing to genuinely let go of.",
+        ms: "A decision made well by the other founder, without you in the room.",
+        p: "Makes the call and writes down the reasoning, so the standard is visible." }
+    ],
+    coo: [
+      { s: ["Compare what was planned against what actually happened, for two weeks running.",
+            "Count how many commitments slipped and find the single biggest cause.",
+            "Change one thing about how the week is planned, based on that cause."],
+        i: "Two weeks of plan-versus-actual, written down at the time, not reconstructed.",
+        ms: "A named, evidenced reason that work slips here — not a guess.",
+        p: "Reviews the slippage without defending it, and names their own contribution." },
+      { s: ["Have your partner run the weekly review while you sit in silence.",
+            "Write down every question they could not answer from the documents.",
+            "Fix the documents, not the person."],
+        i: "The weekly review agenda and the shared task list.",
+        ms: "One review run entirely by the other founder, from written material.",
+        p: "Runs it cold and flags every place the written record was not enough." }
+    ],
+    cto: [
+      { s: ["Take the worst-case failure from your dependency map and simulate it.",
+            "Time how long recovery actually took, start to finish.",
+            "Write the number down next to your earlier guess."],
+        i: "The dependency map, and a scratch environment safe to break.",
+        ms: "A measured recovery time for your single worst dependency failure.",
+        p: "Picks which dependency you simulate, so you cannot choose an easy one." },
+      { s: ["Write the architecture brief a contract developer could start from.",
+            "Have your partner follow the deploy and restore docs unaided.",
+            "Fix every step they got stuck on, same day."],
+        i: "Your deploy and restore procedures as currently written.",
+        ms: "A non-engineer completing a deploy or restore from your documents alone.",
+        p: "Attempts it cold and records every point of confusion." }
+    ],
+    pm: [
+      { s: ["Go back to the customer whose complaint you shipped against.",
+            "Ask whether the thing you built actually solved it. Write their words down.",
+            "If it did not, put it back on the list at its honest position."],
+        i: "The spec you shipped, and the customer who asked for it.",
+        ms: "A written verdict from the person who asked, not from you.",
+        p: "Reads the verdict and re-ranks the list with that evidence in hand." },
+      { s: ["Write the ranking rule down so someone else could apply it.",
+            "Have your partner rank next week's requests using it.",
+            "Compare their order to yours and reconcile the differences."],
+        i: "The current request list and your ranking rule.",
+        ms: "Two independent rankings that land close enough to trust the rule.",
+        p: "Ranks independently, without seeing your order first." }
+    ],
+    eng: [
+      { s: ["Check the error rate before and after the change you shipped.",
+            "Find one bug that reached a customer and trace how it got through.",
+            "Add the one check that would have caught it."],
+        i: "Error monitoring, and the last customer-reported bug.",
+        ms: "One real escape traced to its cause, with a check added.",
+        p: "Reports the bug from the customer's side so you see it as they did." },
+      { s: ["Write the setup guide: laptop to running app, no verbal help.",
+            "Have someone else follow it end to end.",
+            "Fix every step that needed you to explain it."],
+        i: "A machine that is not yours, and someone willing to try.",
+        ms: "The project running on a second machine, from written instructions only.",
+        p: "Follows the guide literally and refuses to guess when it is unclear." }
+    ]
+  });
+  Object.assign(EXTRA, {
+    design: [
+      { s: ["Run a third unassisted session with someone who has never seen it.",
+            "Count pause points against your first session's number.",
+            "Write down which of your fixes actually moved it and which did not."],
+        i: "A third person, and your pause-point counts from the earlier sessions.",
+        ms: "A measured before-and-after, with the changes that did nothing named honestly.",
+        p: "Recruits the third person and runs the session, so you only watch." },
+      { s: ["Write the naming rules: what customers call things, in their words.",
+            "Have your partner name three new screens using only those rules.",
+            "Where they got it wrong, the rules are wrong. Fix them."],
+        i: "The customer vocabulary list you built in module 2.",
+        ms: "Someone else naming things correctly from your written rules.",
+        p: "Names the screens cold and challenges rules that do not actually decide anything." }
+    ],
+    qa: [
+      { s: ["Count releases run fully by checklist versus releases where you skipped it.",
+            "Count escapes in each group.",
+            "If the numbers say the checklist does not help, fix the checklist."],
+        i: "Your release log and your bug reports for the last month.",
+        ms: "A number comparing escapes with and without the checklist.",
+        p: "Reports every escape they heard about from a customer, including small ones." },
+      { s: ["Have your partner run a full release using only the checklist.",
+            "Sit on your hands. Do not narrate.",
+            "Rewrite every line they had to ask about."],
+        i: "One low-risk release to hand over.",
+        ms: "A release shipped by the other founder, unaided.",
+        p: "Ships it, and stops at every ambiguous line rather than guessing." }
+    ],
+    infra: [
+      { s: ["Run the restore drill again and compare the time to your first attempt.",
+            "Trigger a real alert and time how long until a human responded.",
+            "Write both numbers where you will see them."],
+        i: "The restore procedure and your alerting setup.",
+        ms: "Two measured numbers: time to restore, and time to human response.",
+        p: "Is the responder for the alert test, so you measure the real path." },
+      { s: ["Write the runbook for the three most likely failures, in order of steps.",
+            "Have your partner resolve a simulated outage from the runbook alone.",
+            "Fix the steps that failed them."],
+        i: "A safe environment to simulate an outage in.",
+        ms: "A simulated outage resolved by the person who did not build the system.",
+        p: "Works the outage cold, on their own device, without calling you." }
+    ],
+    data: [
+      { s: ["Recount each of the three numbers by hand and compare to the dashboard.",
+            "Find the discrepancy. There is almost always one.",
+            "Fix the definition, not the spreadsheet."],
+        i: "Your scoreboard, and the raw source data behind it.",
+        ms: "Three numbers verified by hand against source, with one definition corrected.",
+        p: "Recounts one of the three independently and compares." },
+      { s: ["Write how each number is produced, step by step.",
+            "Have your partner refresh the whole scoreboard without you.",
+            "Fix every step that required your memory."],
+        i: "The written definitions from module 2.",
+        ms: "A full scoreboard refresh performed by the other founder.",
+        p: "Does the refresh and challenges any number they cannot trace to a source." }
+    ],
+    sales: [
+      { s: ["Count conversations held, next steps set, and deals closed.",
+            "Work out how many conversations one close actually takes.",
+            "Write that ratio down — it is now your planning number."],
+        i: "Your written notes from every conversation so far.",
+        ms: "A real conversion ratio based on your own conversations, not an industry figure.",
+        p: "Reviews the notes and flags deals you are calling alive that are not." },
+      { s: ["Write the sales script: the three questions, the price, the objections.",
+            "Have your partner run two real conversations from it.",
+            "Rewrite whatever did not survive contact."],
+        i: "Two live prospects you are willing to hand over.",
+        ms: "Two conversations run by the other founder from your written script.",
+        p: "Runs them for real and reports exactly where the script broke down." }
+    ]
+  });
+  Object.assign(EXTRA, {
+    marketing: [
+      { s: ["Count what the case study actually produced: opens, replies, calls, deals.",
+            "Compare it to the effort it took.",
+            "Decide in writing whether that channel earns another month."],
+        i: "The response numbers you recorded in module 3.",
+        ms: "A written keep-or-kill decision on your one channel, backed by numbers.",
+        p: "Argues the opposite case, so the decision survives a real challenge." },
+      { s: ["Write the publishing playbook: what gets made, how often, in what voice.",
+            "Have your partner publish the next piece from it.",
+            "Fix whatever needed you."],
+        i: "The three-sentence description and your channel choice.",
+        ms: "One piece published end to end by the other founder.",
+        p: "Publishes it and flags every place the voice guidance was too vague to use." }
+    ],
+    impl: [
+      { s: ["Time the onboarding you ran against the baseline you measured in module 1.",
+            "Read the day-14 feedback again and pick the worst moment.",
+            "Fix that one step."],
+        i: "Your baseline time and the day-14 feedback note.",
+        ms: "A measured improvement in time-to-live, with one step demonstrably fixed.",
+        p: "Names the worst moment from the customer's side, independently of you." },
+      { s: ["Hand the next onboarding entirely to your partner.",
+            "Stay out of it unless something is about to break.",
+            "Fix every checklist step they had to ask about."],
+        i: "One new customer, and the onboarding checklist.",
+        ms: "A customer taken live by the founder who did not write the process.",
+        p: "Runs the whole onboarding and logs every question they had to ask." }
+    ],
+    cs: [
+      { s: ["Count accounts contacted on rhythm versus accounts that slipped.",
+            "Check whether anything you flagged at-risk actually churned or recovered.",
+            "Adjust the at-risk definition against what really happened."],
+        i: "Your account list with contact dates and at-risk flags.",
+        ms: "An at-risk definition corrected by real outcomes rather than instinct.",
+        p: "Reviews their half of the accounts the same way and compares patterns." },
+      { s: ["Write the account brief format: history, goal, risks, next step.",
+            "Fill one in for every account.",
+            "Have your partner run a check-in from the brief alone."],
+        i: "Everything you know about each account, most of it currently in your head.",
+        ms: "A check-in run well by someone who has never spoken to that customer.",
+        p: "Takes a cold account and runs the call from the brief only." }
+    ],
+    support: [
+      { s: ["Count tickets answered from written answers versus improvised ones.",
+            "Measure your real response time against the promise you published.",
+            "If you are missing the promise, change the promise or change the process."],
+        i: "A month of tickets with timestamps.",
+        ms: "A measured response time compared honestly against your published promise.",
+        p: "Checks the promise from a customer's point of view, not an operator's." },
+      { s: ["Have your partner cover support for three consecutive days.",
+            "Log every question they had to escalate to you.",
+            "Write those answers down so they never escalate again."],
+        i: "Three days you are willing to genuinely stay out of the inbox.",
+        ms: "Three days covered by the other founder, with every escalation documented.",
+        p: "Covers the days for real and refuses to guess — every gap gets logged." }
+    ],
+    ops: [
+      { s: ["Recount your bus-factor number against the one from module 4 of the Buildout.",
+            "Total what the tool register actually costs per month now.",
+            "Cancel or renegotiate whatever the numbers do not justify."],
+        i: "The tool register and your runbook library.",
+        ms: "A bus-factor number that has visibly gone down, and a spend number that has not gone up.",
+        p: "Verifies the bus-factor count by naming who else could truly do each process." },
+      { s: ["Write the next five runbooks, worst first.",
+            "Have your partner run a full week of recurring operations from them.",
+            "Fix every step that broke."],
+        i: "Your partner's week, and the five processes you have not documented yet.",
+        ms: "One full week of operations run by the person who did not write the runbooks.",
+        p: "Runs the week and marks every place they had to invent a step." }
+    ]
+  });
+  Object.assign(EXTRA, {
+    vendor: [
+      { s: ["Total what you actually saved this cycle, in dollars.",
+            "Check every renewal that passed — did any auto-renew without you noticing?",
+            "Write the number and the misses down together."],
+        i: "Your renewal calendar and last month's statements.",
+        ms: "A dollar figure saved, and an honest count of renewals that slipped past you.",
+        p: "Audits the statements independently for charges neither of you expected." },
+      { s: ["Write the vendor file: who, what, cost, renewal, exit path, contact.",
+            "Have your partner handle one renewal conversation from it.",
+            "Fill in whatever they could not answer."],
+        i: "Contract terms for every active vendor.",
+        ms: "One renewal negotiated by the founder who does not own vendors.",
+        p: "Takes the call and reports what the file failed to prepare them for." }
+    ],
+    delivery: [
+      { s: ["Count dates hit, dates renegotiated early, and dates simply missed.",
+            "Work out how far ahead you can actually predict, honestly.",
+            "Use that horizon when you commit from now on."],
+        i: "Every date committed in the last month and what happened to it.",
+        ms: "A written, evidenced commitment horizon — how far out you can promise and be right.",
+        p: "Checks the list against what customers were actually told." },
+      { s: ["Write the board rules: what each stage means and what moves a job.",
+            "Have your partner run the board for a week.",
+            "Fix every rule that turned out to need your interpretation."],
+        i: "The shared job board and its current stages.",
+        ms: "A week of delivery managed by the other founder from written rules.",
+        p: "Runs the board and flags every stage they had to ask you to interpret." }
+    ],
+    admin: [
+      { s: ["Re-run the time tracking for one week and compare to your module 1 total.",
+            "Count interruptions to protected blocks against the earlier count.",
+            "Name what actually bought the hours back."],
+        i: "Your original non-role hours total from module 1.",
+        ms: "A measured change in protected hours, with the cause identified.",
+        p: "Tracks their own week again and compares both sets of numbers." },
+      { s: ["Write the admin runbook: filing, inbox rules, calendar, follow-ups.",
+            "Have your partner run the weekly sweep from it.",
+            "Fix what needed you."],
+        i: "Your filing structure and inbox rules.",
+        ms: "A full admin sweep completed by the other founder.",
+        p: "Runs the sweep and marks anything they could not find or file confidently." }
+    ],
+    cfo: [
+      { s: ["Compare 13 weeks of forecast against what actually happened.",
+            "Calculate your average forecast error, honestly.",
+            "Write the number down — it is how much you should trust the forecast."],
+        i: "Your 13-week forecast and the actuals for the weeks that have passed.",
+        ms: "A measured forecast error percentage you can plan against.",
+        p: "Checks the actuals independently against the bank, not against the forecast." },
+      { s: ["Write the money runbook: where accounts are, what gets paid when, what triggers action.",
+            "Have your partner run one full weekly money meeting.",
+            "Fix every gap."],
+        i: "The forecast, the accounts, and the written floor and action rules.",
+        ms: "A money meeting run entirely by the other founder, correctly.",
+        p: "Runs it, states the runway from the documents, and flags anything unclear." }
+    ],
+    books: [
+      { s: ["Check the bookkeeper's first three months against your own bank statements.",
+            "Find at least one thing to question — there usually is one.",
+            "Confirm the close arrived on the agreed date each month."],
+        i: "Three months of closes and the matching bank statements.",
+        ms: "Three closes verified against source, with any discrepancy raised and resolved.",
+        p: "Reviews one month independently before comparing notes with you." },
+      { s: ["Write the monthly finance calendar: what arrives, when, and who reads it.",
+            "Have your partner run one month's review with the bookkeeper.",
+            "Confirm the reports go to both of you by default."],
+        i: "The engagement terms and the report formats you receive.",
+        ms: "One monthly close reviewed by the other founder directly with the bookkeeper.",
+        p: "Runs the call and asks their own questions rather than relaying yours." }
+    ]
+  });
+  Object.assign(EXTRA, {
+    cpa: [
+      { s: ["Check that the quarterly estimate was actually paid, from the bank side.",
+            "Confirm the tax reserve balance matches what the CPA said to hold.",
+            "Ask what your entity decision saved or cost this quarter, in dollars."],
+        i: "Bank confirmation of the estimate payment and the reserve balance.",
+        ms: "A verified estimate payment and a reserve balance that matches the CPA's number.",
+        p: "Confirms the numbers independently, since this lands on both personal returns." },
+      { s: ["Write the tax calendar: every deadline, what is owed, who files it.",
+            "Have your partner run one quarterly CPA touchpoint.",
+            "Store every filing where you can both reach it."],
+        i: "The full filing schedule from your CPA.",
+        ms: "One CPA touchpoint run by the other founder, with notes filed.",
+        p: "Runs the call and can afterwards explain the structure without notes." }
+    ],
+    legal: [
+      { s: ["Check that the customer who signed actually signed the reviewed version.",
+            "Confirm the insurance policy is in force and the certificate is issuable.",
+            "Find the one agreement still running on a handshake."],
+        i: "Every executed agreement and the insurance policy documents.",
+        ms: "Proof of an in-force policy and a signed current-form agreement on file.",
+        p: "Audits the archive for gaps rather than trusting the list is complete." },
+      { s: ["Write the contract playbook: which document, which situation, what may be changed.",
+            "Have your partner paper one deal without you.",
+            "Escalate only what the playbook genuinely does not cover."],
+        i: "The reviewed agreement set and your attorney's guidance on what is negotiable.",
+        ms: "One deal papered correctly by the founder who does not own legal.",
+        p: "Papers the deal and flags every clause they were unsure they could touch." }
+    ],
+    payroll: [
+      { s: ["Verify the tax withdrawals left the account and the filings were accepted.",
+            "Check the pay date landed when the calendar said it would.",
+            "Confirm the net pay matched what was agreed, to the cent."],
+        i: "Bank records and the provider's filing confirmations.",
+        ms: "One cycle verified end to end from the bank side, not the dashboard.",
+        p: "Checks the confirmations independently of whoever ran payroll." },
+      { s: ["Write the payroll runbook: dates, approvals, what to check before submitting.",
+            "Have your partner run one cycle from it.",
+            "Confirm they could also handle the shortfall plan."],
+        i: "One pay period, and the shortfall plan from module 4 of the Buildout.",
+        ms: "A payroll cycle run correctly by the other founder.",
+        p: "Runs it, and confirms out loud what they would do if the account were short." }
+    ],
+    hr: [
+      { s: ["Test the job description on someone outside the business.",
+            "Ask what they think the job actually is, then compare to what you meant.",
+            "Rewrite whatever they misread."],
+        i: "The job description and 90-day scorecard.",
+        ms: "An outsider describing the role back to you accurately, from the document alone.",
+        p: "Finds the outsider and asks the question, so you do not lead the witness." },
+      { s: ["Assemble the hiring pack: description, scorecard, questions, first-week plan, handbook.",
+            "Have your partner run a practice interview using the standard questions.",
+            "Agree the offer range in writing before anyone real is contacted."],
+        i: "Everything written across the earlier modules.",
+        ms: "A complete hiring pack, and both founders agreed on the offer range in writing.",
+        p: "Runs the practice interview and scores it against the scorecard independently." }
+    ]
+  });
+
+  extendDossiers();
+  /* EXTRA_INSERT */
+
+  function extendDossiers() {
+    Object.keys(DOSSIERS).forEach(function (id) {
+      var d = DOSSIERS[id];
+      if (d.m.length !== 4 || !EXTRA[id]) return;
+      d.m = d.m.slice(0, 3).concat(EXTRA[id]).concat([d.m[3]]);
+    });
+  }
+
+  /* One-time remap: old module index 3 ("Make it stick") is now index 5. */
+  function migrateModuleIndex(map) {
+    var out = {}, moved = 0;
+    Object.keys(map).forEach(function (k) {
+      var m = k.match(/^([a-z]+)\|3\|(\d+|ms)$/);
+      if (m) { out[m[1] + "|5|" + m[2]] = 1; moved++; }
+      else out[k] = 1;
+    });
+    return { map: out, moved: moved };
+  }
+
   var WHO = ["ezra", "ashley", "both", "outside"];
   var LABELS = { ezra: "Ezra", ashley: "Ashley", both: "Both", outside: "Outside" };
   var STORE_KEY = "founders-role-charter.v1";
@@ -2510,8 +2883,8 @@
     if (done[id + "|" + mi + "|ms"]) n++;
     return n;
   }
-  function roleTotal(id) { var t = 0, i; for (i = 0; i < 4; i++) t += modTotal(id, i); return t; }
-  function roleDone(id)  { var t = 0, i; for (i = 0; i < 4; i++) t += modDone(id, i); return t; }
+  function roleTotal(id) { var t = 0, i; for (i = 0; i < PHASES.length; i++) t += modTotal(id, i); return t; }
+  function roleDone(id)  { var t = 0, i; for (i = 0; i < PHASES.length; i++) t += modDone(id, i); return t; }
 
   function whoTotals(who) {
     var rs = rolesFor(who), d = 0, t = 0;
@@ -2929,7 +3302,9 @@
         var id = r.k.slice(7);
         if (BY_ID[id] && WHO.indexOf(r.v) !== -1) ns[id] = r.v;
       } else if (r.k.indexOf("done:") === 0) {
-        nd[r.k.slice(5)] = 1;
+        var dk = r.k.slice(5);
+        var mm = dk.match(/^([a-z]+)\|3\|(\d+|ms)$/);
+        nd[mm ? mm[1] + "|5|" + mm[2] : dk] = 1;
       } else if (r.k.indexOf("bo:") === 0) {
         var bid = r.k.slice(3);
         if (BO_BY_ID[bid] && ["ezra", "ashley", "both"].indexOf(r.v) !== -1) nba[bid] = r.v;
@@ -2999,7 +3374,7 @@
     });
     state = clean;
     done = {};
-    Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-3]\|(\d+|ms)$/.test(k)) done[k] = 1; });
+    Object.keys(d).forEach(function (k) { if (/^[a-z]+\|[0-5]\|(\d+|ms)$/.test(k)) done[k] = 1; });
     save(); saveDone();
     render(); renderProgram();
     pushAllLocal();
@@ -3080,6 +3455,15 @@
 
   buildCatalog();
   loadBo();
+
+  /* module 3 -> 5 remap for progress saved before the 6-module split */
+  (function () {
+    var r = migrateModuleIndex(done);
+    if (r.moved) {
+      done = r.map; saveDone();
+      Object.keys(done).forEach(function (k) { pending.push({ type: "set", k: "done:" + k, v: "1" }); });
+    }
+  })();
   render();
   renderBuildout();
   setView("charter");
