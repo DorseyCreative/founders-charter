@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>What Costs Extra — Founders' Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F3F5F0; --surface:#FFFFFF; --ink:#171C1A; --ink-soft:#4E5852; --ink-faint:#79837C;
+  --rule:#DCE2D8; --rule-strong:#C0C9BB; --accent:#1D5D4A; --accent-tint:#E4EEE8;
+  --display:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:24px; --top-h:52px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}}
+:root[data-theme="dark"]{
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}
+@media (max-width:720px){:root{--gut:16px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:720px){body{font-size:16px}}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);padding:0 var(--gut)}
+.topbar-inner{max-width:820px;margin:0 auto;height:var(--top-h);display:flex;align-items:center;gap:16px}
+.back{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-decoration:none;white-space:nowrap}
+.back:hover{text-decoration:underline}
+.wordmark{font-family:var(--display);font-weight:800;font-size:.82rem;margin-left:auto;color:var(--ink-faint);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:820px;margin:0 auto;padding:36px var(--gut) 90px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.06;
+   letter-spacing:-.022em;text-wrap:balance;margin:0 0 18px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;letter-spacing:-.013em;line-height:1.22;
+   text-wrap:balance;margin:42px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong)}
+h3{font-family:var(--display);font-weight:700;font-size:1.03rem;margin:26px 0 6px}
+h4{font-family:var(--display);font-weight:700;font-size:.94rem;margin:20px 0 5px}
+p{margin:0 0 1.05em;max-width:68ch}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+strong{font-weight:600}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 1.05em}
+li{margin-bottom:.4em;line-height:1.55}
+code{font-family:var(--mono);font-size:.84em;background:var(--accent-tint);color:var(--ink);
+     padding:1px 5px;border-radius:3px}
+blockquote{margin:0 0 1.05em;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);
+           border-left:3px solid var(--accent);border-radius:3px;max-width:68ch}
+blockquote p{margin-bottom:.7em}
+blockquote p:last-child{margin-bottom:0}
+blockquote ul,blockquote ol{margin-bottom:.7em}
+.tw{overflow-x:auto;margin:0 0 1.3em;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+   text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule-strong);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+      border-radius:4px;padding:16px 18px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 5px;font-size:1.04rem;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);font-style:italic;max-width:none}
+.wc{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head><body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="../">← Charter</a>
+  <span class="wordmark">Founders' Charter</span>
+</div></div>
+<main class="wrap">
+<h1>What Costs Extra</h1>
+<p><em>The paid layer above the $217 base, derived from the code. 2026-09-10.</em></p>
+<p>One Stripe subscription per tenant, composed of up to four items: base (qty 1), installer overage (qty = active installers − 3), AI Pro (0 or 1), and PayCheck.</p>
+<h2>Installer seats — $35/mo each beyond 3</h2>
+<p>The base includes <strong>3 active installer slots</strong>. A fourth and beyond costs $35/mo, or $29/mo effective on annual.</p>
+<p><strong>The cap is on activation, not creation.</strong> A tenant can hold unlimited installer <em>profiles</em>; only those flagged <code>is_active_installer = true</code> count. <code>checkActivationAllowed()</code> computes <code>planCap = 3 + the live Stripe overage quantity</code> — read from Stripe, not a cached flag.</p>
+<p>At the cap, every activation surface returns <strong>HTTP 402</strong> with an upgrade payload whose error string literally quotes the price. That covers invite accept, status toggle, admin create, and punch-in — so an installer can hit it in the field, not just an owner in settings.</p>
+<p>Your own tenant (Go Blinds Gold) is hardcoded <code>unlimited: true</code>. Worth remembering if it is ever used as a reference for a seat-pricing conversation.</p>
+<h2>PayCheck — $45/mo, 30-day trial, no card</h2>
+<p><strong>What it is.</strong> Crew2 voucher reconciliation plus a weekly PM discrepancy report. The paywall copy:</p>
+<blockquote><p>Auto-import your Crew2 payment vouchers, match each line to the work order, and surface every discrepancy or chargeback in a weekly report you can forward straight to your PM.</p></blockquote>
+<p><strong>What it unlocks.</strong> The <code>/accounting/paycheck</code> dashboard (Discrepancies, Awaiting, Mileage), the whole <code>/api/paycheck/*</code> surface, the voucher ingest paths (PDF import, IMAP sync, Gmail sync), and four crons including the weekly PM report.</p>
+<p><strong>How it is enforced.</strong> Two independent gates stack. Role first — <code>PAYCHECK_ROLES = ['owner', 'super_admin']</code>, and a lookup error fails <strong>closed</strong>. Then entitlement — each route checks <code>features.voucher_addon === true</code> and returns <strong>402</strong> if not. One inconsistency: <code>api/paycheck/summary</code> returns 200 with zeroed stats instead of a 402.</p>
+<p>The role list was deliberately tightened from a previous <code>['owner','installer','super_admin']</code>, which had handed every installer the company's full voucher ledger. <code>admin</code> and <code>manager</code> are excluded on purpose.</p>
+<p><strong>Trial mechanics.</strong> Trial start attaches <strong>no Stripe item at all</strong>. Entitlement is granted locally (<code>voucher_addon: true</code>, <code>voucher_addon_billing_status: 'trial_pending_stripe'</code>), and <code>cron/voucher-trial-convert</code> attaches the $45 item only once the 30 days elapse. <strong>Nobody is charged during the trial.</strong> An earlier metadata-only implementation did bill immediately; that is fixed.</p>
+<p><strong>Two live issues.</strong> The entitlement sync reads only whether a Stripe item exists and does not recognise <code>trial_pending_stripe</code> — so an unrelated subscription change mid-trial can revoke it silently. And the gate's own 402 copy advertises a <strong>14-day</strong> trial when the real one is 30.</p>
+<p><strong>No annual SKU exists.</strong> The annual price object is a deliberate stub set to zero, so a caller requesting annual PayCheck gets a clean error. You cannot sell PayCheck annually today.</p>
+<h2>AI Pro — $79/mo</h2>
+<p><strong>It does not change the model or the provider.</strong> Provider and model selection is a per-tenant system setting, unrelated to plan tier.</p>
+<p><strong>What it actually buys is quota.</strong> Base tenants get <strong>1,000 AI requests per Stripe billing period</strong>. AI Pro makes that unlimited. Threshold notifications fire once each at 50%, 80% and 100%, with an owner email at 80 and 100.</p>
+<p><strong>What happens at the cap matters more than the cap.</strong> At 100% without AI Pro the system <em>degrades</em> rather than stops: the customer-facing orchestrator falls back to template replies rather than leaving homeowners unanswered, while premium features (Guardian, Ask Alice) pause. Gated routes return <strong>402</strong> with an upgrade payload.</p>
+<p>So the pitch is not "better AI." It is "your automation doesn't drop to templates in the last week of the month."</p>
+<p><strong>Billing.</strong> Toggled with real Stripe proration — an immediate mid-cycle charge, no trial. Adding it resets the usage period; removing it does not.</p>
+<p><strong>Who can toggle.</strong> Platform staff, or the tenant's own <strong>owner</strong> specifically. A tenant's <code>admin</code>-role user cannot change billing items.</p>
+<h2>Packaging notes</h2>
+<ul><li><strong>No annual PayCheck.</strong> A gap in the price book, not a bug.</li><li><strong>The 402 copy undersells the PayCheck trial by 16 days</strong> — 14 advertised, 30 real.</li><li><strong>Prices are defined twice.</strong> <code>lib/revenue-intelligence.ts</code> hardcodes its own copy of every price for MRR reporting and does not import <code>lib/stripe.ts</code>. Change a price in one and your MRR dashboards silently go stale.</li><li><strong>A dead legacy price list still exports</strong> from <code>stripe.ts</code> — Pro $49 and Enterprise $149 — documented in-file as wrong and not to be used for MRR.</li><li><strong>Grandfathering exists</strong> for PayCheck: named tenants are exempt from webhook revocation while billing is migrated.</li><li><strong>The general trial is 30 days, no card</strong>, from a single constant in <code>lib/billing-constants.ts</code> created specifically to end an earlier drift where three files disagreed.</li></ul>
+</main>
+</body></html>

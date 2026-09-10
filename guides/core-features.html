@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>What the Product Does — Founders' Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F3F5F0; --surface:#FFFFFF; --ink:#171C1A; --ink-soft:#4E5852; --ink-faint:#79837C;
+  --rule:#DCE2D8; --rule-strong:#C0C9BB; --accent:#1D5D4A; --accent-tint:#E4EEE8;
+  --display:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:24px; --top-h:52px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}}
+:root[data-theme="dark"]{
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}
+@media (max-width:720px){:root{--gut:16px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:720px){body{font-size:16px}}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);padding:0 var(--gut)}
+.topbar-inner{max-width:820px;margin:0 auto;height:var(--top-h);display:flex;align-items:center;gap:16px}
+.back{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-decoration:none;white-space:nowrap}
+.back:hover{text-decoration:underline}
+.wordmark{font-family:var(--display);font-weight:800;font-size:.82rem;margin-left:auto;color:var(--ink-faint);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:820px;margin:0 auto;padding:36px var(--gut) 90px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.06;
+   letter-spacing:-.022em;text-wrap:balance;margin:0 0 18px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;letter-spacing:-.013em;line-height:1.22;
+   text-wrap:balance;margin:42px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong)}
+h3{font-family:var(--display);font-weight:700;font-size:1.03rem;margin:26px 0 6px}
+h4{font-family:var(--display);font-weight:700;font-size:.94rem;margin:20px 0 5px}
+p{margin:0 0 1.05em;max-width:68ch}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+strong{font-weight:600}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 1.05em}
+li{margin-bottom:.4em;line-height:1.55}
+code{font-family:var(--mono);font-size:.84em;background:var(--accent-tint);color:var(--ink);
+     padding:1px 5px;border-radius:3px}
+blockquote{margin:0 0 1.05em;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);
+           border-left:3px solid var(--accent);border-radius:3px;max-width:68ch}
+blockquote p{margin-bottom:.7em}
+blockquote p:last-child{margin-bottom:0}
+blockquote ul,blockquote ol{margin-bottom:.7em}
+.tw{overflow-x:auto;margin:0 0 1.3em;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+   text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule-strong);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+      border-radius:4px;padding:16px 18px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 5px;font-size:1.04rem;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);font-style:italic;max-width:none}
+.wc{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head><body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="../">← Charter</a>
+  <span class="wordmark">Founders' Charter</span>
+</div></div>
+<main class="wrap">
+<h1>What the Product Does</h1>
+<p><em>The base $217/mo plan, derived from the code. Add-ons are covered separately. 2026-09-10.</em></p>
+<h2>The one line, in the product's own words</h2>
+<p>From the SaaS pitch at <code>/platform</code>:</p>
+<blockquote><p><strong>Full Automation. Total Control.</strong> EDI-powered field service automation. Orders flow in from Smartsheet, schedules build themselves, customers get confirmed — all without manual handoffs.</p></blockquote>
+<p>The onboarding headline is more literal, and probably the better sentence for a sales call: <strong>"Crew2 Field Operations, On Autopilot."</strong></p>
+<p>Note the public root page is <em>not</em> this pitch — it's a Home Depot homeowner landing page explaining "why did I get this text." Two audiences, two doors.</p>
+<h2>What a tenant gets, by where they work</h2>
+<p><strong>Order intake.</strong> Connect Crew2's Smartsheet by OAuth, pick a sheet, get auto-sync plus manual Sync Now. The import engine normalises names and phones, geocodes, dedupes and merges rows, flags orphans missing WO#/PO#, and kicks off scheduling proposals. Confirmed schedules write back into the Smartsheet row, with a 30-minute retry sweep for failures. Manual entry runs the same pipeline.</p>
+<p><strong>Pipeline</strong> (<code>/pipeline</code>). The main order board: pending → proposed → scheduled → in progress → completed, plus on-hold and cancelled. Assign, confirm, hold, cancel, merge, split, note, resolve interventions, drag-reschedule with constraint checking.</p>
+<p><strong>Dispatch / Command Center.</strong> One call surfaces confirmed jobs, stale opt-ins, unopened proposals, route-review alerts, escalations, today's board by installer, and re-engagement candidates. Bulk reschedule, call and voicemail logging, live SSE stream. Owner/admin/manager only — installers cannot reach it.</p>
+<p><strong>Scheduling and routing.</strong> The live scheduler is <code>/pro-scheduler</code>. The InsertionEngine inserts new jobs while respecting confirmed-window locks, and forces a re-notify obligation rather than silently moving a customer. <code>getPromisedWindow()</code> is the single source of truth for the arrival window. Route feasibility checks against a self-hosted VROOM + ORS engine.</p>
+<p><strong>Customer messaging.</strong> Outbound SMS from the tenant's own VoIP.ms number — single sends, a daily bulk proposed-date blast, and AI propose/confirm flows. Inbound SMS is auto-classified and auto-replied by Guardian, with human escalation when it is unsure. Outbound email uses the tenant's own SMTP. Inbound email is polled by IMAP and AI-replied — this is separate infrastructure from the Gmail polling, which is PayCheck-only.</p>
+<p><strong>Installer PWA</strong> (<code>/installer</code>). A real installable app: job list with status flow and photo upload, geofence auto-arrival, live map, schedule and blockouts, SMS threads, personal stats, punch in/out, push notifications with action buttons.</p>
+<p><strong>Calendar.</strong> Google Calendar OAuth at tenant level with per-installer calendar mapping. Creates, updates and deletes events for scheduled jobs, and pulls available slots.</p>
+<p><strong>Territories and stores.</strong> Pick which Home Depot stores you service, group them into named territories with recurring days or date ranges and a home base. Reassigning a territory's installer shows an impact preview before committing.</p>
+<p><strong>Team.</strong> Roster CRUD, invite by email or SMS, magic login links, per-installer analytics, activate/deactivate.</p>
+<p><strong>Settings.</strong> Business info, scheduling, messaging, Guardian, blast, automation engine, line items, routing provider, integrations, notifications, security, activity log.</p>
+<h2>What runs while nobody is watching</h2>
+<p>This is a large part of the value and it is invisible in any feature list. Of 28 scheduled jobs:</p>
+<p><strong>Keeping Crew2 data flowing</strong> — sheet sync, token refresh, writeback retry, confirmed-block drift detection, route review.</p>
+<p><strong>Customer messaging on its own</strong> — the daily blast, appointment reminders, proposal follow-up nudges, expired-proposal cleanup, hold reminders, geofence checks. This is the "customers get confirmed without manual handoffs" claim, made real.</p>
+<p><strong>Tenant-visible ops</strong> — a morning briefing pushed to owners, and a stale-cleanup sweep that flags forgotten past-dated jobs.</p>
+<p><strong>Billing lifecycle</strong> — trial warnings and grace-period enforcement.</p>
+<p>The rest (Guardian training and review, error monitoring, department digests, MRR snapshots) is GoTechGo watching itself, not tenant value.</p>
+<h2>What is actually gated</h2>
+<p><strong>The feature-flag system is dead.</strong> <code>tenants.features</code> carries seven <code>KNOWN_FEATURES</code> keys — <code>sms</code>, <code>email</code>, <code>calendar_sync</code>, <code>ai_scheduling</code>, <code>advanced_reporting</code>, <code>api_access</code>, <code>white_label</code>. Every plan tier sets them identically and a developer comment confirms <strong>zero enforcement sites</strong>. They gate nothing. The one real flag on that field is <code>voucher_addon</code>.</p>
+<p><strong>The seat cap is the gate that matters.</strong> <code>INCLUDED_INSTALLERS = 3</code>. Activation counts profiles with <code>is_active_installer = true</code> against <code>3 + Stripe overage quantity</code>; with no subscription the cap is hard-locked at 3. Activating a fourth returns <strong>HTTP 402</strong> with an upgrade payload from <em>every</em> surface — invite accept, status toggle, admin create, punch-in — not just the UI. Unlimited installer <em>profiles</em> are allowed; only concurrently active seats are capped.</p>
+<p><strong>Role gating is separate from plan.</strong> The <code>installer</code> role is confined to <code>/installer/*</code> regardless of tier. Full desktop access is an owner/admin/manager privilege, not something you buy.</p>
+<h2>What the UI offers that does not work</h2>
+<ul><li><strong>Pipeline order-menu actions</strong> — reminder, feedback request, invoice generation, duplicate, split, history — fire toasts with no backend behind them.</li><li><strong>Analytics</strong>: Revenue Trends, Geographic Performance and Customer Communication are literal "coming soon" placeholders. Duplicated in <code>/accounting</code>.</li><li><strong>Settings → Integrations</strong> advertises QuickBooks, Stripe and Zapier as coming soon. Non-functional tiles.</li><li><strong>14 of 15 service verticals</strong> — HVAC, plumbing, electrical, roofing, landscaping, pest control, appliance repair, garage door, painting, flooring, handyman, locksmith, cleaning, solar — are <code>comingSoon: true</code> with empty item lists, disabled in the UI <em>and</em> refused by the server. <strong>Only Window Treatments is live.</strong> The product is single-vertical today despite a multi-trade picker.</li><li><strong>Orphaned pages</strong>: <code>/scheduler</code>, <code>/scheduler-calendar</code> (hardcoded mock data), <code>/field-scheduler</code>, plus dead backup route files, all unreachable from navigation.</li></ul>
+</main>
+</body></html>
