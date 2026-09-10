@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Sales Starter Kit — Founders' Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F3F5F0; --surface:#FFFFFF; --ink:#171C1A; --ink-soft:#4E5852; --ink-faint:#79837C;
+  --rule:#DCE2D8; --rule-strong:#C0C9BB; --accent:#1D5D4A; --accent-tint:#E4EEE8;
+  --display:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:24px; --top-h:52px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}}
+:root[data-theme="dark"]{
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}
+@media (max-width:720px){:root{--gut:16px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:720px){body{font-size:16px}}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);padding:0 var(--gut)}
+.topbar-inner{max-width:820px;margin:0 auto;height:var(--top-h);display:flex;align-items:center;gap:16px}
+.back{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-decoration:none;white-space:nowrap}
+.back:hover{text-decoration:underline}
+.wordmark{font-family:var(--display);font-weight:800;font-size:.82rem;margin-left:auto;color:var(--ink-faint);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:820px;margin:0 auto;padding:36px var(--gut) 90px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.06;
+   letter-spacing:-.022em;text-wrap:balance;margin:0 0 18px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;letter-spacing:-.013em;line-height:1.22;
+   text-wrap:balance;margin:42px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong)}
+h3{font-family:var(--display);font-weight:700;font-size:1.03rem;margin:26px 0 6px}
+h4{font-family:var(--display);font-weight:700;font-size:.94rem;margin:20px 0 5px}
+p{margin:0 0 1.05em;max-width:68ch}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+strong{font-weight:600}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 1.05em}
+li{margin-bottom:.4em;line-height:1.55}
+code{font-family:var(--mono);font-size:.84em;background:var(--accent-tint);color:var(--ink);
+     padding:1px 5px;border-radius:3px}
+blockquote{margin:0 0 1.05em;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);
+           border-left:3px solid var(--accent);border-radius:3px;max-width:68ch}
+blockquote p{margin-bottom:.7em}
+blockquote p:last-child{margin-bottom:0}
+blockquote ul,blockquote ol{margin-bottom:.7em}
+.tw{overflow-x:auto;margin:0 0 1.3em;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+   text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule-strong);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+      border-radius:4px;padding:16px 18px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 5px;font-size:1.04rem;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);font-style:italic;max-width:none}
+.wc{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head><body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="../">← Charter</a>
+  <span class="wordmark">Founders' Charter</span>
+</div></div>
+<main class="wrap">
+<h1>Sales Starter Kit — GoTechGo</h1>
+<p><em>Built from <code>hd_installer_research.md</code>, <code>crew2_installer_contacts.txt</code>, and <code>home_depot_stores.csv</code>. No invented contacts or figures. 2026-09-10.</em></p>
+<h2>1. What we already have — and it's warm</h2>
+<p><strong>Provenance matters here.</strong> These came out of Ezra's own Gmail: a filter for <code>@crew2.com</code> senders on threads with &gt;4 recipients, surfacing <strong>49 blasts spanning May 2019 → May 2026</strong>. The contacts are Ezra's <strong>peers</strong> — Crew2 window-treatment subs CC'd alongside him on the same emails from the same PMs. That is not a cold list.</p>
+<p><strong>Present:</strong> display name (sometimes), email, blast count, every date/subject the address appeared on. <strong>Missing:</strong> phone, legal entity, address, crew size, HD store assignment, whether still active.</p>
+<p>Deduping 65 raw addresses (dropping ~40 crew2 staff, 3 homedepot.com, donotreply, a mangled row, and Ezra) leaves <strong>~20 outside installer businesses</strong>.</p>
+<p><strong>Ten already carry a business identity:</strong> ULS Built / Ultimate Living Spaces, Midwest Plantation Shutters, TG Blinds LLC, Harper Group, TJ's Installations, Pintor Shutters, Contender Contractors, plus <code>wtinstallation@</code>, <code>wayneinstalls@</code>, <code>theinstallerwt@</code>.</p>
+<p><strong>Recency splits the list cleanly:</strong></p>
+<ul><li><strong>Active on the 2026 blasts:</strong> Jacob Gerlich / ULS Built · Andy Skeels · Nathan Shellito · Allen Freiermuth · Terry Lind · Contender Contractors · Tyler Marshall · <code>golferbits@</code> · Trevor Greil / TG Blinds (last Mar 2025)</li><li><strong>Lapsed since 2023–24:</strong> Jose Hector Pintor · Bryan Von Bruenchenhein · Wayne Rial · Alan Brown · William Koen · Perry Peterson · Mike Naughton · Josh Wright · Lucas Spivey · Joshua Nicoson · <code>lennyth1212@att.net</code></li></ul>
+<p>One flag: Allen Freiermuth appears once as <code>@crew2.com</code> (Sep 2024), then as gmail in 2025–26. He may have gone in-house and come back out. Ask, don't assume.</p>
+<p><strong>Geography:</strong> Upper Midwest only — WI (Wausau, Neenah/Appleton, Kronenwetter, Franksville, Madison), IL (Spring Grove), IN (LaPorte, Avon, Indianapolis).</p>
+<p><strong>Verdict:</strong> as a prospect <em>database</em>, unusable. As a <strong>first-ten-calls list, it's the best asset in the building</strong> — every one is a confirmed Crew2 WT sub, paid off the same vouchers, and several already know Ezra's name from a shared CC line.</p>
+<h2>2. The target map</h2>
+<p><strong>Tier 1 — Home Depot itself.</strong> <code>THD At-Home Services, Inc.</code> HD grants national category exclusivity. <strong>Not sellable</strong> — HD doesn't buy software from a one-man shop.</p>
+<p><strong>Tier 2 — the aggregators.</strong></p>
+<div class="tw"><table><thead><tr><th>Provider</th><th>Coverage</th><th>Window treatments?</th></tr></thead><tbody><tr><td><strong>Crew2</strong> (Interior Logic Group)</td><td>~300 HD stores, 17 states. Minneapolis HQ; Milwaukee, Pewaukee, KC, Des Moines, SLC, Indianapolis</td><td><strong>Yes</strong></td></tr><tr><td><strong>Rockwood Shutters</strong> (Houston)</td><td>~900 stores, 35 states</td><td><strong>Yes</strong> — shutters manufactured, blinds as a Hunter Douglas dealer</td></tr><tr><td><strong>ACC Home Remodeling</strong></td><td>MI, IN, MO, FL, GA, AL</td><td>No — cabinets, closets, windows</td></tr><tr><td><strong>Romanoff Renovations</strong></td><td>32 offices, 13 states</td><td>No — flooring</td></tr><tr><td><strong>Pinnacle Window Coverings</strong></td><td>SoCal</td><td>HD relationship unconfirmed — do not contact as an HD provider</td></tr></tbody></table></div>
+<p><strong>Tier 2 is intelligence, not pipeline.</strong> Rockwood employs its design layer directly and runs its own certification program — they'd build, not buy. Crew2 is Ezra's own middleman; selling to them is a conflict.</p>
+<p><strong>Tier 3 — the long tail. This is the market.</strong> HD's own recruiting copy: <em>"Most Service Providers are companies with one-to-two crews."</em> The CSV holds <strong>2,004 HD stores</strong>; Crew2's ~300 is ~15%, meaning <strong>roughly 85% of HD stores get window treatments from someone who isn't Crew2</strong> — mostly 1–5 person owner-operated shops. Exactly the ICP.</p>
+<p>The 3-hour arrival window is <strong>contractual</strong> in the HD Service Provider Agreement, which is why GoTechGo's 8-11 / 11-2 / 2-5 blocks already speak their language.</p>
+<h2>3. Building the list — legitimate paths only</h2>
+<p><strong>Do this first, it's free and highest-confidence.</strong> The original mailbox filter was <code>@crew2.com</code> sender AND &gt;4 recipients. Widen it: <em>any</em> email where a crew2.com address co-occurs with any non-crew2 address, at any recipient count. Then mine attachments — work orders and sign-off sheets carry installer names. Expected to roughly double the 21, at zero cost and zero risk, from Ezra's own mailbox.</p>
+<p><strong>Then enrich what you have:</strong></p>
+<ul><li><strong>Secretary of State</strong> business search (WI/MN/IL offer free bulk download) → legal entity, registered agent, address.</li><li><strong>Google Places API</strong> for phone and website. The API, not scraping.</li><li><strong>Shovels.ai</strong> — 2,750+ jurisdictions, 3.55M contractors with phone/email/website, searchable by name, city, and specialty. Paid, and the fastest name→phone conversion.</li><li><strong>BuildZoom</strong> for vetting an individual sub; <strong>CSLB Public Data Portal</strong> for California in bulk.</li><li><strong>Manufacturer dealer locators</strong>, Hunter Douglas especially — HD-channel providers must be authorized dealers, so these locators are effectively a published roster.</li><li>Join each candidate ZIP to <code>home_depot_stores.csv</code> for the nearest store number.</li></ul>
+<p><strong>Compliance, briefly:</strong> public business contact info only. Cold email to business addresses is fine under CAN-SPAM with a working opt-out. <strong>Cold SMS to cell numbers is the real exposure under TCPA — keep SMS out of first contact.</strong> Don't scrape LinkedIn or Facebook; that risk lands on Ezra's personal account.</p>
+<h2>4. Qualifying questions</h2>
+<ol><li>"Who's sending you your work these days — straight from the store, or through Crew2 or somebody like that?"</li><li>"How many guys you got hanging blinds right now — just you, or you running a couple trucks?"</li><li>"Do they push your jobs to you on one of those Smartsheet things, or is it still emails and phone calls?"</li><li>"You ever go through a voucher and find a job you know you did that just isn't on there — or one where the number's lower than what you quoted?"</li><li>"Who's doing the calling to set up your installs — you doing that yourself at night, or you got somebody?"</li></ol>
+<p><strong>Fit signal:</strong> aggregator work + 1–5 installers + Smartsheet + a yes (or a pause) on Q4 + the owner answering Q5 with "me, at night."</p>
+<h2>5. The opener</h2>
+<p><strong>Email</strong></p>
+<blockquote><p><strong>Subject: the vouchers</strong></p>
+<p>Hey [Name] —</p>
+<p>Ezra Dorsey. I do window treatment installs through Crew2 out of Milwaukee. You and I have been on the same emails from Dianna and Nikki for a while now.</p>
+<p>Reason I'm writing: I got tired of going through the payment vouchers line by line at 10pm trying to figure out if I got paid for everything. So I built something that pulls the voucher in, matches every line back to the work order, and tells me what's short and what got charged back.</p>
+<p>Spits out a one-page summary once a week. I forward it straight to my PM. Takes the argument out of it — it's just the list.</p>
+<p>If you're reconciling those by hand too, I'd like to show it to you. Fifteen minutes, and if it's not useful you tell me so.</p>
+<p>— Ezra, Dorsey Creative Concepts / GoTechGo [phone] · reply STOP and I won't email again</p></blockquote>
+<p><strong>Voicemail (~20 sec)</strong></p>
+<blockquote><p>Hey [Name], Ezra Dorsey — I do blinds for Crew2 out of Milwaukee, we've been on the same email blasts. Quick reason for the call: I put together something that reads the payment vouchers and shows you which work orders came up short. Found money on my own I'd never have caught by hand. Figured you deal with the same thing. Give me a ring at [number] — no big deal either way. Thanks.</p></blockquote>
+<p><strong>SMS</strong> — only to someone who already knows Ezra, or after they've replied to an email. Never to a cold cell.</p>
+<blockquote><p>Ezra Dorsey — I hang blinds for Crew2 out of Milwaukee, been at it since 2019. Built something that reads the voucher PDF and flags the WOs they shorted you on. Found real money on mine. Worth 5 min?</p></blockquote>
+<h2>6. First 10 calls</h2>
+<p><strong>Group A — active Crew2 WT roster. Same PM, same voucher format, warmest possible.</strong></p>
+<div class="tw"><table><thead><tr><th>#</th><th>Who</th><th>Handle</th><th>Why</th><th>Success =</th></tr></thead><tbody><tr><td>1</td><td>Jacob Gerlich / ULS Built</td><td><code>support@ulsbuilt.com</code></td><td>27 blasts, most of anyone. Runs a <em>separate scheduling inbox</em> — proof of a dispatcher and multiple installers. Real domain.</td><td>15-min screen share on a live voucher. Design partner #1.</td></tr><tr><td>2</td><td>Terry Lind / TJ's Installations</td><td><code>terrylind@sbcglobal.net</code>, <code>tjsinstallations@att.net</code></td><td>33 blasts across two addresses, 2019→2026. Longest-tenured sub in the set.</td><td>Phone number + yes to "send me next week's report."</td></tr><tr><td>3</td><td>Nathan Shellito</td><td><code>nathanshellito@gmail.com</code></td><td>11 blasts, on April <em>and</em> May 2026</td><td>Answers Q1–Q5. Fit or no-fit, recorded.</td></tr><tr><td>4</td><td>Andy Skeels</td><td><code>andyskeels@gmail.com</code></td><td>9 blasts, active 2026</td><td>Same.</td></tr></tbody></table></div>
+<p><strong>Group B — has a company identity, easy to find a phone for.</strong></p>
+<div class="tw"><table><thead><tr><th>#</th><th>Who</th><th>Handle</th><th>Why</th><th>Success =</th></tr></thead><tbody><tr><td>5</td><td>Trevor Greil / TG Blinds LLC</td><td><code>trevorg@tgblindsllc.com</code></td><td>Named LLC with its own domain — clearest 1–5 shop in the file</td><td>Live call. Still on the roster?</td></tr><tr><td>6</td><td>Contender Contractors</td><td><code>contendercontractors@icloud.com</code></td><td>On both 2026 blasts. Name suggests multi-trade</td><td>Qualify crew size before pitching</td></tr><tr><td>7</td><td>Tyler Marshall</td><td><code>theinstallerwt@gmail.com</code></td><td>"WT" in the address. Newer sub (2 blasts, 2025–26)</td><td>Discovery only — learn how new subs get onboarded</td></tr><tr><td>8</td><td>Bryan Von Bruenchenhein / Midwest Plantation Shutters</td><td><code>info@midwestplantationshutters.com</code></td><td>Real business, lapsed after 2021</td><td>Find out <strong>why he left</strong>. Worth more than the sale.</td></tr></tbody></table></div>
+<p><strong>Group C — lapsed, research calls.</strong></p>
+<div class="tw"><table><thead><tr><th>#</th><th>Who</th><th>Handle</th><th>Success =</th></tr></thead><tbody><tr><td>9</td><td>Jose Hector Pintor / Pintor Shutters</td><td><code>pintorshutters@live.com</code></td><td>19 blasts then gone. Did he move to another aggregator? If so, <strong>name it</strong> — that's a new Tier-2 lead.</td></tr><tr><td>10</td><td>Wayne Rial</td><td><code>wayneinstalls@gmail.com</code></td><td>Solo operator, dropped off after 2024. Tests whether a true one-man shop will pay $217/mo. Either answer matters before pricing is set.</td></tr></tbody></table></div>
+<p><strong>Run order:</strong> email all ten Monday morning. Look up phones for 1, 2, 5, 8 that afternoon via SoS + Google Places. Call Tuesday–Wednesday. Voicemails, don't chase more than twice.</p>
+<h2>Week-one success</h2>
+<p>Not ten sales. <strong>Three live conversations and one screen share of PayCheck against someone else's real Crew2 voucher.</strong></p>
+<p>If the parser reads a stranger's voucher correctly on the first try, the product is validated. If it doesn't, that is the most important bug in the company and you found it before launch instead of after.</p>
+<h2>Open gaps</h2>
+<ul><li>The exact 17-state Crew2 list is unknown, and territory expansion depends on it. Untried angles: the ILG/Crew2 Workday careers location facet, and the happyinstallers.com market dropdown.</li><li>The mailbox harvest is unfinished. Widening the filter is free and should happen before anything else.</li></ul>
+</main>
+</body></html>

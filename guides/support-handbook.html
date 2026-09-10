@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Support Handbook — Founders' Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F3F5F0; --surface:#FFFFFF; --ink:#171C1A; --ink-soft:#4E5852; --ink-faint:#79837C;
+  --rule:#DCE2D8; --rule-strong:#C0C9BB; --accent:#1D5D4A; --accent-tint:#E4EEE8;
+  --display:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:24px; --top-h:52px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}}
+:root[data-theme="dark"]{
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}
+@media (max-width:720px){:root{--gut:16px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:720px){body{font-size:16px}}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);padding:0 var(--gut)}
+.topbar-inner{max-width:820px;margin:0 auto;height:var(--top-h);display:flex;align-items:center;gap:16px}
+.back{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-decoration:none;white-space:nowrap}
+.back:hover{text-decoration:underline}
+.wordmark{font-family:var(--display);font-weight:800;font-size:.82rem;margin-left:auto;color:var(--ink-faint);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:820px;margin:0 auto;padding:36px var(--gut) 90px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.06;
+   letter-spacing:-.022em;text-wrap:balance;margin:0 0 18px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;letter-spacing:-.013em;line-height:1.22;
+   text-wrap:balance;margin:42px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong)}
+h3{font-family:var(--display);font-weight:700;font-size:1.03rem;margin:26px 0 6px}
+h4{font-family:var(--display);font-weight:700;font-size:.94rem;margin:20px 0 5px}
+p{margin:0 0 1.05em;max-width:68ch}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+strong{font-weight:600}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 1.05em}
+li{margin-bottom:.4em;line-height:1.55}
+code{font-family:var(--mono);font-size:.84em;background:var(--accent-tint);color:var(--ink);
+     padding:1px 5px;border-radius:3px}
+blockquote{margin:0 0 1.05em;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);
+           border-left:3px solid var(--accent);border-radius:3px;max-width:68ch}
+blockquote p{margin-bottom:.7em}
+blockquote p:last-child{margin-bottom:0}
+blockquote ul,blockquote ol{margin-bottom:.7em}
+.tw{overflow-x:auto;margin:0 0 1.3em;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+   text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule-strong);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+      border-radius:4px;padding:16px 18px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 5px;font-size:1.04rem;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);font-style:italic;max-width:none}
+.wc{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head><body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="../">← Charter</a>
+  <span class="wordmark">Founders' Charter</span>
+</div></div>
+<main class="wrap">
+<h1>Support Handbook — GoTechGo</h1>
+<p><em>Ashley's lane. Assembled from code research, 2026-09-10.</em></p>
+<h2>First: there are two different "customers"</h2>
+<p>This trips everyone up, and getting it wrong sends you to the wrong screen.</p>
+<ul><li><strong>Our customer = the tenant.</strong> The installer business that pays us $217/mo. Ezra's peers. <strong>These are the only people who will ever contact you.</strong></li><li><strong>Their customer = the homeowner.</strong> The person who bought blinds from Home Depot and receives the appointment texts. <strong>A homeowner will never call you</strong> — they call Home Depot or the installer.</li></ul>
+<p>So every question below is phrased the way a <em>tenant</em> would say it, even when the problem happened to a homeowner. When a tenant says "my customer," they mean the homeowner.</p>
+<p>Opt-outs, texts, and arrival blocks all belong to the homeowner. Trials, logins, vouchers, and billing all belong to the tenant.</p>
+<h2>Six corrections to get right before anything else</h2>
+<ol><li><strong>PayCheck is not installer pay.</strong> It is Crew2/Home Depot <strong>voucher reconciliation for the company</strong> — what Crew2 actually paid versus what the work was worth. <strong>Owner + super_admin only.</strong> Installers, managers, and even tenant admins cannot see it.</li><li><strong>The PayCheck add-on is $45/mo after a 30-day free trial, no card required.</strong> There is no $15/mo tier anywhere in the code.</li><li><strong>Reconciliation matches on base WA</strong> (e.g. <code>WA588856</code>) — never on <code>-N</code> sub-orders, never on <code>work_order_id</code>.</li><li><strong>There are two "Reconciliation" screens.</strong> <code>/accounting</code> → <em>Reconciliation</em> tab is a dead placeholder showing <code>--</code>. The working one is <code>/accounting/paycheck</code>.</li><li><strong>There is no tenant impersonation.</strong> Only owner/admin "view as installer" <em>inside</em> one tenant. You cannot see a customer's screen — ask them to share it.</li><li><strong>There is no work-order import queue and no email-to-order parsing.</strong> Orders arrive via Smartsheet sync or manual entry only.</li></ol>
+<h2>Glossary</h2>
+<p><strong>Work order</strong> — one installation or service job for one customer, identified by its base number (<code>WA588856</code>). If a job splits into multiple visits each piece gets a <code>-N</code> suffix, but PayCheck always collapses back to the base WA. Lives in Pipeline, Dispatch, and the installer app.</p>
+<p><strong>WA</strong> — the Home Depot / Crew2 work-authorization number. GoTechGo's primary key for a job. Always quote the base number when looking anything up.</p>
+<p><strong>Proposal</strong> — the appointment time the system offers a customer by text before it's confirmed. Sits in Pipeline until they accept, decline, or ignore.</p>
+<p><strong>Blast</strong> — a batch text to many customers at once carrying proposed times. <strong>Settings → SMS Blast</strong>.</p>
+<p><strong>Dry run</strong> — a tenant-wide safety switch (<code>orchestrator_dry_run</code>) blocking real texts and Smartsheet writeback so a tenant can test without touching real customers. A single order can be flipped live with a per-order <code>bypass_dry_run</code> toggle. <strong>Never disable that toggle to "fix" something</strong> — it's the one lever that lets a specific message go out for real while the rest of the tenant stays in test. Status at <strong>Settings → Dry-Run Summary</strong>.</p>
+<p><strong>Intervention</strong> — the "stop and let a human look" flag on an order, raised when automation isn't confident. It's a flag on the order, not a status label — check the order itself, not a filter dropdown.</p>
+<p><strong>Guardian</strong> — the automated texting brain that reads customer replies and decides what to do. Lives at <code>/guardian</code> with Dashboard, Conversations, Escalations, Templates, Training.</p>
+<p><strong>Dispatch / Command Center</strong> — the day-of job board at <code>/dispatch</code>. Installers see their slice at <code>/installer/dispatch</code>.</p>
+<p><strong>Pipeline</strong> — the master order list at <code>/pipeline</code> showing every order's status and dry-run state. The "everything about this order" screen, distinct from Dispatch.</p>
+<p><strong>Territory</strong> — the geographic zone a store's orders group into. Set during onboarding.</p>
+<p><strong>Store grouping</strong> — how orders from different Home Depot store numbers bundle for one installer or route. <strong>Settings → Store Grouping</strong>.</p>
+<p><strong>Arrival block</strong> — the window promised to the customer (<code>confirmed_arrival_block</code>). What the customer thinks of as "my appointment."</p>
+<p><strong>Geofence</strong> — the location trigger detecting when an installer arrives at or leaves a job site.</p>
+<p><strong>Voucher</strong> — Crew2's payment document for a completed job. The actual "did we get paid" record.</p>
+<p><strong>PayCheck</strong> — the owner-only reconciliation tool at <code>/accounting/paycheck</code>. Three views: Discrepancies, Awaiting, Mileage.</p>
+<p><strong>Discrepancy</strong> — a mismatch between what a voucher paid and what the job should have paid.</p>
+<p><strong>Chargeback</strong> — Crew2 clawing back money already paid. Shows as a negative adjustment tied to a WA.</p>
+<p><strong>Smartsheet sync</strong> — the pull of orders from the tenant's Smartsheet. Every 15 minutes, on webhook, or via Sync Now. <strong>A stale or expired connection raises no error and no alert</strong> — check it first.</p>
+<p><strong>Writeback</strong> — the push the other way, writing schedule info back to the Smartsheet row. Stamps <code>smartsheet_writeback_at</code> only on success; a failure retries every 30 minutes and shows no alert.</p>
+<p><strong>Row adoption</strong> — matching an inbound Smartsheet row to an order already known by WA, rather than creating a duplicate.</p>
+<p><strong>DID</strong> — the tenant's dedicated texting number. What customers see and reply to.</p>
+<p><strong>Installer PWA</strong> — the mobile app at <code>/installer</code>. Installers are route-locked and cannot reach admin screens.</p>
+<p><strong>Route / reoptimize</strong> — the day's driving order; reoptimize recalculates it after a change.</p>
+<p><strong>Confirmed order</strong> — <code>contact_status</code> is literally <code>confirmed</code>. The customer accepted a specific time.</p>
+<p><strong>Opt-out</strong> — a customer unsubscribed from texts. Enforced by a hard keyword filter before anything else touches the message. Absolute, but over-broad (see Q9).</p>
+<h2>Aging tiers — two vocabularies, don't confuse them</h2>
+<p><strong>Discrepancy aging</strong> (days since the WA's latest voucher): under 14 = <code>new</code> (normal pay cycle, don't chase) · 14–29 = <code>aging</code> · 30+ = <code>escalate</code>.</p>
+<p><strong>Awaiting payment:</strong> <strong>Escalate</strong> 30+ days no payment · <strong>Flagged</strong> 21–29 days, past two cycles · <strong>Waiting</strong> 14–20 days, one cycle overdue.</p>
+<h2>Top 20 support questions</h2>
+<p><strong>1. "My customer never got a text."</strong> Could be a real send failure, or a blocked send lying about being sent — suppressed texts are recorded as <code>status: 'sent'</code>, so the thread looks normal when nothing went out. Check the order's message thread in Pipeline. If it shows a send and the customer swears otherwise, check whether they opted out. <em>Pipeline → order → message history.</em></p>
+<p><strong>2. "The text had the wrong appointment time."</strong> Compare the <code>confirmed_arrival_block</code> on the order against what Smartsheet last had. These drift when a reschedule doesn't sync back cleanly. <em>Pipeline → order detail, vs the Smartsheet row.</em></p>
+<p><strong>3. "The customer replied and nothing happened."</strong> Two known causes: the reply auto-opted them out because it contained "cancel", "end", or "quit" (see Q9); or the inbound message failed to match a work order and vanished — the unmatched-messages screen is permanently empty and won't show it. <em>Guardian → Conversations for that number.</em> If nothing's there and it isn't an opt-out, escalate.</p>
+<p><strong>4. "This order is on the Home Depot list but not in GoTechGo."</strong> Orders arrive only by Smartsheet sync or manual entry — there is no email path. Try Sync Now. If it still doesn't appear, the Smartsheet connection may have quietly expired, which throws no error. <em>Check last successful sync time.</em></p>
+<p><strong>5. "I updated the schedule but Smartsheet still shows the old time."</strong> Writeback failed silently. It retries every 30 minutes — first ask whether 30 minutes have passed. If yes and it's still wrong, it's genuinely stuck. <em>Check <code>smartsheet_writeback_at</code> on that order.</em></p>
+<p><strong>6. "The installer can't see a job on their phone."</strong> Confirm it's actually assigned to that installer and on today's dispatch, not sitting unscheduled in Pipeline. Also confirm it isn't stuck in dry run without <code>bypass_dry_run</code>. <em>Dispatch → assignment, then the installer's schedule tab.</em></p>
+<p><strong>7. "The voucher amount doesn't match."</strong> That's what PayCheck's Discrepancies tab is for. <strong>Search by base WA</strong> — a <code>-N</code> sub-order or internal ID matches nothing. <em><code>/accounting/paycheck</code> → Discrepancies.</em></p>
+<p><strong>8. "The customer says they never confirmed, but it shows confirmed."</strong> Read the actual thread for a reply that could have been read as confirmation, and check whether it came from elsewhere (manual entry, Smartsheet). Read the thread, not the status badge.</p>
+<p><strong>9. "My customer went silent on us — they texted asking to move the appointment and now they don't get anything."</strong> The known opt-out bug. The homeowner texted something like "cancel" or "quit" meaning <em>cancel this time slot</em>, and the STOP filter fired on the word before anything else read the message. That homeowner is now permanently opted out of <strong>this tenant's</strong> texts. They aren't ignoring the installer — they stopped receiving. <strong>There is no self-service undo.</strong> Confirm the opt-out on that phone number, warn the tenant to phone the homeowner directly for this appointment, then escalate to Ezra to reverse it. Do not try to re-text around it.</p>
+<p><strong>10. "PayCheck looks clean but something feels off."</strong> A clean week can hide a chargeback that landed after the week closed, or a mismatched WA. Don't treat "zero discrepancies" as proof — spot-check a couple of WAs by hand. <em>Discrepancies + Mileage, cross-checked against Smartsheet for the same dates.</em></p>
+<p><strong>11. "My free trial ended sooner than I expected."</strong> PayCheck's trial is 30 days from first activation. Most likely it started the day they first opened PayCheck, not the day they started using it. <em><code>/admin/tenant-success</code> → tenant detail shows trial/grace and can extend grace.</em></p>
+<p><strong>12. "I can't log in / my account says locked."</strong> <em><code>/admin/tenant-success</code> → tenant detail panel</em> — force lock, force reactivate, and extend grace all live there.</p>
+<p><strong>13. "The installer got a notification for a job that isn't theirs."</strong> Almost always misconfigured territory or store grouping. <em>Settings → Store Grouping; Territories.</em></p>
+<p><strong>14. "We texted them at a weird hour / too many times."</strong> Check the blast history for that send and whether dry run was engaged — a live send during what should have been a test looks exactly like this. <em>Settings → SMS Blast history; Dry-Run Summary.</em></p>
+<p><strong>15. "The window on the text doesn't match the installer's app."</strong> Compare the arrival block on the order against Dispatch. Same field, but a partial reschedule leaves them out of sync.</p>
+<p><strong>16. "The customer wants to switch their appointment — can you?"</strong> Yes, normal use. Just check whether the tenant is in dry run before assuming the proposal text will actually go out.</p>
+<p><strong>17. "Is this number on our do-not-text list?"</strong> Check opt-out status on the customer. Remember it may have been set by accident via Q9 — an opt-out doesn't always mean the homeowner asked for one.</p>
+<p><strong>18. "The route shows a job that was already cancelled."</strong> The cancellation landed but the route wasn't reoptimized. <em>Dispatch → trigger reoptimize for that installer's day.</em></p>
+<p><strong>19. "We're missing a whole day of new orders."</strong> A sync problem, not data entry — no orders arrive by email. Check last successful sync before anything else.</p>
+<p><strong>20. "A text came from a random number, not us."</strong> Confirm the tenant's assigned DID is what's configured, and that they aren't confusing it with a personal cell someone texted from manually.</p>
+<h2>Triage ladder</h2>
+<p>When someone says "it's broken" with no detail, work these in order. Stop as soon as one narrows it enough to act.</p>
+<ol><li><strong>"Is this about a message, a schedule, or money?"</strong> — splits it into Guardian/Pipeline, Dispatch/Pipeline, or PayCheck, and tells you which screen to open.</li></ol>
+<ol><li><strong>"Which order — do you have the WA number?"</strong> — rules out whole-system panic. Almost everything is diagnosable one order at a time. No WA yet means find it in Pipeline by name or phone first.</li></ol>
+<ol><li><strong>Messaging: "Open the thread — does it show a text going out, and is the number opted out?"</strong> — A "sent" message with a real complaint of nothing arriving points at the blocked-send bug. Opted-out points at Q9 — the homeowner was silenced by a keyword, not ignoring the installer. Neither, and the reply is genuinely missing — that's the unmatched-message bug, which you cannot diagnose further. <strong>Escalate immediately.</strong></li></ol>
+<ol><li><strong>Schedule: "Does the arrival block match what Smartsheet shows?"</strong> — Match means the problem is downstream (installer's phone, customer expectation). Mismatch narrows to a stuck writeback (check the 30-minute retry) or a stale sync.</li></ol>
+<ol><li><strong>Money: "Look up the base WA in PayCheck — does Discrepancies show anything?"</strong> — A specific line-item mismatch gives you the answer to relay. Nothing shown but the tenant insists otherwise: the tool's "clean" isn't proof. Flag it rather than declaring it fine.</li></ol>
+<ol><li><strong>"Is this tenant in dry run, and is <code>bypass_dry_run</code> on for this order?"</strong> — Ask this for <em>any</em> "nothing happened" complaint before concluding it's a bug. Dry run with the toggle off is working exactly as designed. Explain, don't fix.</li></ol>
+<ol><li><strong>"Did this start after a specific action — a reschedule, a manual Smartsheet edit, a sync, a blast?"</strong> — turns a vague complaint into a reproducible one, which is what Ezra needs.</li></ol>
+<p><strong>Escalate to Ezra when:</strong> the unmatched-message screen is your only lead; the customer needs a manual un-opt-out; writeback is stuck past its 30-minute retry with no explanation; or you've worked steps 1–6 and still can't explain it.</p>
+<p><strong>Hand him:</strong> the WA number(s), which steps you ruled out and what you saw at each, the tenant name, and roughly when it started. Then stop. A clear "here's what I checked" beats a longer investigation with no conclusion.</p>
+<h2>"Why didn't this happen?" — quick causes</h2>
+<p><strong>Order never imported:</strong> row has no identity at all (no WA#, PO#, customer, phone, address) and is skipped until one is entered · Smartsheet token expired (no error, no alert) · no sheet selected, or Sync Mode is Manual · row previously deleted · store not in the tenant's territories.</p>
+<p><strong>Schedule never went back:</strong> dry run on and order not flipped live · customer hasn't verified · Crew2 deleted the row (raises an intervention) · no sheet configured or writeback disabled.</p>
+<h2>Who can see what</h2>
+<p><strong>Installers</strong> are route-locked to <code>/installer</code>. Everything else redirects. <strong>Managers</strong> are deliberately locked out of all AI/automation settings — Guardian, orchestrator, routing, automations, messaging, integrations, security, billing. <strong>Owner-installer fusion:</strong> an owner who also installs keeps <code>role='owner'</code> and sets <code>installer_settings.is_active_installer = true</code>. This does not downgrade them.</p>
+<h2>Your tools</h2>
+<div class="tw"><table><thead><tr><th>Tool</th><th>Where</th><th>For</th></tr></thead><tbody><tr><td><strong>Tenant Success</strong></td><td><code>/admin/tenant-success</code></td><td>The best support screen in the app. Per-tenant automation board, plain English. Snooze/dismiss silences the automation.</td></tr><tr><td><strong>Activity Log</strong></td><td><code>/settings?section=activity</code></td><td>Invites, status changes, removals. No super-admin needed.</td></tr><tr><td><strong>Admin</strong></td><td><code>/admin</code></td><td>Force lock/reactivate, extend grace, per-tenant add-on toggle.</td></tr><tr><td><strong>Message Center</strong></td><td><code>/admin/message-center</code></td><td>Tenant outreach and issue resolution.</td></tr><tr><td><strong>Voucher Import Log</strong></td><td><code>/accounting</code> → Import Log</td><td>Per-voucher history, duplicates, errors, WO links.</td></tr><tr><td><strong>Dry-run summary</strong></td><td><code>/settings/dry-run-summary</code></td><td>What automation <em>would</em> have done.</td></tr></tbody></table></div>
+<h2>Known traps</h2>
+<ul><li><code>/accounting</code> <strong>Payments and Reconciliation tabs are dead stubs</strong> showing <code>$0</code> and <code>--</code>.</li><li><strong>Guardian Statistics tiles in Settings show <code>--</code></strong> — also stubs.</li><li><strong>Voucher sync has burned a 7½-month silent failure before.</strong> If a tenant says "no discrepancies," verify ingest is actually running before believing it.</li></ul>
+</main>
+</body></html>

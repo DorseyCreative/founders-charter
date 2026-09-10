@@ -770,6 +770,17 @@
   }
   .switch { display: flex; gap: 4px; margin-left: 12px; }
   .sync { margin-left: auto; }
+  .guides-link {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    padding: 6px 14px 5px; border-radius: 3px; text-decoration: none;
+    border: 1px solid var(--rule-strong); color: var(--ink-soft);
+    display: inline-flex; align-items: center;
+  }
+  .guides-link:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 720px) {
+    .guides-link { padding: 6px 10px 5px; font-size: 10px; letter-spacing: 0.05em; }
+  }
   .switch button {
     font-family: var(--mono); font-size: 10.5px; font-weight: 500;
     letter-spacing: 0.09em; text-transform: uppercase;
@@ -885,6 +896,19 @@
     color: var(--ink-soft); font-style: italic;
     border-left: 2px solid var(--rule-strong); padding-left: 11px;
   }
+
+  .guide-ref {
+    display: block; margin: 0 0 12px; padding: 9px 12px;
+    background: var(--accent-tint); border-radius: 3px;
+    text-decoration: none; color: var(--ink);
+    font-size: 0.86rem; line-height: 1.4;
+  }
+  .guide-ref b {
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent);
+    display: block; margin-bottom: 2px;
+  }
+  .guide-ref:hover { outline: 1px solid var(--accent); }
 
   .steps { list-style: none; margin: 0 0 12px; padding: 0; }
   .step { display: flex; gap: 10px; align-items: flex-start; padding: 4px 0; cursor: pointer; }
@@ -1041,6 +1065,7 @@
       <button type="button" role="tab" data-view="charter" aria-selected="true">Charter</button>
       <button type="button" role="tab" data-view="program" aria-selected="false">Program</button>
       <button type="button" role="tab" data-view="buildout" aria-selected="false">Buildout</button>
+      <a class="guides-link" href="guides/">Guides</a>
     </div>
   </div>
 </div>
@@ -2304,6 +2329,16 @@
   var EXTRA = {};
   /* Roles rewritten against GoTechGo's real system replace their 6 modules wholesale. */
   var EXTRA_REGROUND = {};
+  /* Each regrounded role points at the guide that does its research for it. */
+  var ROLE_GUIDE = {
+    support: ['guides/support-handbook.html', 'Support Handbook'],
+    impl:    ['guides/onboarding-field-guide.html', 'Onboarding Field Guide'],
+    cs:      ['guides/customer-success.html', 'Customer Success Manual'],
+    cfo:     ['guides/money-brief.html', 'Money Brief'],
+    sales:   ['guides/sales-starter-kit.html', 'Sales Starter Kit'],
+    ceo:     ['guides/pre-launch-findings.html', 'Before the First Paying Tenant'],
+    pm:      ['guides/pre-launch-findings.html', 'Before the First Paying Tenant']
+  };
   Object.assign(EXTRA, {
     ceo: [
       { s: ["Take the 90-day priority to a customer and ask if it is what they'd pay for.",
@@ -3005,6 +3040,10 @@
          (D.gtg ? ' <span class="chip gtg-chip">GoTechGo</span>' : '') +
          '</h3><span class="mod-prog">' + dn + '/' + tt + '</span></div>';
     if (mi === 0) h += '<p class="mod-hard">' + D.hard + '</p>';
+    if (mi === 0 && ROLE_GUIDE[r.id]) {
+      h += '<a class="guide-ref" href="' + ROLE_GUIDE[r.id][0] + '">' +
+           '<b>Guide</b>' + ROLE_GUIDE[r.id][1] + ' &rarr;</a>';
+    }
     h += '<ul class="steps">';
     d.s.forEach(function (step, si) {
       var k = r.id + "|" + mi + "|" + si;
