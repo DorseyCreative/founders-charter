@@ -2686,7 +2686,6 @@
     ]
   });
 
-  extendDossiers();
   Object.assign(EXTRA_REGROUND, {
     support: [
       {s:["Open /admin/tenant-success and read every tenant row on the roster, top to bottom.","Open admin_outreach_log and see for yourself that it holds exactly one row ever.","Write down the three things support cannot see today because there is no tenant impersonation."],i:"Admin login to /admin/tenant-success, plus read access to the tenant_admin_actions and admin_outreach_log tables.",ms:"You can name every column on the tenant roster and say in one sentence that support cannot see a customer’s screen.",p:"Ezra grants admin access, walks the problem ranking once, and confirms ImpersonationContext only switches installer view inside a single tenant."},
@@ -2749,6 +2748,9 @@
     ]
   });
 
+
+  /* Runs only after BOTH EXTRA and EXTRA_REGROUND are fully populated. */
+  extendDossiers();
 
   function extendDossiers() {
     Object.keys(DOSSIERS).forEach(function (id) {
