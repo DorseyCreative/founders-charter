@@ -50,25 +50,28 @@ Order matters: total silence reads as *dormant*, never *at_risk*. A tenant still
 
 | When | What fires |
 |---|---|
-| Signup | `trialing`, `trial_ends_at` = **now + 30 days** |
-| Billing step completed | Stripe creates a **14-day** trial; webhook **overwrites** `trial_ends_at` |
-| 7 days left | "How is the trial going?" email |
-| 3 days left | Stripe `trial_will_end` + bulletin — 2 emails + SMS |
-| 1 day left | Email + SMS |
-| Trial ends, no card | Stripe pauses, `grace_ends_at` = +7 days. Access unchanged. |
-| Grace 5/3/1 | Countdown email to customer + alert to alerts@gotechgo.co |
-| Grace expires | Hard lock (`is_active=false`). Emails + critical CS feed item. |
-| Card added anytime | Resumes instantly, grace and lock cleared |
+| Day 0 — signup | `trialing`, `trial_ends_at` = **now + 30 days**. No card required. |
+| Day 23 — 7 left | "How is the trial going?" email |
+| Day 27 — 3 left | Stripe `trial_will_end` + bulletin — 2 emails + SMS |
+| Day 29 — 1 left | Email + SMS |
+| Day 30 — trial ends, no card | Stripe pauses, `grace_ends_at` = +7 days. **Access unchanged.** |
+| Days 32 / 34 / 36 | Countdown email to the tenant + alert to alerts@gotechgo.co |
+| Day 37 — grace expires | Hard lock (`is_active=false`). Emails + critical CS feed item. |
+| Card added at any point | Resumes instantly, grace and lock cleared |
 
 **Step in at:** 3 days left with no card (highest-value call anyone here makes), the *first* grace alert not the last, and lock day — a lock is a conversation, not a failure.
 
-### The 30-vs-14 problem, and the silent hole
+### The silent hole — the one thing to watch
 
-The countdown banner reads `trial_ends_at`. At signup it says 30 days. The moment they finish the billing step Stripe's 14-day trial overwrites it and **their countdown visibly shrinks by two weeks in one refresh**, with nothing explaining why.
+The 30-vs-14 drift is **fixed**. `TRIAL_DAYS = 30` now comes from one constant and every path uses it.
 
-Worse: a customer who **never finishes the billing step** has no Stripe subscription, so pause / grace / lock never runs. They still get reminder emails — firing on the 30-day clock but saying "your 14-day trial" — then on day 30 the app simply blocks them. No pause, no grace, no lock notice, **and no alert to us.** They just disappear.
+What remains: a tenant who **never finishes the billing step** has no Stripe subscription, so the pause → grace → lock machinery never runs for them. They still receive the reminder emails, then the app simply stops working for them around day 30. No pause, no grace, no lock notice, **and no alert to us.** They hit a wall and vanish.
 
-**Watch for:** any tenant `trialing` with no Stripe subscription ID nearing day 30, and any customer who says their trial got shorter.
+That is exactly the on-the-fence trial — the one a phone call converts.
+
+**Watch for:** any tenant still `trialing` with no Stripe subscription ID as they approach day 30. That is your call list, and nothing surfaces it automatically.
+
+**Separately:** the PayCheck add-on has its own 30-day trial, granted locally with no Stripe item until a cron converts it. An unrelated subscription change during that window can revoke it early.
 
 ## 5. The department feed
 

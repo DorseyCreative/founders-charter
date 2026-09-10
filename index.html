@@ -2833,6 +2833,38 @@
     ]
   });
 
+
+  /* Ashley at 8 hrs/week. Customer Success reframed as trial management,
+     which is what success means at zero customers. Later assign wins. */
+  Object.assign(EXTRA_REGROUND, {
+    cs: [
+      {s:["Draw the trial clock on one page: day 0 signup, day 23, 27 and 29 reminders, day 30 pause, days 32 to 36 grace, day 37 lock.","For each of those moments, write what the tenant receives and what they can still do.","Find the one moment on that clock where a phone call is worth more than an email."],
+       i:"The Customer Success Manual trial timeline, and thirty quiet minutes.",
+       ms:"A one-page trial clock you drew yourself, and a marked moment where a human should step in.",
+       p:"Ezra confirms the days are right and tells you which reminders actually fire today versus which are aspirational."},
+      {s:["Write what you will say at day 27, when three days are left and no card is on file. That is the highest-value call anyone here makes.","Write the day 30 message for someone who let the trial lapse without deciding.","Write the day 37 lock message. A lock is a conversation, not a punishment."],
+       i:"Your trial clock, and the automated copy that already exists so yours does not contradict it.",
+       ms:"Three written messages you would be willing to send to a stranger without editing.",
+       p:"Ezra reads all three and flags anything that promises something the product cannot do."},
+      {s:["Have Ezra move a test tenant's trial dates so the reminders fire on demand.","Watch each one land. Note the exact time it arrived and what it said.","Follow the tenant all the way to lock, then add a card and watch it unlock."],
+       i:"A test tenant whose dates Ezra can move, and access to the alerts@gotechgo.co inbox.",
+       ms:"You have personally seen every message in the trial clock arrive, and seen a lock reverse.",
+       p:"Ezra moves the dates and stays out of the way while you observe."},
+      {s:["Compare what actually arrived against your one-page clock. Mark anything that did not fire.","Check whether the grace alerts reached alerts@gotechgo.co as well as the tenant.","Search for any tenant still trialing with no Stripe subscription ID. That is the silent-loss case."],
+       i:"Your notes from the live run, and read access to the tenant list.",
+       ms:"A corrected trial clock based on what really happened, plus a named list of any silent-loss tenants.",
+       p:"Ezra explains any gap between what should have fired and what did."},
+      {s:["Turn the clock and the three messages into a page Ezra could work from cold.","Have him run one full trial check from your page while you say nothing.","Rewrite every line he had to ask you about."],
+       i:"Your corrected clock, your three messages, and one uninterrupted hour of his time.",
+       ms:"Ezra completes a trial review unaided and reaches the same conclusions you would.",
+       p:"Ezra runs it cold and writes down every place your page left him guessing."},
+      {s:["Put a fifteen-minute daily trial check on the calendar. Who is at day 23, 27, 29, or in grace.","Make the day 27 no-card call non-negotiable. It is the whole job.","Once real tenants exist, add the health score and stages from the manual as a second layer."],
+       i:"A recurring calendar block and the tenant list.",
+       ms:"Ten consecutive working days of the trial check, with every day-27 tenant called.",
+       p:"Ezra tells you the same day any tenant signs up, until that is automatic."}
+    ]
+  });
+
   extendDossiers();
 
   function extendDossiers() {
