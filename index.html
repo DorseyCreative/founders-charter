@@ -897,6 +897,28 @@
     border-left: 2px solid var(--rule-strong); padding-left: 11px;
   }
 
+  .ask {
+    display: block; width: 100%; text-align: left;
+    margin: 0 0 12px; padding: 10px 12px 9px;
+    background: var(--surface); border: 1px dashed var(--rule-strong);
+    border-radius: 3px; cursor: pointer; font: inherit; color: inherit;
+    position: relative;
+  }
+  .ask:hover { border-color: var(--accent); }
+  .ask b {
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent);
+    display: block; margin-bottom: 3px;
+  }
+  .ask span { font-size: 0.88rem; line-height: 1.45; display: block; }
+  .ask em {
+    font-family: var(--mono); font-size: 0.6rem; font-style: normal;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+    display: block; margin-top: 5px;
+  }
+  .ask.copied { border-color: var(--accent); border-style: solid; }
+  .ask.copied em { color: var(--accent); }
+
   .guide-ref {
     display: block; margin: 0 0 12px; padding: 9px 12px;
     background: var(--accent-tint); border-radius: 3px;
@@ -2865,6 +2887,247 @@
     ]
   });
 
+
+  /* Steps are decisions, conversations and observations only. Anything that could
+     be drafted or queried is handed to Claude via `ask`. Later assign wins. */
+  Object.assign(EXTRA_REGROUND, {
+    ceo: [
+      {s:["Read the Business Model guide and mark the lines you disagree with.","Decide which of the four untested assumptions would kill this company if it were false.","Say your answer out loud to Ashley and see whether she picked the same one."],
+       ask:"Read me the four untested assumptions from the business model guide, and for each one tell me the cheapest way to test it this month.",
+       i:"The Business Model guide. Thirty uninterrupted minutes.",
+       ms:"You and Ashley have independently named the assumption that matters most, and compared answers.",
+       p:"Ashley reads the same guide separately and names her own before hearing yours."},
+      {s:["Choose what the five launch conditions are. Reject any I propose that you would not defend to a customer.","Decide the price floor you will not go below, and say why out loud.","Approve or cut the not-doing list."],
+       ask:"Draft five binary pass conditions for launch that someone other than me could answer yes or no, plus a list of what we are explicitly not doing before the first paying tenant. Base it on the business model and the pre-launch findings.",
+       i:"Your marked-up model and the Money Brief break-even table.",
+       ms:"A launch gate you edited rather than accepted, dated, with a price floor written on it.",
+       p:"Ashley signs it or raises one objection with a reason. Silence is not agreement."},
+      {s:["Ask one peer for a voucher PDF. Jacob Gerlich at ULS Built runs a separate scheduling inbox, so he has volume.","Watch the reconciliation run on their file without touching anything.","Decide what the number means for the pitch, and whether it changes the price."],
+       ask:"Run this voucher PDF through the PayCheck reconciliation against our parser and tell me what it finds, including anything the parser choked on.",
+       i:"One peer willing to send a voucher.",
+       ms:"A number from someone else's data. Either the thesis holds or you learned it does not, before selling it.",
+       p:"Ashley makes the ask, so you are not selling while you are testing."},
+      {s:["Read the scorecard and challenge any line where the evidence looks thin.","Decide which failing conditions block launch and which you will ship despite.","Tell Ashley the real revenue number out loud. It is zero."],
+       ask:"Score each of the five launch conditions pass or fail and cite the exact file, route or query you checked for each. Flag anything you could not verify.",
+       i:"The launch gate and the result of the voucher test.",
+       ms:"A scorecard you interrogated rather than accepted, with the thin lines marked.",
+       p:"Ashley picks one condition and re-checks it independently."},
+      {s:["Hand Ashley one decision that has always been yours, and stay out of the room.","Let her call it. Do not correct it afterwards.","Watch her run the launch gate review alone and note only where she got stuck."],
+       ask:"Turn the launch gate into a thirty-minute checklist Ashley can run alone, written for someone who is not technical.",
+       i:"One live decision you are genuinely willing to let go of.",
+       ms:"A decision made well by the other founder, and a gate review she completed unaided.",
+       p:"Ashley makes the call and writes the reasoning down."},
+      {s:["Hold the Monday review. Thirty minutes, then stop.","Cut anything from the one-pager that did not change a decision this week.","Say what you were wrong about last week."],
+       ask:"Update the launch gate one-pager with this week's changes. Keep it to one page and tell me what you removed.",
+       i:"The checklist and a recurring calendar slot.",
+       ms:"Two consecutive Mondays held, with the one-pager updated rather than rewritten.",
+       p:"Ashley owns the invite and runs it whenever you are unavailable."}
+    ],
+    sales: [
+      {s:["Read the Sales Starter Kit. Call nobody this week.","Choose the three peers you would bet on, from memory, before looking at any data.","Check your three against the active-versus-lapsed split and see if you were right."],
+       ask:"From the twenty-one Crew2 contacts, tell me who is currently active on the 2026 roster versus lapsed, and what we know about each one.",
+       i:"The Sales Starter Kit and your own memory of these people.",
+       ms:"Three names you chose and then tested against the record.",
+       p:"Ashley checks whether your three are publicly reachable and flags any that are not."},
+      {s:["Say the opener out loud to Ashley and cut every word she has to ask about.","Decide your price and commit to quoting it without softening.","Reject any wording that sounds like software marketing."],
+       ask:"Draft three openers that lead with the voucher underpayment problem rather than scheduling software: one email, one voicemail, one text. Write them the way one tradesperson talks to another.",
+       i:"Nothing. The drafts come to you.",
+       ms:"An opener you can say in under thirty seconds and a price you quote without flinching.",
+       p:"Ashley hears it cold and repeats back what she thinks you are selling."},
+      {s:["Send the ten. Email in the morning, call the ones with numbers on day two.","Run one real conversation and ask more than you pitch.","Quote the price on the call, out loud, without softening it."],
+       ask:"Build the prospect sheet from our twenty-one contacts with stage, last contact and next action, and find phone numbers for the ones that have a business identity.",
+       i:"A working calendar link, and the two screen recordings in place of a deck.",
+       ms:"Ten sent, one real conversation held, their words about payment written down.",
+       p:"Ashley sits in and captures objections while you talk."},
+      {s:["Read the counts and decide whether the opener is working or you are.","Kill the channel that produced nothing rather than defending it.","Decide whether the price held up in a real conversation."],
+       ask:"Count the outreach: messages sent, replies, conversations held, and work out how many conversations one close actually takes for us. Show the arithmetic.",
+       i:"Your outreach log, kept at the time rather than reconstructed.",
+       ms:"A conversion ratio from your own conversations, and one channel killed on evidence.",
+       p:"Ashley re-counts replies from the inbox and confirms the number."},
+      {s:["Hand Ashley the sheet and agree who owns which stage.","Watch her send ten follow-ups and write nothing yourself.","Let her handle a reply you would have handled."],
+       ask:"Write the follow-up sequence as exact message text with timing, so sending it requires no judgment.",
+       i:"Shared access to the prospect sheet.",
+       ms:"Ashley sends ten follow-ups unaided and books at least one conversation.",
+       p:"Ashley owns follow-ups, escalating only price and product questions."},
+      {s:["Block two prospecting hours on the same two days weekly and defend them.","Report both numbers out loud each week, including the bad one.","Retire any channel with nothing to show after fifty attempts."],
+       ask:"Update the prospect sheet and tell me this week's numbers against the quota, plus which channel is underperforming.",
+       i:"The prospect sheet and a calendar you will honour.",
+       ms:"Three consecutive weeks with both numbers reported and the sheet current.",
+       p:"Ashley reports her follow-up numbers into the same line."}
+    ],
+    pm: [
+      {s:["Say out loud that this product has one production tenant and its only user is you.","Read What the Product Does and mark anything you would be embarrassed to demo.","Decide which single surface a stranger is most likely to break first."],
+       ask:"List everything in the product that has only ever been used by us, and everything that is advertised in the UI but does not work.",
+       i:"The core features guide, and honesty about what you have only seen work on your own data.",
+       ms:"A marked list of what is demo-safe and what is not, decided by you.",
+       p:"Ashley marks the same guide for anything she cannot understand from the description."},
+      {s:["Rank the backlog. Reject my ordering where you disagree and say why.","Decide what ships before the first paying tenant and what explicitly does not.","Cut something you want, out loud, in front of Ashley."],
+       ask:"Build one backlog in three tiers: surfaces that lie to their operator, things that lose money, and depth in the wedge. Tie every item to a named screen or route and do not list anything twice.",
+       i:"The pre-launch findings and the core features guide.",
+       ms:"A backlog you reordered, with a written cut line and something you wanted below it.",
+       p:"Ashley names the one item she thinks a customer notices first."},
+      {s:["Watch Ashley onboard a fresh mock tenant with no help. Say nothing for the full hour.","Note where she hesitates, not just where she fails.","Decide which stalls are documentation and which are product."],
+       ask:"Set up a clean mock tenant for Ashley to onboard from scratch, and afterwards turn my notes from the session into backlog items naming the exact screen.",
+       i:"One uninterrupted hour and a recording tool.",
+       ms:"She reaches a working scheduled job alone, and you resisted helping.",
+       p:"Ashley narrates what she expects before every click, so you hear the wrong mental model forming."},
+      {s:["Read the split and decide whether you have a code problem or a writing problem.","Choose which coming-soon vertical, if any, anyone has actually asked for.","Pick the one number that says whether the product got easier this month."],
+       ask:"Split the stalls from the session into what an existing guide already answers versus what needs code, and give me the ratio.",
+       i:"The session recording and the stall list.",
+       ms:"A decision about where next month's effort goes, based on the ratio rather than instinct.",
+       p:"Ashley confirms which stalls the guides genuinely cover, since she would be the one using them."},
+      {s:["Hand the weekly backlog review to Ashley and let her run it.","Let her cut something you wanted, and let it stay cut.","Approve the ship rule and then follow it yourself."],
+       ask:"Write the ship rule and the weekly review agenda so Ashley can run it without me.",
+       i:"The backlog and a calendar block.",
+       ms:"A review run by the other founder in which something you wanted was cut and stayed cut.",
+       p:"Ashley runs it and brings her support gaps as candidate items."},
+      {s:["Hold the fifteen-minute ship review weekly.","Refuse to close anything that was never exercised on the mock tenant.","Say what shipped that nobody needed."],
+       ask:"Review the backlog and tell me which closed items never got exercised on the mock tenant.",
+       i:"The backlog and the ship rule.",
+       ms:"Two consecutive reviews where every closed item names where it was exercised.",
+       p:"Ashley brings runbook gaps and they become items."}
+    ]
+  });
+
+
+  /* Ashley's lane, same rule: her steps are watching, talking and deciding.
+     Anything draftable or queryable is handed to Claude. Later assign wins. */
+  Object.assign(EXTRA_REGROUND, {
+    cs: [
+      {s:["Read the trial clock and check it against the Customer Success guide.","Decide which moment on it deserves a phone call rather than an email.","Ask Ezra which of those reminders actually fire today versus which are aspirational."],
+       ask:"Draw me the trial clock as one page: what the tenant receives on each day from signup to lock, and what they can still do at each point.",
+       i:"The Customer Success Manual. Thirty quiet minutes.",
+       ms:"You can say the whole clock out loud, and you have marked where a human steps in.",
+       p:"Ezra confirms which reminders are real and which are not yet wired."},
+      {s:["Read the three drafted messages and rewrite anything that does not sound like you.","Reject anything that promises something the product cannot do.","Decide what you say when someone asks for more time."],
+       ask:"Draft three messages in plain language: the day-27 call when three days are left and no card is on file, the day-30 lapse message, and the day-37 lock message. Match the tone of the automated copy that already exists so we do not contradict ourselves.",
+       i:"Nothing. The drafts come to you.",
+       ms:"Three messages in your own voice that you would send to a stranger unedited.",
+       p:"Ezra flags anything that overpromises."},
+      {s:["Watch each reminder land. Note the time it arrived and what it actually said.","Follow the test tenant all the way to lock.","Add a card and watch it unlock, so you have seen a lock reverse."],
+       ask:"Move a test tenant's trial dates so the reminders fire on demand, and tell me when each one goes out so Ashley can watch it land.",
+       i:"Access to the alerts@gotechgo.co inbox on your phone.",
+       ms:"You have personally seen every message in the clock arrive, and seen a lock reverse.",
+       p:"Ezra approves moving the dates; Claude does the moving."},
+      {s:["Compare what arrived against the clock and mark anything that did not fire.","Call the first silent-loss tenant on the list. That is the real job.","Decide what you would have wanted to know a week earlier."],
+       ask:"Find every tenant still trialing with no Stripe subscription ID, and tell me how many days into their trial each one is. That is the silent-loss list nothing surfaces automatically.",
+       i:"Your notes from the live run.",
+       ms:"A corrected clock based on what really happened, and one silent-loss tenant contacted.",
+       p:"Ezra explains any gap between what should have fired and what did."},
+      {s:["Watch Ezra run a full trial check from your page and say nothing.","Note every place he had to ask you something.","Decide what to cut from the page rather than what to add."],
+       ask:"Turn the corrected clock and the three messages into a one-page trial review that someone else could run cold.",
+       i:"One uninterrupted hour of Ezra's time.",
+       ms:"Ezra completes a trial review unaided and reaches the same conclusions you would.",
+       p:"Ezra runs it cold and writes down where the page left him guessing."},
+      {s:["Hold the fifteen-minute daily trial check.","Make the day-27 no-card call non-negotiable. It is the whole job.","Once real tenants exist, decide when to add the health score as a second layer."],
+       ask:"Tell me who is at day 23, 27 or 29 today, and who is in grace. Flag anyone with no card on file.",
+       i:"A recurring calendar block.",
+       ms:"Ten consecutive working days of the check, with every day-27 tenant called.",
+       p:"Ezra tells you the same day any tenant signs up, until that is automatic."}
+    ],
+    impl: [
+      {s:["Run all ten wizard sections yourself on a throwaway tenant.","Note the three places you got stuck, and how long each section took.","Do a second run and skip Smartsheet, so you see how empty the product looks without it."],
+       ask:"Set up a throwaway tenant for me to onboard, confirm the V2 wizard is on, and cover the test phone number.",
+       i:"A scratch Gmail account you can set forwarding on.",
+       ms:"You can name the three worst drop-out points from memory: the Gmail forwarding, buying the number, and Google sign-in.",
+       p:"Ezra creates the tenants and pays for the test number."},
+      {s:["Read the gather list and cut anything a real installer would not have to hand.","Read the three stall scripts out loud and fix what sounds unnatural.","Decide what you refuse to do on a call, and write that boundary down once."],
+       ask:"Turn the Onboarding Field Guide into a pre-call email I can send a customer, and check the three stall scripts still match what the live screens say today.",
+       i:"Your own timed run through the wizard.",
+       ms:"A gather list you have cut down, and scripts in your voice.",
+       p:"Ezra confirms the scripts match the current screens, especially the Google consent step."},
+      {s:["Onboard Ezra as if he had never seen the product. Ninety minutes, all ten sections.","Stop the clock at every stall and note the sentence that unstuck it.","Refuse to fill a gap with insider knowledge, even when it would be faster."],
+       ask:"Prepare a fresh tenant for the practice onboarding and note anything about its state that differs from a real new signup.",
+       i:"Ninety minutes and a screen share.",
+       ms:"All ten sections complete and a demo work order visible, in a single call.",
+       p:"Ezra plays the installer honestly and refuses to help himself."},
+      {s:["Read the timings and decide which section is worth fixing versus scripting around.","Confirm the new tenant reads as onboarding rather than dormant.","Decide whether Smartsheet actually connected, or just looks connected."],
+       ask:"Give me the per-section timings from the practice run, the new tenant's lifecycle stage, and confirm whether its Smartsheet connection is genuinely live.",
+       i:"Nothing. The numbers come to you.",
+       ms:"A decision about which single section gets fixed first, based on time rather than irritation.",
+       p:"Ezra explains how the stage is calculated so the number means something."},
+      {s:["Watch Ezra onboard a fresh tenant using only your page. Say nothing.","Mark every step he improvised.","Cut the page down rather than adding to it."],
+       ask:"Rewrite the onboarding checklist to one page based on where Ezra improvised, and tell me what you removed.",
+       i:"A fresh throwaway tenant.",
+       ms:"Ezra completes all ten sections from your page alone, with no questions.",
+       p:"Ezra runs it cold and lists every place the page did not match the screen."},
+      {s:["Refuse to start any onboarding call before the gather list is confirmed.","Run the day-seven check-in with every new tenant.","Tell Ezra the same day a wizard section changes under you."],
+       ask:"Check whether any wizard section changed since the checklist was written, and update it if so.",
+       i:"A recurring calendar slot for check-ins.",
+       ms:"Two onboardings in a row started with a confirmed gather list and got a day-seven check-in.",
+       p:"Ezra tells you the day he changes any section, and fixes the admin invite button that silently sends nothing."}
+    ]
+  });
+
+
+  /* Support and Controller under the same rule. Later assign wins. */
+  Object.assign(EXTRA_REGROUND, {
+    support: [
+      {s:["Open /admin/tenant-success and read every tenant row, top to bottom.","See for yourself that admin_outreach_log holds exactly one row ever.","Ask Ezra to show you, once, what support cannot see because there is no tenant impersonation."],
+       ask:"Walk me through what each column on the tenant-success roster actually means, and what the problem ranking is sorting on.",
+       i:"Admin access to /admin/tenant-success.",
+       ms:"You can name every column on the roster and say plainly that support cannot see a customer's screen.",
+       p:"Ezra grants access and walks the ranking once, then stops explaining."},
+      {s:["Read the twenty drafted answers and rewrite any that do not sound like you.","Reject any answer that names a screen you have not opened yourself.","Decide your response-time promise and say it out loud to Ezra."],
+       ask:"Draft the top twenty support answers in my voice using the Support Handbook, and flag any that reference a screen I have not confirmed exists.",
+       i:"The Support Handbook and the founder tenant as your worked example.",
+       ms:"Twenty answers you have edited, each naming a screen you have personally opened.",
+       p:"Ezra corrects any route or screen name you got wrong."},
+      {s:["Work one real problem on the founder tenant, start to finish, as your first ticket.","Practise force lock, force reactivate and extend grace on the mock tenant.","Text STOP from a test phone and watch the opt-out save."],
+       ask:"Set up a safe practice run: confirm the mock tenant is safe to lock and unlock, and be ready to reverse the STOP opt-out afterwards.",
+       i:"A test phone that can text the tenant's number.",
+       ms:"A second row in admin_outreach_log written by you, three practice actions logged, and one opt-out you triggered and saw reversed.",
+       p:"Ezra confirms the mock tenant is safe and reverses the test opt-out."},
+      {s:["Read your own reply times and decide whether the promise you made is one you can keep.","Decide which repeated question is worth documenting rather than answering again.","Call one thing unresolvable and escalate it rather than digging."],
+       ask:"Pull my reply time on every ticket I touched this week and count which questions came up more than once.",
+       i:"Nothing. The numbers come to you.",
+       ms:"A response-time promise you have tested against your own behaviour, kept or changed.",
+       p:"Ezra tells you which repeats are product bugs rather than customer confusion."},
+      {s:["Watch Ezra work a ticket using only your page. Stay silent.","Mark every place he had to stop and ask.","Cut the page down rather than adding to it."],
+       ask:"Turn my answers and the triage ladder into a one-page support runbook someone could work a ticket from cold.",
+       i:"One open ticket to hand over.",
+       ms:"Ezra closes a ticket from your page alone, with no questions to you.",
+       p:"Ezra blocks an hour, works it cold, and writes down where he got stuck."},
+      {s:["Hold the thirty-minute support round every weekday morning.","End each round with no unread tenants on the roster.","On the last Friday, cut whatever went stale rather than adding more."],
+       ask:"Tell me which tenants have unread activity on the roster this morning, and flag anything older than two days.",
+       i:"A recurring calendar block and alerts@gotechgo.co on your phone.",
+       ms:"Two full weeks of daily rounds finished with an empty unread roster.",
+       p:"Ezra keeps alerts routed to you and warns you the day a screen name changes."}
+    ],
+    cfo: [
+      {s:["Open the Stripe Live dashboard and read the webhook URL out loud.","Decide whether you trust the billing path enough to invite a paying customer onto it.","Say the real revenue number to Ashley. It is zero."],
+       ask:"Tell me whether our Stripe Live webhook can actually mark a tenant active, what the canonical route is, and what happens to events if the URL is wrong.",
+       i:"Stripe Live dashboard access.",
+       ms:"A yes or no on whether a payment can reach us, with the evidence.",
+       p:"Ashley states in plain language what a customer would experience if it were wrong."},
+      {s:["Read the unit economics and decide whether the price is right at three installers.","Choose the fixed cost number you will manage against.","Decide what you will cut first if runway gets short."],
+       ask:"Build the unit economics sheet from our real pricing: monthly total and gross margin at three, six and ten installers, with and without each add-on. Show the arithmetic.",
+       i:"The Money Brief and whichever vendor invoices you can reach.",
+       ms:"A price you have defended out loud and a fixed-cost number you both know.",
+       p:"Ashley checks the six-installer maths by hand and confirms it."},
+      {s:["Run one real checkout on the mock tenant and watch the status flip.","Decide whether you would let a stranger through that flow tomorrow.","Fix or accept whatever you saw, out loud."],
+       ask:"Run a test checkout end to end on the mock tenant and tell me whether subscription_status actually flips to active, with the Stripe event ID.",
+       i:"Vercel environment access if a price ID needs confirming.",
+       ms:"A tenant row you watched move to active from a real webhook delivery.",
+       p:"Ashley watches the row change so two people have seen it work."},
+      {s:["Read the seat reconciliation and decide whether anyone is being overbilled.","Decide what you do about a tenant who is free forever.","Stop quoting the MRR snapshot anywhere."],
+       ask:"Reconcile counted active installers against the Stripe billed quantity for every tenant, and list any tenant that is paused with no grace date or trialing with no subscription.",
+       i:"Nothing. The reconciliation comes to you.",
+       ms:"A decision on every mismatch, and the phantom MRR number retired from your vocabulary.",
+       p:"Ashley reproduces one mismatch so it is not one person's finding."},
+      {s:["Watch Ashley run the monthly close and correct only what she cannot complete.","Give her the logins she was missing rather than doing the step for her.","Let her report the number, even if it is worse than you hoped."],
+       ask:"Write the monthly close checklist covering webhook health, seat reconciliation, trial state and real versus reported MRR, for someone non-technical.",
+       i:"An hour with Ashley and the accounts open.",
+       ms:"Ashley completes a close alone and reports real MRR rather than the snapshot.",
+       p:"Ashley runs it solo and lists every step that needed a login she did not have."},
+      {s:["Hold the money meeting weekly. Both of you, twenty minutes.","Say the runway number out loud from memory.","Decide one thing you will not buy this month."],
+       ask:"Give me this week's cash position, burn and runway, and flag anything that changed since last week.",
+       i:"A recurring calendar slot.",
+       ms:"Two consecutive closes filed on time, with both of you able to state runway without looking.",
+       p:"Ashley owns the weekly webhook check and escalates a failure the same day."}
+    ]
+  });
+
   extendDossiers();
 
   function extendDossiers() {
@@ -3168,6 +3431,12 @@
         (done[k] ? " checked" : "") + '><span>' + step + '</span></label></li>';
     });
     h += '</ul>';
+    if (d.ask) {
+      h += '<button class="ask" type="button" data-ask="' +
+           d.ask.replace(/"/g, '&quot;') + '">' +
+           '<b>Hand this to Claude</b><span>' + d.ask + '</span>' +
+           '<em>tap to copy</em></button>';
+    }
     h += '<p class="need"><b>You need</b>' + d.i + '</p>';
     h += '<p class="need"><b>From ' + partnerName(tab) + '</b>' + d.p + '</p>';
     var mk = r.id + "|" + mi + "|ms";
@@ -3385,6 +3654,19 @@
     if (sw) { setView(sw.getAttribute("data-view")); return; }
     var tb = ev.target.closest(".tabs button");
     if (tb) { tab = tb.getAttribute("data-tab"); renderProgram(); return; }
+    var ak = ev.target.closest("[data-ask]");
+    if (ak) {
+      copyText(ak.getAttribute("data-ask")).then(function () {
+        ak.classList.add("copied");
+        var em = ak.querySelector("em");
+        if (em) { em.textContent = "copied"; }
+        setTimeout(function () {
+          ak.classList.remove("copied");
+          if (em) { em.textContent = "tap to copy"; }
+        }, 1800);
+      });
+      return;
+    }
     var gv = ev.target.closest("[data-goview]");
     if (gv) { setView(gv.getAttribute("data-goview")); return; }
     var bt = ev.target.closest("[data-botab]");
