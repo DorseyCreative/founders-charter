@@ -85,7 +85,7 @@ tbody tr:last-child td{border-bottom:none}
 <p><strong>6 blockers · 8 high · 7 admin console · 3 already fixed · 0 paying tenants</strong></p>
 <hr>
 <h2>Already fixed — do not re-fix</h2>
-<p><strong>Trial length is now consistent at 14 days.</strong> <code>onboarding/create-tenant</code> and <code>stripe/create-embedded-checkout:85</code> both import <code>TRIAL_DAYS</code> instead of hardcoding 30. Residual: <code>api/tenant/initialize:121</code> still does <code>+ 30</code>, but that is not the live signup path.</p>
+<p><strong>Trial length is resolved at 30 days, from one source.</strong> <code>TRIAL_DAYS = 30</code> now lives in <code>lib/billing-constants.ts:14</code> — a deliberately dependency-free module so client components need not import the Stripe SDK — and is re-exported by <code>lib/stripe.ts:39</code>. <code>create-tenant</code> and <code>create-embedded-checkout</code> both import it. The earlier 30/14/30 split is gone. Residual: <code>api/tenant/initialize:121</code> still hardcodes <code>+ 30</code>, which now happens to agree, but should import the constant like everything else.</p>
 <p><strong>The deprecated Stripe webhook forwards instead of 410ing.</strong> <code>api/stripe/webhook/route.ts</code> now imports and calls the canonical handler. Still confirm which URL Stripe Live points at — see B6.</p>
 <hr>
 <h2>Blockers</h2>
@@ -121,10 +121,16 @@ tbody tr:last-child td{border-bottom:none}
 <p><strong>Why flagged:</strong> five minutes, no code, and it is the difference between having a paying customer and not. The canonical handler is the only code that sets <code>subscription_status='active'</code>. Escape hatch if it has already bitten: <code>/api/admin/tenants/[id]/force-reactivate</code>.</p>
 <hr>
 <h2>High</h2>
-<h3>H1. The PayCheck 30-day trial does not exist in Stripe</h3>
-<p><code>api/user/voucher-addon/start-trial/route.ts:85-96</code> · <code>api/stripe/toggle-voucher-addon/route.ts:103-119</code></p>
-<p>Both create the subscription item with the trial end in <strong>metadata only</strong>. Stripe ignores it. The API returns <code>trial_days: 30</code> and the UI advertises the trial.</p>
-<p><strong>Why flagged:</strong> customer #1 clicks "30-day free trial, no card required" and is billed $45 immediately. The most probable refund-and-churn event in the codebase, and it lands in week one. A code comment already admits the correct path is <code>subscription.update.items[].trial_end</code>. Aggravating: <code>start-trial</code> is reachable by any tenant member, not owner-only. ~2 hours.</p>
+<h3>H1. A routine Stripe event can end a PayCheck trial early</h3>
+<p><code>api/webhooks/stripe/route.ts:802-840</code> — <code>syncVoucherAddonFeature()</code></p>
+<p><strong>Correction to an earlier version of this document:</strong> the metadata-only trial bug is <strong>fixed</strong>. Trial start no longer attaches a billable Stripe item at all. Entitlement is granted locally (<code>features.voucher_addon = true</code>, <code>voucher_addon_billing_status: 'trial_pending_stripe'</code>) and <code>api/cron/voucher-trial-convert</code> attaches the $45 item only once the 30 days elapse. A customer is not charged during the trial.</p>
+<p>What remains is subtler. <code>syncVoucherAddonFeature()</code> sets <code>features.voucher_addon</code> purely from whether a voucher price item currently exists on the subscription, unless the tenant is grandfathered. It does <strong>not</strong> check for <code>voucher_addon_billing_status === 'trial_pending_stripe'</code> — confirmed absent from that file.</p>
+<p><strong>Why flagged:</strong> during the 30-day local trial no Stripe item exists by design. So any unrelated <code>customer.subscription.updated</code> event in that window — adding an installer seat, toggling AI Pro — computes <code>stripeSaysEntitled = false</code> and silently revokes the trial. The tenant loses PayCheck mid-trial for doing something unrelated, and nothing tells them why.</p>
+<p><strong>Fix:</strong> treat <code>trial_pending_stripe</code> as entitled in the sync. ~30 min.</p>
+<h3>H1b. The paywall advertises a 14-day PayCheck trial; the real one is 30</h3>
+<p><code>lib/voucher-addon-gate.ts:59</code> vs <code>lib/stripe.ts:120</code></p>
+<p>The 402 body returned to a blocked API caller reads <em>"Start the 14-day trial to unlock PDF import, manual IMAP sync, and the audit dashboard."</em> <code>SUBSCRIPTION_MODEL.voucher.trialDays</code> is 30, and every trial-creation route uses 30.</p>
+<p><strong>Why flagged:</strong> understating your own trial by sixteen days is a self-inflicted conversion loss, and it is a one-word fix. ~5 min.</p>
 <h3>H2. past_due and canceled are dead ends</h3>
 <p><code>api/cron/grace-period/route.ts:108</code>, <code>:330</code> · <code>webhooks/stripe/route.ts:698-703</code>, <code>:403-406</code></p>
 <p>The grace cron only acts on <code>paused</code>. <code>handlePaymentFailed</code> writes <code>past_due</code> with no <code>is_active: false</code>, and nothing reads either state to gate access.</p>

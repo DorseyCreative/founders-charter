@@ -10,7 +10,7 @@ Launch is defined as the first paying tenant, so anything that fails at or befor
 
 ## Already fixed — do not re-fix
 
-**Trial length is now consistent at 14 days.** `onboarding/create-tenant` and `stripe/create-embedded-checkout:85` both import `TRIAL_DAYS` instead of hardcoding 30. Residual: `api/tenant/initialize:121` still does `+ 30`, but that is not the live signup path.
+**Trial length is resolved at 30 days, from one source.** `TRIAL_DAYS = 30` now lives in `lib/billing-constants.ts:14` — a deliberately dependency-free module so client components need not import the Stripe SDK — and is re-exported by `lib/stripe.ts:39`. `create-tenant` and `create-embedded-checkout` both import it. The earlier 30/14/30 split is gone. Residual: `api/tenant/initialize:121` still hardcodes `+ 30`, which now happens to agree, but should import the constant like everything else.
 
 **The deprecated Stripe webhook forwards instead of 410ing.** `api/stripe/webhook/route.ts` now imports and calls the canonical handler. Still confirm which URL Stripe Live points at — see B6.
 
@@ -76,12 +76,23 @@ The legacy endpoint now forwards rather than 410ing. But if it carries its *own*
 
 ## High
 
-### H1. The PayCheck 30-day trial does not exist in Stripe
-`api/user/voucher-addon/start-trial/route.ts:85-96` · `api/stripe/toggle-voucher-addon/route.ts:103-119`
+### H1. A routine Stripe event can end a PayCheck trial early
+`api/webhooks/stripe/route.ts:802-840` — `syncVoucherAddonFeature()`
 
-Both create the subscription item with the trial end in **metadata only**. Stripe ignores it. The API returns `trial_days: 30` and the UI advertises the trial.
+**Correction to an earlier version of this document:** the metadata-only trial bug is **fixed**. Trial start no longer attaches a billable Stripe item at all. Entitlement is granted locally (`features.voucher_addon = true`, `voucher_addon_billing_status: 'trial_pending_stripe'`) and `api/cron/voucher-trial-convert` attaches the $45 item only once the 30 days elapse. A customer is not charged during the trial.
 
-**Why flagged:** customer #1 clicks "30-day free trial, no card required" and is billed $45 immediately. The most probable refund-and-churn event in the codebase, and it lands in week one. A code comment already admits the correct path is `subscription.update.items[].trial_end`. Aggravating: `start-trial` is reachable by any tenant member, not owner-only. ~2 hours.
+What remains is subtler. `syncVoucherAddonFeature()` sets `features.voucher_addon` purely from whether a voucher price item currently exists on the subscription, unless the tenant is grandfathered. It does **not** check for `voucher_addon_billing_status === 'trial_pending_stripe'` — confirmed absent from that file.
+
+**Why flagged:** during the 30-day local trial no Stripe item exists by design. So any unrelated `customer.subscription.updated` event in that window — adding an installer seat, toggling AI Pro — computes `stripeSaysEntitled = false` and silently revokes the trial. The tenant loses PayCheck mid-trial for doing something unrelated, and nothing tells them why.
+
+**Fix:** treat `trial_pending_stripe` as entitled in the sync. ~30 min.
+
+### H1b. The paywall advertises a 14-day PayCheck trial; the real one is 30
+`lib/voucher-addon-gate.ts:59` vs `lib/stripe.ts:120`
+
+The 402 body returned to a blocked API caller reads *"Start the 14-day trial to unlock PDF import, manual IMAP sync, and the audit dashboard."* `SUBSCRIPTION_MODEL.voucher.trialDays` is 30, and every trial-creation route uses 30.
+
+**Why flagged:** understating your own trial by sixteen days is a self-inflicted conversion loss, and it is a one-word fix. ~5 min.
 
 ### H2. past_due and canceled are dead ends
 `api/cron/grace-period/route.ts:108`, `:330` · `webhooks/stripe/route.ts:698-703`, `:403-406`
