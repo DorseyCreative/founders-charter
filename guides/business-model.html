@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>The Business Model — Founders' Charter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F3F5F0; --surface:#FFFFFF; --ink:#171C1A; --ink-soft:#4E5852; --ink-faint:#79837C;
+  --rule:#DCE2D8; --rule-strong:#C0C9BB; --accent:#1D5D4A; --accent-tint:#E4EEE8;
+  --display:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:24px; --top-h:52px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}}
+:root[data-theme="dark"]{
+  --paper:#121613; --surface:#191E1A; --ink:#E9EEE8; --ink-soft:#A6B0A8; --ink-faint:#7C8680;
+  --rule:#28302A; --rule-strong:#3B453D; --accent:#63C1A1; --accent-tint:#16332B;
+}
+@media (max-width:720px){:root{--gut:16px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:720px){body{font-size:16px}}
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);padding:0 var(--gut)}
+.topbar-inner{max-width:820px;margin:0 auto;height:var(--top-h);display:flex;align-items:center;gap:16px}
+.back{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-decoration:none;white-space:nowrap}
+.back:hover{text-decoration:underline}
+.wordmark{font-family:var(--display);font-weight:800;font-size:.82rem;margin-left:auto;color:var(--ink-faint);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:820px;margin:0 auto;padding:36px var(--gut) 90px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.06;
+   letter-spacing:-.022em;text-wrap:balance;margin:0 0 18px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;letter-spacing:-.013em;line-height:1.22;
+   text-wrap:balance;margin:42px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule-strong)}
+h3{font-family:var(--display);font-weight:700;font-size:1.03rem;margin:26px 0 6px}
+h4{font-family:var(--display);font-weight:700;font-size:.94rem;margin:20px 0 5px}
+p{margin:0 0 1.05em;max-width:68ch}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+strong{font-weight:600}
+a{color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+ul,ol{max-width:68ch;padding-left:22px;margin:0 0 1.05em}
+li{margin-bottom:.4em;line-height:1.55}
+code{font-family:var(--mono);font-size:.84em;background:var(--accent-tint);color:var(--ink);
+     padding:1px 5px;border-radius:3px}
+blockquote{margin:0 0 1.05em;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);
+           border-left:3px solid var(--accent);border-radius:3px;max-width:68ch}
+blockquote p{margin-bottom:.7em}
+blockquote p:last-child{margin-bottom:0}
+blockquote ul,blockquote ol{margin-bottom:.7em}
+.tw{overflow-x:auto;margin:0 0 1.3em;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+   text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule-strong);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+      border-radius:4px;padding:16px 18px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 5px;font-size:1.04rem;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);font-style:italic;max-width:none}
+.wc{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head><body>
+<div class="topbar"><div class="topbar-inner">
+  <a class="back" href="../">← Charter</a>
+  <span class="wordmark">Founders' Charter</span>
+</div></div>
+<main class="wrap">
+<h1>The Business Model</h1>
+<p><em>Draft — one open question, flagged below. Everything else is drawn from the code, the production data, and the formation documents. 2026-09-10.</em></p>
+<p>This is the layer that was missing. Without it, every role's tasks drift toward whatever is nearest — the codebase, the inbox, the bug list — and the program goes myopic. Roles derive from this. Not the other way round.</p>
+<h2>What business this is</h2>
+<p>You recover money installers are already owed but never collect, and you schedule the work that generates it.</p>
+<p><strong>PayCheck</strong> reconciles Crew2's payment vouchers against the work actually done and surfaces the gap. <strong>Scheduling</strong> runs the day — proposals, confirmations, routes, arrival windows.</p>
+<h2>Who pays</h2>
+<p>The <strong>installer business</strong>. Not Home Depot, not the homeowner.</p>
+<ul><li>1–5 installers, owner-operated</li><li>Does Home Depot window-treatment work as a subcontractor</li><li>Receives jobs through a Smartsheet handed down by Crew2 (Interior Logic Group)</li><li>The owner installs alongside the crew and does the scheduling at night</li></ul>
+<p>The buyer and the user are the same person. One decision-maker, no procurement, and $217/mo is a personal-checkbook decision.</p>
+<h2>What they pay</h2>
+<div class="tw"><table><thead><tr><th>Component</th><th>Monthly</th><th>Annual</th></tr></thead><tbody><tr><td>Base — includes 3 installer slots</td><td>$217</td><td>$2,148 (~$179/mo)</td></tr><tr><td>Each installer beyond 3</td><td>$35</td><td>$29/mo equivalent</td></tr><tr><td>PayCheck add-on</td><td>$45</td><td>not yet offered</td></tr><tr><td>AI Pro add-on</td><td>$79</td><td>$59/mo equivalent</td></tr></tbody></table></div>
+<p>A 6-installer shop with PayCheck: <strong>$367/mo</strong>. A 3-installer shop on base alone: <strong>$217/mo</strong>.</p>
+<h2>Why they'd pay</h2>
+<p>PayCheck found <strong>−$6,664.51</strong> of real underpayment across 2,191 vouchers on Go Blinds data. At $45/mo, that is roughly a <strong>12× return in the first year</strong> — <em>if it repeats for someone who isn't you.</em></p>
+<p>The secondary value is the owner's evenings. Today they reconcile vouchers by hand at 10pm and call customers to book installs. Both are automatable and neither is why anyone got into the trade.</p>
+<h2>The repeating unit</h2>
+<p><strong>One installer business at roughly $322/mo</strong>, reached through the peer network or the Home Depot review corpus.</p>
+<h2>Break-even</h2>
+<p><strong>N = ⌈ F ÷ ARPU ⌉</strong> where F is the fixed monthly stack.</p>
+<p>At a $500/mo stack: <strong>2 tenants</strong> at $322, or <strong>3</strong> at $217. This is not a company that needs scale to survive — it needs two customers.</p>
+<h2>The market</h2>
+<ul><li><strong>2,004</strong> Home Depot stores in the dataset</li><li>Crew2 covers roughly <strong>300</strong> of them — about <strong>15%</strong></li><li>So <strong>~85% of HD stores</strong> get window treatments from someone who is not Crew2</li></ul>
+<p>Crew2 is the beachhead because their voucher format is already parsed and their subs are reachable through the peer network. The rest of the market is the expansion, and each new aggregator costs a new parser.</p>
+<h2>What must be true — none of it tested yet</h2>
+<ol><li><strong>Other installers are underpaid too</strong>, not just Go Blinds. One data point exists and it is yours.</li><li><strong>The parser reads someone else's voucher</strong> without hand-holding.</li><li><strong>An owner will pay $217+/mo</strong> out of their own checkbook.</li><li><strong>Crew2 doesn't change their format.</strong></li></ol>
+<p>Assumptions 1 and 2 are testable this week with one peer and one voucher PDF. Assumption 3 needs a real conversation. Assumption 4 is not controllable — it is the risk you carry.</p>
+<h2>What kills it</h2>
+<p><strong>Crew2 concentration.</strong> There is no Home Depot API. Crew2 owns the row you read, and the integration is hardcoded to their specifics: the voucher PDF parser, the <code>donotreply@crew2.com</code> inbox hunt, SKUs IB31A1 and IO50A1, and the convention that Crew2 deletes the Smartsheet row once it sees a confirmed schedule.</p>
+<p>If Crew2 changes columns or voucher layout, ingestion, writeback, and PayCheck all break at once. Mitigation is not avoidance — it is knowing this is the bet, and expanding to a second aggregator before the first one moves.</p>
+<h2>Where the money currently is</h2>
+<p><strong>Zero paying tenants.</strong> Real revenue is $0. The one production tenant is Go Blinds Gold, the founder's own installer business. Alpha Blinds is a mock.</p>
+<p>Launch is defined as <strong>the first paying tenant that is not Go Blinds Gold.</strong></p>
+<h2>The open question</h2>
+<p><strong>Is PayCheck the wedge and scheduling the retention, or the reverse?</strong></p>
+<p>The case for PayCheck first: it is provable in dollars on day one, no competitor in field-service software does it, and it is the only thing here a generic tool cannot copy in a quarter.</p>
+<p>The case for scheduling first: it is what the product mostly <em>is</em> by volume of code, it is what the onboarding wizard configures, and it is the daily habit that makes the tool sticky.</p>
+<p>This decides what CEO, Product, and Sales are actually for. It is not a marketing choice — it changes which assumption gets tested first, what the first sales conversation opens with, and which half of the product gets engineering attention before launch.</p>
+<p><strong>Awaiting Ezra's call.</strong></p>
+</main>
+</body></html>
