@@ -2,6 +2,17 @@
 
 *Ashley's lane. Assembled from code research, 2026-09-10.*
 
+## First: there are two different "customers"
+
+This trips everyone up, and getting it wrong sends you to the wrong screen.
+
+- **Our customer = the tenant.** The installer business that pays us $217/mo. Ezra's peers. **These are the only people who will ever contact you.**
+- **Their customer = the homeowner.** The person who bought blinds from Home Depot and receives the appointment texts. **A homeowner will never call you** — they call Home Depot or the installer.
+
+So every question below is phrased the way a *tenant* would say it, even when the problem happened to a homeowner. When a tenant says "my customer," they mean the homeowner.
+
+Opt-outs, texts, and arrival blocks all belong to the homeowner. Trials, logins, vouchers, and billing all belong to the tenant.
+
 ## Six corrections to get right before anything else
 
 1. **PayCheck is not installer pay.** It is Crew2/Home Depot **voucher reconciliation for the company** — what Crew2 actually paid versus what the work was worth. **Owner + super_admin only.** Installers, managers, and even tenant admins cannot see it.
@@ -95,8 +106,8 @@ That's what PayCheck's Discrepancies tab is for. **Search by base WA** — a `-N
 **8. "The customer says they never confirmed, but it shows confirmed."**
 Read the actual thread for a reply that could have been read as confirmation, and check whether it came from elsewhere (manual entry, Smartsheet). Read the thread, not the status badge.
 
-**9. "I texted 'cancel' to reschedule and now I get nothing."**
-The known opt-out bug: the STOP filter also fires on "cancel", "end", and "quit", and once it fires the customer is permanently opted out before anything else sees the message. **There is no self-service undo.** Confirm the opt-out, then escalate to Ezra to reverse it. Do not try to re-text around it.
+**9. "My customer went silent on us — they texted asking to move the appointment and now they don't get anything."**
+The known opt-out bug. The homeowner texted something like "cancel" or "quit" meaning *cancel this time slot*, and the STOP filter fired on the word before anything else read the message. That homeowner is now permanently opted out of **this tenant's** texts. They aren't ignoring the installer — they stopped receiving. **There is no self-service undo.** Confirm the opt-out on that phone number, warn the tenant to phone the homeowner directly for this appointment, then escalate to Ezra to reverse it. Do not try to re-text around it.
 
 **10. "PayCheck looks clean but something feels off."**
 A clean week can hide a chargeback that landed after the week closed, or a mismatched WA. Don't treat "zero discrepancies" as proof — spot-check a couple of WAs by hand. *Discrepancies + Mileage, cross-checked against Smartsheet for the same dates.*
@@ -120,7 +131,7 @@ Compare the arrival block on the order against Dispatch. Same field, but a parti
 Yes, normal use. Just check whether the tenant is in dry run before assuming the proposal text will actually go out.
 
 **17. "Is this number on our do-not-text list?"**
-Check opt-out status on the customer. Remember it may have been set by accident via Q9 — an opt-out doesn't always mean they asked.
+Check opt-out status on the customer. Remember it may have been set by accident via Q9 — an opt-out doesn't always mean the homeowner asked for one.
 
 **18. "The route shows a job that was already cancelled."**
 The cancellation landed but the route wasn't reoptimized. *Dispatch → trigger reoptimize for that installer's day.*
@@ -139,7 +150,7 @@ When someone says "it's broken" with no detail, work these in order. Stop as soo
 
 2. **"Which order — do you have the WA number?"** — rules out whole-system panic. Almost everything is diagnosable one order at a time. No WA yet means find it in Pipeline by name or phone first.
 
-3. **Messaging: "Open the thread — does it show a text going out, and is the number opted out?"** — A "sent" message with a real complaint of nothing arriving points at the blocked-send bug. Opted-out points at Q9. Neither, and the reply is genuinely missing — that's the unmatched-message bug, which you cannot diagnose further. **Escalate immediately.**
+3. **Messaging: "Open the thread — does it show a text going out, and is the number opted out?"** — A "sent" message with a real complaint of nothing arriving points at the blocked-send bug. Opted-out points at Q9 — the homeowner was silenced by a keyword, not ignoring the installer. Neither, and the reply is genuinely missing — that's the unmatched-message bug, which you cannot diagnose further. **Escalate immediately.**
 
 4. **Schedule: "Does the arrival block match what Smartsheet shows?"** — Match means the problem is downstream (installer's phone, customer expectation). Mismatch narrows to a stuck writeback (check the 30-minute retry) or a stale sync.
 
